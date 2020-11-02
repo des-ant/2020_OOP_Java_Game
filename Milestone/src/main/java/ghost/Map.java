@@ -1,58 +1,155 @@
-// package ghost;
+package ghost;
 
-// import processing.core.PApplet;
-// import java.util.Scanner;
+import processing.core.PApplet;
+import processing.core.PImage;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.ArrayList;
 
-// public class Map {
+public class Map {
 
-//   // Helper method for opening file
-// 	public static Scanner openFile(String filename) {
-// 		try {
-// 			File f = new File(filename);
-// 			Scanner scan = new Scanner(f);
-// 			return scan;
-// 		} catch (FileNotFoundException e) {
-// 			return null;
-// 		}
-// 	}
+  // Location
+  private int playerX;
+  private int playerY;
 
-//   // Transform the input into a grid.
-//   // Returns list of lists of Cells
-//   public static List<List<Cell>> readBook(String filename) {
-//     // If the file doesn't exist, return null.
-//     if (filename == null) {
-//       return null;
-//     }
-//     Scanner scan = openFile(filename);
-//     if (scan == null) {
-//       return null;
-//     }
+  private int ghostX;
+  private int ghostY;
+
+  // private int x;
+  // private int y;
+  private int gridSpace = 16;
+  private int xOffset = gridSpace / 2;
+  private int yOffset = gridSpace / 2;
+  // Image
+  // private PImage sprite;
+
+  private ArrayList<Cell> cellList = new ArrayList<Cell>();
+
+  public Map(String mapFilename, PApplet app) {
+    readMap(mapFilename, app);
+  }
+
+  public int getPlayerX() {
+    return playerX;
+  }
+
+  public int getPlayerY() {
+    return playerY;
+  }
+
+  public void setPlayerX(int playerX) {
+    this.playerX = playerX;
+  }
+
+  public void setPlayerY(int playerY) {
+    this.playerY = playerY;
+  }
+
+  public int getGhostX() {
+    return ghostX;
+  }
+
+  public int getGhostY() {
+    return ghostY;
+  }
+
+  public void setGhostX(int ghostX) {
+    this.ghostX = ghostX;
+  }
+
+  public void setGhostY(int ghostY) {
+    this.ghostY = ghostY;
+  }
+
+  // Helper method for opening file
+	public Scanner openFile(String filename) {
+		try {
+			File f = new File(filename);
+			Scanner scan = new Scanner(f);
+			return scan;
+		} catch (FileNotFoundException e) {
+			return null;
+		}
+	}
+
+  // Transform the input into a grid.
+  // Returns list of lists of Cells
+  public void readMap(String filename, PApplet app) {
+    // If the file doesn't exist, return null.
+    if (filename == null) {
+      return;
+    }
+    Scanner scan = openFile(filename);
+    if (scan == null) {
+      return;
+    }
     
-//     // If the file does exist, parse file
+    // If the file does exist, parse file
 
-//     // Create list to hold list of cells
-//     List listListCells = new ArrayList<List<Cell>>();
+    // // Create list to hold list of cells
+    // List listListCells = new ArrayList<List<Cell>>();
 
-    
+    scan.nextLine();
+    int x = xOffset;
+    int y = yOffset;
+    while (scan.hasNextLine()) {
+      x = xOffset;
+      String line = scan.nextLine();
+      for (int i = 0; i < line.length(); i++) {
+        char currentChar = line.charAt(i);
+        switch (currentChar) {
+          // Empty cell
+          case '0':
+            break;
+          // Horizontal wall
+          case '1':
+            cellList.add(new Wall(x, y, app, 1));
+            break;
+          // Vertical wall
+          case '2':
+            cellList.add(new Wall(x, y, app, 2));
+            break;
+          // Corner wall (up + left)
+          case '3':
+            cellList.add(new Wall(x, y, app, 3));
+            break;
+          // Corner wall (up + right)
+          case '4':
+            cellList.add(new Wall(x, y, app, 4));
+            break;
+          // Corner wall (down + left)
+          case '5':
+            cellList.add(new Wall(x, y, app, 5));
+            break;
+          // Corner wall (down + right)
+          case '6':
+            cellList.add(new Wall(x, y, app, 6));
+            break;
+          case '7':
+            cellList.add(new Fruit(x, y, app));
+            break;
+          case 'p':
+            setPlayerX(x);
+            setPlayerY(y);
+            break;
+          case 'g':
+            setGhostX(x);
+            setGhostY(y);
+            break;
+          default:
+            break;
+        }
+        x += gridSpace;
+      }
+      y += gridSpace;
+    }
+  }
 
-//     scan.nextLine();
-//     while (scan.hasNextLine()) {
-//       String line = scan.nextLine();
-//       String[] lineInfo = line.split(",");
-//       String fileSerial = lineInfo[0];
-//       // Compare serial number
-//       if (serialNumber.equals(fileSerial)) {
-//         String fileTitle = lineInfo[1];
-//         String fileAuthor = lineInfo[2];
-//         String fileGenre = lineInfo[3];
-//         Book fileBook = new Book(fileTitle, fileAuthor, fileGenre, fileSerial);
-//         // Return the newly created book. 
-//         return fileBook;
-//       }
-//     }
-//     // Book not found in file
-//     return null;
-//   }
+  public void draw(PApplet app) {
+    for (Cell cell : cellList) {
+      cell.draw(app);
+    }
+  }
 
-  
-// }
+}

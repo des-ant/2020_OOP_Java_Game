@@ -19,7 +19,7 @@ public class Config {
   private ArrayList<Integer> modeLengths;
 
   public Config(String configFilename) {
-    ParseConfig(configFilename);
+    readConfig(configFilename);
   }
 
   public String getMap() {
@@ -38,7 +38,7 @@ public class Config {
     return this.modeLengths;
   }
 
-  private void ParseConfig(String configFilename) {
+  private void readConfig(String configFilename) {
     // JSON parser object to parse read file
     JSONParser jsonParser = new JSONParser();
       

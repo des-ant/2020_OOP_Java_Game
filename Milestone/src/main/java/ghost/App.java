@@ -11,8 +11,7 @@ public class App extends PApplet {
   private Config config;
   private Player player;
   private Ghost ghost;
-  private Wall wall;
-  // private Map map;
+  private Map map;
 
   public App() {
     //Set up your objects
@@ -21,16 +20,19 @@ public class App extends PApplet {
   public void setup() {
     frameRate(60);
 
+    // Draw images centered at the given x and y position
+    imageMode(CENTER);
+
     // Show black background on window launch
     background(0, 0, 0);
 
     // Load Map and Config file
     this.config = new Config("config.json");
+    this.map = new Map(config.getMap(), this);
 
     // Load images here
-    this.player = new Player(30, 30, this, config.getSpeed(), config.getLives());
-    this.ghost = new Ghost(60, 60, this);
-    this.wall = new Wall(90, 90, this, 1);
+    this.player = new Player(map.getPlayerX(), map.getPlayerY(), this, config.getSpeed(), config.getLives());
+    this.ghost = new Ghost(map.getGhostX(), map.getGhostY(), this);
   }
 
   public void settings() {
@@ -40,11 +42,12 @@ public class App extends PApplet {
   public void draw() {
     // Loop
     background(0, 0, 0);
+    this.map.draw(this);
+
     this.player.tick();
 
     this.player.draw(this);
     this.ghost.draw(this);
-    this.wall.draw(this);
   }
 
   public void keyPressed() {

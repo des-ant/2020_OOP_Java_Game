@@ -1,10 +1,16 @@
 ghost/Wall.java
  ghost.Wall
+ghost/Map.java
+ ghost.Map
 ghost/Config.java
  ghost.Config
+ghost/Fruit.java
+ ghost.Fruit
 ghost/Ghost.java
  ghost.Ghost
 ghost/Player.java
  ghost.Player
+ghost/Cell.java
+ ghost.Cell
 ghost/App.java
  ghost.App
