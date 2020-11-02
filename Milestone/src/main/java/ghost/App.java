@@ -1,32 +1,45 @@
 package ghost;
 
 import processing.core.PApplet;
+import processing.core.PImage;
 
 public class App extends PApplet {
 
-    public static final int WIDTH = 448;
-    public static final int HEIGHT = 576;
+  public static final int WIDTH = 448;
+  public static final int HEIGHT = 576;
 
-    public App() {
-        //Set up your objects
-    }
+  private Player player;
+  // private Ghost ghost;
+  // private Map map;
 
-    public void setup() {
-        frameRate(60);
+  public App() {
+    //Set up your objects
+  }
 
-        // Load images
-    }
+  public void setup() {
+    frameRate(60);
 
-    public void settings() {
-        size(WIDTH, HEIGHT);
-    }
+    // Show black background on window launch
+    background(0, 0, 0);
 
-    public void draw() { 
-        background(0, 0, 0);
-    }
+    // Load images here
+    this.player = new Player(30, 30, this.loadImage("src/main/resources/playerClosed.png"));
+  }
 
-    public static void main(String[] args) {
-        PApplet.main("ghost.App");
-    }
+  public void settings() {
+    size(WIDTH, HEIGHT);
+  }
+
+  public void draw() {
+    // Loop
+    background(0, 0, 0);
+
+    this.player.draw(this);
+
+  }
+
+  public static void main(String[] args) {
+    PApplet.main("ghost.App");
+  }
 
 }

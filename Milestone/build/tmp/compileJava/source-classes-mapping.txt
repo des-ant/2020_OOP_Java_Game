@@ -1,0 +1,6 @@
+ghost/Ghost.java
+ Ghost
+ghost/Player.java
+ ghost.Player
+ghost/App.java
+ ghost.App
