@@ -25,8 +25,8 @@
 
 //     public class HorWall extends Wall {
 
-//       public HorWall(int x, int y) {
-//         super(x, y, this.loadImage("src/main/resources/horizontal.png"));
+//       public HorWall(int x, int y, PImage sprite) {
+//         super(x, y, sprite);
 //       }
 
 //     }

@@ -1,5 +1,5 @@
 ghost/Ghost.java
- Ghost
+ ghost.Ghost
 ghost/Player.java
  ghost.Player
 ghost/App.java
