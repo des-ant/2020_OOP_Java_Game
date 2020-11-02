@@ -16,10 +16,10 @@ public class Player {
   private int speed;
   private int lives;
 
-  public Player(int x, int y, PImage sprite, int speed, int lives) {
+  public Player(int x, int y, PApplet app, int speed, int lives) {
     this.x = x;
     this.y = y;
-    this.sprite = sprite;
+    this.sprite = app.loadImage("src/main/resources/playerClosed.png");
     this.speed = speed;
     this.lives = lives;
   }

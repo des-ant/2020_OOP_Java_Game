@@ -10,10 +10,10 @@ public class Ghost {
 
   private PImage sprite;
 
-  public Ghost(int x, int y, PImage sprite) {
+  public Ghost(int x, int y, PApplet app) {
     this.x = x;
     this.y = y;
-    this.sprite = sprite;
+    this.sprite = app.loadImage("src/main/resources/ghost.png");
   }
 
   public void draw(PApplet app) {

@@ -27,8 +27,8 @@ public class App extends PApplet {
     this.config = new Config("config.json");
 
     // Load images here
-    this.player = new Player(30, 30, this.loadImage("src/main/resources/playerClosed.png"), config.getSpeed(), config.getLives());
-    this.ghost = new Ghost(60, 60, this.loadImage("src/main/resources/ghost.png"));
+    this.player = new Player(30, 30, this, config.getSpeed(), config.getLives());
+    this.ghost = new Ghost(60, 60, this);
   }
 
   public void settings() {
