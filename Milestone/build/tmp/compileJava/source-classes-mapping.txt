@@ -1,3 +1,5 @@
+ghost/Wall.java
+ ghost.Wall
 ghost/Config.java
  ghost.Config
 ghost/Ghost.java
