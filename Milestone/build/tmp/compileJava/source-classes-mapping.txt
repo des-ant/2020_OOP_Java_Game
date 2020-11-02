@@ -1,3 +1,5 @@
+ghost/Config.java
+ ghost.Config
 ghost/Ghost.java
  ghost.Ghost
 ghost/Player.java

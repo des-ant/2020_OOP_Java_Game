@@ -12,12 +12,16 @@ public class Player {
 
   private int xVel = 0;
   private int yVel = 0;
-  private int speed = 2;
 
-  public Player(int x, int y, PImage sprite) {
+  private int speed;
+  private int lives;
+
+  public Player(int x, int y, PImage sprite, int speed, int lives) {
     this.x = x;
     this.y = y;
     this.sprite = sprite;
+    this.speed = speed;
+    this.lives = lives;
   }
 
   public void draw(PApplet app) {

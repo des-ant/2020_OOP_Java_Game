@@ -8,6 +8,7 @@ public class App extends PApplet {
   public static final int WIDTH = 448;
   public static final int HEIGHT = 576;
 
+  private Config config;
   private Player player;
   private Ghost ghost;
   // private Map map;
@@ -22,8 +23,11 @@ public class App extends PApplet {
     // Show black background on window launch
     background(0, 0, 0);
 
+    // Load Map and Config file
+    this.config = new Config("config.json");
+
     // Load images here
-    this.player = new Player(30, 30, this.loadImage("src/main/resources/playerClosed.png"));
+    this.player = new Player(30, 30, this.loadImage("src/main/resources/playerClosed.png"), config.getSpeed(), config.getLives());
     this.ghost = new Ghost(60, 60, this.loadImage("src/main/resources/ghost.png"));
   }
 
