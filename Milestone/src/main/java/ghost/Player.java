@@ -35,6 +35,18 @@ public class Player {
     this.y += this.yVel;
   }
 
+  public void move(PApplet app) {
+    if (app.keyCode == app.UP) {
+      moveU();
+    } else if (app.keyCode == app.DOWN) {
+      moveD();
+    } else if (app.keyCode == app.LEFT) {
+      moveL();
+    } else if (app.keyCode == app.RIGHT) {
+      moveR();
+    }
+  }
+
   public void moveU() {
     this.xVel = 0;
     this.yVel = -1 * speed;
