@@ -1,16 +1,16 @@
-package ghost;
+package core;
 
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public abstract class Cell {
+public abstract class Tile {
 
-  private int x;
-  private int y;
+  protected int x;
+  protected int y;
 
-  private PImage sprite;
+  protected PImage sprite;
 
-  public Cell(int x, int y, PImage sprite) {
+  public Tile(int x, int y, PImage sprite) {
     this.x = x;
     this.y = y;
     this.sprite = sprite;

@@ -1,4 +1,4 @@
-package ghost;
+package core;
 
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.ArrayList;
+
+import core.tiles.*;
 
 public class Map {
 
@@ -16,15 +18,11 @@ public class Map {
   private int ghostX;
   private int ghostY;
 
-  // private int x;
-  // private int y;
   private int gridSpace = 16;
   private int xOffset = gridSpace / 2;
   private int yOffset = gridSpace / 2;
-  // Image
-  // private PImage sprite;
 
-  private ArrayList<Cell> cellList = new ArrayList<Cell>();
+  private ArrayList<Tile> tileList = new ArrayList<Tile>();
 
   public Map(String mapFilename, PApplet app) {
     readMap(mapFilename, app);
@@ -74,7 +72,6 @@ public class Map {
 	}
 
   // Transform the input into a grid.
-  // Returns list of lists of Cells
   public void readMap(String filename, PApplet app) {
     // If the file doesn't exist, return null.
     if (filename == null) {
@@ -86,10 +83,6 @@ public class Map {
     }
     
     // If the file does exist, parse file
-
-    // // Create list to hold list of cells
-    // List listListCells = new ArrayList<List<Cell>>();
-
     scan.nextLine();
     int x = xOffset;
     int y = yOffset;
@@ -99,35 +92,35 @@ public class Map {
       for (int i = 0; i < line.length(); i++) {
         char currentChar = line.charAt(i);
         switch (currentChar) {
-          // Empty cell
+          // Empty tile
           case '0':
             break;
           // Horizontal wall
           case '1':
-            cellList.add(new Wall(x, y, app, 1));
+            tileList.add(new Wall(x, y, app, 1));
             break;
           // Vertical wall
           case '2':
-            cellList.add(new Wall(x, y, app, 2));
+            tileList.add(new Wall(x, y, app, 2));
             break;
-          // Corner wall (up + left)
+          // Corner wall (up + left
           case '3':
-            cellList.add(new Wall(x, y, app, 3));
+            tileList.add(new Wall(x, y, app, 3));
             break;
           // Corner wall (up + right)
           case '4':
-            cellList.add(new Wall(x, y, app, 4));
+            tileList.add(new Wall(x, y, app, 4));
             break;
           // Corner wall (down + left)
           case '5':
-            cellList.add(new Wall(x, y, app, 5));
+            tileList.add(new Wall(x, y, app, 5));
             break;
           // Corner wall (down + right)
           case '6':
-            cellList.add(new Wall(x, y, app, 6));
+            tileList.add(new Wall(x, y, app, 6));
             break;
           case '7':
-            cellList.add(new Fruit(x, y, app));
+            tileList.add(new Fruit(x, y, app));
             break;
           case 'p':
             setPlayerX(x);
@@ -147,8 +140,8 @@ public class Map {
   }
 
   public void draw(PApplet app) {
-    for (Cell cell : cellList) {
-      cell.draw(app);
+    for (Tile tile : tileList) {
+      tile.draw(app);
     }
   }
 

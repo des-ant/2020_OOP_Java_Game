@@ -1,4 +1,4 @@
-package ghost;
+package core;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

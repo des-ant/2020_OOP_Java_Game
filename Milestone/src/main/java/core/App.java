@@ -1,4 +1,4 @@
-package ghost;
+package core;
 
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -35,7 +35,7 @@ public class App extends PApplet {
   }
 
   public static void main(String[] args) {
-    PApplet.main("ghost.App");
+    PApplet.main("core.App");
   }
 
 }

@@ -1,7 +1,9 @@
-package ghost;
+package core;
 
 import processing.core.PApplet;
 import processing.core.PImage;
+
+import core.actors.*;
 
 public class Game {
   
@@ -33,7 +35,7 @@ public class Game {
 
     // Load images here
     this.player = new Player(map.getPlayerX(), map.getPlayerY(), app, config.getSpeed(), config.getLives());
-    this.ghost = new Ghost(map.getGhostX(), map.getGhostY(), app);
+    this.ghost = new Ghost(map.getGhostX(), map.getGhostY(), app, config.getSpeed());
     
   }
 

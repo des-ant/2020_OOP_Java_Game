@@ -1,34 +1,18 @@
-package ghost;
+package core.actors;
 
 import processing.core.PApplet;
-import processing.core.PImage;
 
-public class Player {
+import core.Actor;
 
-  private int x;
-  private int y;
+public class Player extends Actor {
 
-  private PImage sprite;
-
-  private int xVel = 0;
-  private int yVel = 0;
-
-  private int speed;
   private int lives;
 
   public Player(int x, int y, PApplet app, int speed, int lives) {
-    this.x = x;
-    this.y = y;
-    this.sprite = app.loadImage("src/main/resources/playerClosed.png");
-    this.speed = speed;
+    super(x, y, app.loadImage("src/main/resources/playerClosed.png"), speed);
     this.lives = lives;
   }
 
-  public void draw(PApplet app) {
-    // Handling graphics
-    app.image(this.sprite, this.x, this.y);
-  }
-  
   public void tick() {
     // Handles logic
     this.x += this.xVel;

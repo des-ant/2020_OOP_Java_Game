@@ -1,9 +1,10 @@
-package ghost;
+package core.tiles;
 
 import processing.core.PApplet;
-import processing.core.PImage;
 
-public class Wall extends Cell {
+import core.Tile;
+
+public class Wall extends Tile {
 
   public Wall(int x, int y, PApplet app, int type) {
     super(x, y, app.loadImage(wallSprite(type)));
