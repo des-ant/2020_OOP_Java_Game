@@ -1,14 +1,17 @@
 package core.actors;
 
-import processing.core.PApplet;
+import java.util.List;
 
 import core.Actor;
+import core.Tile;
+import processing.core.PApplet;
 
 public class Player extends Actor {
 
   private int lives;
 
   public Player(int x, int y, PApplet app, int speed, int lives) {
+    // Inherit attributes and methods from Actor
     super(x, y, app.loadImage("src/main/resources/playerClosed.png"), speed);
     this.lives = lives;
   }
@@ -18,6 +21,28 @@ public class Player extends Actor {
     this.x += this.xVel;
     this.y += this.yVel;
   }
+
+  public void collide() {
+    this.xVel = 0;
+    this.yVel = 0;
+  }
+
+  public void checkCollision(List<Tile> tileList) {
+    for (Tile tile : tileList) {
+      if (this.edgeRight > tile.getEdgeLeft() && 
+      this.edgeLeft < tile.getEdgeRight() &&
+      this.edgeBottom > tile.getEdgeTop() &&
+      this.edgeTop < tile.getEdgeBottom()) {
+        this.collide();
+        return;
+      }
+    }
+  }
+
+  // public void setNextDirection(Direction direction) {
+  // ((UserControlledMovementStrategy)
+  // movementStrategy).setNextDirection//(direction);
+  // }
 
   public void move(PApplet app) {
     if (app.keyCode == app.UP) {

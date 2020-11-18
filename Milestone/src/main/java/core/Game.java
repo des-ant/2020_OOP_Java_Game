@@ -1,9 +1,8 @@
 package core;
 
+import core.actors.Ghost;
+import core.actors.Player;
 import processing.core.PApplet;
-import processing.core.PImage;
-
-import core.actors.*;
 
 public class Game {
   
@@ -43,7 +42,7 @@ public class Game {
     app.background(0, 0, 0);
 
     map.draw(app);
-
+    player.checkCollision(map.getTileList());
     player.tick();
 
     player.draw(app);

@@ -1,13 +1,14 @@
 package core;
 
-import processing.core.PApplet;
-import processing.core.PImage;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
-import core.tiles.*;
+import core.tiles.Fruit;
+import core.tiles.Wall;
+import processing.core.PApplet;
 
 public class Map {
 
@@ -22,12 +23,16 @@ public class Map {
   private int xOffset = gridSpace / 2;
   private int yOffset = gridSpace / 2;
 
-  private ArrayList<Tile> tileList = new ArrayList<Tile>();
+  private List<Tile> tileList = new ArrayList<Tile>();
 
   public Map(String mapFilename, PApplet app) {
     readMap(mapFilename, app);
   }
 
+  public List<Tile> getTileList() {
+    return tileList;
+  }
+  
   public int getPlayerX() {
     return playerX;
   }
