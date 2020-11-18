@@ -4,8 +4,8 @@ core/tiles/Fruit.java
  core.tiles.Fruit
 core/Actor.java
  core.Actor
-core/Game.java
- core.Game
+core/App.java
+ core.App
 core/actors/Ghost.java
  core.actors.Ghost
 core/Config.java
@@ -14,7 +14,7 @@ core/Map.java
  core.Map
 core/Tile.java
  core.Tile
-core/App.java
- core.App
+core/Game.java
+ core.Game
 core/actors/Player.java
  core.actors.Player

@@ -5,6 +5,9 @@ import processing.core.PImage;
 
 public abstract class Actor {
   
+  // Each grid space is 16x16 pixels
+  public static int SIZE = 16;
+
   // Attributes accessible by subclass Pacman, Ghost
   protected int x;
   protected int y;
@@ -13,11 +16,6 @@ public abstract class Actor {
   protected int speed;
 
   protected PImage sprite;
-
-  protected int edgeLeft = getX() - (getWidth() / 2);
-  protected int edgeRight = getX() + (getWidth() / 2);
-  protected int edgeTop = getY() - (getHeight() / 2);
-  protected int edgeBottom = getY() + (getHeight() / 2);
 
   public Actor(int x, int y, PImage sprite, int speed) {
     this.x = x;
@@ -29,6 +27,10 @@ public abstract class Actor {
   public void draw(PApplet app) {
     // Handling graphics
     app.image(this.sprite, this.x, this.y);
+    app.fill(0, 0);
+    app.rect(this.x, this.y, sprite.width, sprite.height);
+    app.fill(255, 0, 0);
+    app.rect(this.x, this.y, SIZE, SIZE);
   }
 
   public int getX() {
@@ -40,27 +42,27 @@ public abstract class Actor {
   }
 
   public int getWidth() {
-    return sprite.width;
+    return SIZE;
   }
 
   public int getHeight() {
-    return sprite.height;
+    return SIZE;
   }
 
   public int getEdgeLeft() {
-    return edgeLeft;
+    return x - (getWidth() / 2);
   }
 
   public int getEdgeRight() {
-    return edgeRight;
+    return x + (getWidth() / 2);
   }
 
   public int getEdgeTop() {
-    return edgeTop;
+    return y - (getHeight() / 2);
   }
 
   public int getEdgeBottom() {
-    return edgeBottom;
+    return y + (getHeight() / 2);
   }
 
 }

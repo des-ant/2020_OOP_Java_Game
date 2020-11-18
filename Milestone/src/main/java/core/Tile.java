@@ -13,20 +13,26 @@ public abstract class Tile {
 
   protected PImage sprite;
 
-  protected int edgeLeft = getX() - (getWidth() / 2);
-  protected int edgeRight = getX() + (getWidth() / 2);
-  protected int edgeTop = getY() - (getHeight() / 2);
-  protected int edgeBottom = getY() + (getHeight() / 2);
+  protected int edgeLeft;
+  protected int edgeRight;
+  protected int edgeTop;
+  protected int edgeBottom;
 
   public Tile(int x, int y, PImage sprite) {
     this.x = x;
     this.y = y;
     this.sprite = sprite;
+    this.edgeLeft = x - (sprite.width / 2);
+    this.edgeRight = x + (sprite.width / 2);
+    this.edgeTop = y - (sprite.height / 2);
+    this.edgeBottom = y + (sprite.height / 2);
   }
 
   public void draw(PApplet app) {
     // Handling graphics
     app.image(this.sprite, this.x, this.y);
+    app.fill(0, 0);
+    app.rect(this.x, this.y, getWidth(), getHeight());
   }
 
   public int getX() {
@@ -60,5 +66,9 @@ public abstract class Tile {
   public int getEdgeBottom() {
     return edgeBottom;
   }
+
+  public abstract boolean isMovable();
+
+  public abstract void msg();
   
 }

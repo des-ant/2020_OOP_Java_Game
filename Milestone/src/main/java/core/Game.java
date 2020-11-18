@@ -29,6 +29,9 @@ public class Game {
     // Show black background on window launch
     app.background(0, 0, 0);
 
+    app.rectMode(app.CENTER);
+    app.stroke(255, 255, 255);
+
     // Map will load wall and fruit images
     this.map = new Map(config.getMap(), app);
 
@@ -40,10 +43,8 @@ public class Game {
 
   public void draw() {
     app.background(0, 0, 0);
-
     map.draw(app);
-    player.checkCollision(map.getTileList());
-    player.tick();
+    player.tick(map.getTileList());
 
     player.draw(app);
     ghost.draw(app);

@@ -1,8 +1,7 @@
 package core.tiles;
 
-import processing.core.PApplet;
-
 import core.Tile;
+import processing.core.PApplet;
 
 public class Wall extends Tile {
 
@@ -43,4 +42,12 @@ public class Wall extends Tile {
     return src;
   }
   
+  public boolean isMovable() {
+    return false;
+  }
+
+  public void msg() {
+    System.out.println("Wall");
+  }
+
 }
