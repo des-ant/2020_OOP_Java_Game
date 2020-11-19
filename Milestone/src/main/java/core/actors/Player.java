@@ -18,6 +18,9 @@ public class Player extends Actor {
 
   private int[] nextMove = {0, 0, 0, 0};
 
+  public int coordX;
+  public int coordY;
+
   public Player(int x, int y, PApplet app, int speed, int lives) {
     // Inherit attributes and methods from Actor
     super(x, y, app.loadImage("src/main/resources/playerClosed.png"), speed);
@@ -31,14 +34,43 @@ public class Player extends Actor {
   public void tick(List<Tile> tileList) {
     // Handles logic
     setTileList(tileList);
-    if (checkCollision()) {
+    // System.out.println(getCoord());
+    if (checkCollision(currentMove)) {
       this.collide();
       return;
     }
-    // applyNextMove();
+    // && setCoord() goes in if condition
+    if (desiredMove != 0) {
+      if (checkCollision(nextMove)) {
+        System.out.println("next collides");
+      } else {
+        applyNextMove();
+      }
+    }
     this.x += this.xVel;
     this.y += this.yVel;
   }
+
+  // public boolean isMoving() {
+  //   return movementStrategy.isMoving();
+  // }
+
+  // public boolean setCoord() {
+  //   int newCoordX = getCoordX();
+  //   int newCoordY = getCoordY();
+  //   if (coordX != newCoordX && coordY != newCoordY) {
+  //     coordX = newCoordX;
+  //     coordY = newCoordY;
+  //     return true;
+  //   } else if (coordX != newCoordX) {
+  //     coordX = newCoordX;
+  //     return true;
+  //   } else if (coordY != newCoordY) {
+  //     coordY = newCoordY;
+  //     return true;
+  //   }
+  //   return false;
+  // }
 
   public void collide() {
     this.currentMove = new int[] {0, 0, 0, 0};
@@ -49,69 +81,33 @@ public class Player extends Actor {
   public void applyNextMove() {
     switch(desiredMove) {
       case 1:
-        nextMove = new int[] {-1, 0, 0, 0};
-        if (canMove()) {
-          moveU();
-          desiredMove = 0;
-        }
+        moveU();
+        desiredMove = 0;
         break;
       case 2:
-        nextMove = new int[] {0, 1, 0, 0};
-        if (canMove()) {
-          moveD();
-          desiredMove = 0;
-        }
+        moveD();
+        desiredMove = 0;
         break;
       case 3:
-        nextMove = new int[] {0, 0, -1, 0};
-        if (canMove()) {
-          moveL();
-          desiredMove = 0;
-        }
+        moveL();
+        desiredMove = 0;
         break;
       case 4:
-        nextMove = new int[] {0, 0, 0, 1};
-        if (canMove()) {
-          moveR();
-          desiredMove = 0;
-        }
+        moveR();
+        desiredMove = 0;
         break;
       default:
         break;
     }
   }
 
+  // // Need to fix this
   // public boolean canMove() {
-  //   switch(desiredMove) {
-  //     case 1:
-  //       break;
-  //     case 2:
-  //       break;
-  //     case 3:
-  //       break;
-  //     case 4:
-  //       break;
-  //     default:
-  //       break;
+  //   if ((getX() - 8) % SIZE != 0 && (getX() - 8) % SIZE != 0) {
+  //     return true;
   //   }
-  //   return !checkCollision();
+  //   return false;
   // }
-
-  // Need to fix this
-  public boolean canMove() {
-    for (Tile tile : this.tileList) {
-      if (this.getEdgeRight() + this.nextMove[3] > tile.getEdgeLeft() && 
-      this.getEdgeLeft() + this.nextMove[2] < tile.getEdgeRight() &&
-      this.getEdgeBottom() + this.nextMove[1] > tile.getEdgeTop() &&
-      this.getEdgeTop() + this.nextMove[0] < tile.getEdgeBottom()) {
-        if (!tile.isMovable()) {
-          tile.msg();
-          return true;
-        }
-      }
-    }
-    return false;
-  }
 
   public boolean isMoving() {
     if (this.xVel != 0 || this.yVel != 0) {
@@ -120,23 +116,13 @@ public class Player extends Actor {
     return false;
   }
 
-  public boolean checkCollision() {
+  public boolean checkCollision(int[] moveArray) {
     for (Tile tile : this.tileList) {
-      if (this.getEdgeRight() + this.currentMove[3] > tile.getEdgeLeft() && 
-      this.getEdgeLeft() + this.currentMove[2] < tile.getEdgeRight() &&
-      this.getEdgeBottom() + this.currentMove[1] > tile.getEdgeTop() &&
-      this.getEdgeTop() + this.currentMove[0] < tile.getEdgeBottom()) {
+      if (this.getEdgeRight() + moveArray[3] > tile.getEdgeLeft() && 
+      this.getEdgeLeft() + moveArray[2] < tile.getEdgeRight() &&
+      this.getEdgeBottom() + moveArray[1] > tile.getEdgeTop() &&
+      this.getEdgeTop() + moveArray[0] < tile.getEdgeBottom()) {
         if (!tile.isMovable()) {
-          // System.out.println("Height" + getHeight());
-          // System.out.println("Width" + getWidth());
-          // System.out.println("Right" + getEdgeRight());
-          // System.out.println("Left" + getEdgeLeft());
-          // System.out.println("Bottom" + getEdgeBottom());
-          // System.out.println("Top" + getEdgeTop());
-          // System.out.println("Tile Right" + tile.getEdgeRight());
-          // System.out.println("Tile Left" + tile.getEdgeLeft());
-          // System.out.println("Tile Bottom" + tile.getEdgeBottom());
-          // System.out.println("Tile Top" + tile.getEdgeTop());
           tile.msg();
           return true;
         }
@@ -155,6 +141,7 @@ public class Player extends Actor {
       if (isMoving()) {
         desiredMove = 1;
         System.out.println(desiredMove);
+        nextMove = new int[] {-SIZE/16, 0, 0, 0};
         return;
       }
       moveU();
@@ -162,6 +149,7 @@ public class Player extends Actor {
       if (isMoving()) {
         desiredMove = 2;
         System.out.println(desiredMove);
+        nextMove = new int[] {0, SIZE/16, 0, 0};
         return;
       }
       moveD();
@@ -169,14 +157,15 @@ public class Player extends Actor {
       if (isMoving()) {
         desiredMove = 3;
         System.out.println(desiredMove);
+        nextMove = new int[] {0, 0, -SIZE/16, 0};
         return;
       }
       moveL();
     } else if (app.keyCode == app.RIGHT) {
-      System.out.println(canMove());
       if (isMoving()) {
         desiredMove = 4;
         System.out.println(desiredMove);
+        nextMove = new int[] {0, 0, 0, SIZE/16};
         return;
       }
       moveR();
@@ -184,25 +173,25 @@ public class Player extends Actor {
   }
 
   public void moveU() {
-    this.currentMove = new int[] {-1, 0, 0, 0};
+    this.currentMove = new int[] {-SIZE/16, 0, 0, 0};
     this.xVel = 0;
     this.yVel = -1 * speed;
   }
 
   public void moveD() {
-    this.currentMove = new int[] {0, 1, 0, 0};
+    this.currentMove = new int[] {0, SIZE/16, 0, 0};
     this.xVel = 0;
     this.yVel = 1 * speed;
   }
 
   public void moveL() {
-    this.currentMove = new int[] {0, 0, -1, 0};
+    this.currentMove = new int[] {0, 0, -SIZE/16, 0};
     this.xVel = -1 * speed;
     this.yVel = 0;
   }
 
   public void moveR() {
-    this.currentMove = new int[] {0, 0, 0, 1};
+    this.currentMove = new int[] {0, 0, 0, SIZE/16};
     this.xVel = 1 * speed;
     this.yVel = 0;
   }

@@ -44,11 +44,11 @@ public abstract class Tile {
   }
 
   public int getWidth() {
-    return sprite.width;
+    return SIZE;
   }
 
   public int getHeight() {
-    return sprite.height;
+    return SIZE;
   }
 
   public int getEdgeLeft() {

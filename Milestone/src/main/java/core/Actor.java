@@ -65,4 +65,16 @@ public abstract class Actor {
     return y + (getHeight() / 2);
   }
 
+  public int getCoordX() {
+    return (x - SIZE) / SIZE;
+  }
+
+  public int getCoordY() {
+    return (y - SIZE) / SIZE;
+  }
+
+  public String getCoord() {
+    return getCoordX() + ", " + getCoordY();
+  }
+
 }

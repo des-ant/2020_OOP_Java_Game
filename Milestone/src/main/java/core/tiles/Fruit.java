@@ -14,7 +14,7 @@ public class Fruit extends Tile {
   }
 
   public void msg() {
-    System.out.println("Fruit");
+    System.out.println("Fruit at " + getX() + ", " + getY());
   }
 
 }

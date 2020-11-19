@@ -5,8 +5,11 @@ import processing.core.PApplet;
 
 public class Wall extends Tile {
 
+  PApplet app;
+
   public Wall(int x, int y, PApplet app, int type) {
     super(x, y, app.loadImage(wallSprite(type)));
+    this.app = app;
   }
 
   private static String wallSprite(int type) {
@@ -47,7 +50,7 @@ public class Wall extends Tile {
   }
 
   public void msg() {
-    System.out.println("Wall");
+    System.out.println("Wall at " + (getX() - 8)/16 + ", " + (getY() - 8)/16);
   }
 
 }
