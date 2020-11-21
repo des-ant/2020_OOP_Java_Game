@@ -44,7 +44,7 @@ public class Game {
   public void draw() {
     app.background(0, 0, 0);
     mapGrid.draw(app);
-    waka.tick(mapGrid.getTileList());
+    waka.tick();
 
     waka.draw(app);
     ghost.draw(app);

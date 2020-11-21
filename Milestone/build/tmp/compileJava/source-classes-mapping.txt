@@ -1,26 +1,26 @@
-core/App.java
- core.App
-core/Config.java
- core.Config
-core/Game.java
- core.Game
-core/movement/Movement.java
- core.movement.Movement
-core/Direction.java
- core.Direction
 core/tiles/Wall.java
  core.tiles.Wall
-core/tiles/Fruit.java
- core.tiles.Fruit
 core/Actor.java
  core.Actor
+core/Game.java
+ core.Game
 core/actors/Ghost.java
  core.actors.Ghost
+core/Direction.java
+ core.Direction
+core/Config.java
+ core.Config
 core/MapGrid.java
  core.MapGrid
-core/Tile.java
- core.Tile
 core/movement/PlayerMovement.java
  core.movement.PlayerMovement
+core/App.java
+ core.App
+core/movement/Movement.java
+ core.movement.Movement
 core/actors/Waka.java
  core.actors.Waka
+core/tiles/Fruit.java
+ core.tiles.Fruit
+core/Tile.java
+ core.Tile

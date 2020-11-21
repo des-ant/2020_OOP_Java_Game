@@ -1,5 +1,6 @@
 package core;
 
+import java.awt.Point;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -11,6 +12,8 @@ import core.tiles.Wall;
 import processing.core.PApplet;
 
 public class MapGrid {
+  public static int MAPHEIGHT = 36;
+  public static int MAPWIDTH = 28;
 
   // Location
   private int wakaX;
@@ -34,19 +37,23 @@ public class MapGrid {
   }
 
   // Check if tile allows movement
-  public boolean canMove(int coordX, int coordY) {
-    Tile checkTile = tileAt(coordX, coordY);
+  public boolean canMove(Point coords) {
+    Tile checkTile = tileAt(coords);
+    // Empty space allows movement
     if (checkTile == null) {
-      return false;
+      return true;
     }
     return checkTile.isMovable();
   }
 
   // Get tile at specific coordinate
   // Returns null if tile does not exist
-  public Tile tileAt(int coordX, int coordY) {
+  public Tile tileAt(Point coords) {
+    if (coords == null) {
+      return null;
+    }
     for (Tile tile : tileList) {
-      if (tile.getCoordX() == coordX && tile.getCoordY() == coordY) {
+      if (coords.equals(tile.getCoords())) {
         return tile;
       }
     }

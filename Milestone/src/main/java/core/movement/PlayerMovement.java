@@ -1,5 +1,7 @@
 package core.movement;
 
+import java.awt.Point;
+
 import core.Direction;
 import core.MapGrid;
 
@@ -31,20 +33,21 @@ public class PlayerMovement implements Movement {
     return currentDirection != Direction.NONE;
   }
 
-  public Direction getNextDirection(int coordX, int coordY) {
-    if (canMove(coordX, coordY, nextDirection)) {
+  public Direction getNextDirection(Point coords) {
+    if (canMove(coords, nextDirection)) {
       currentDirection = nextDirection;
-    } else if (!canMove(coordX, coordY, currentDirection)) {
+    } else if (!canMove(coords, currentDirection)) {
       previousDirection = currentDirection;
       currentDirection = Direction.NONE;
     }
     return currentDirection;
   }
 
-  private boolean canMove(int coordX, int coordY, Direction direction) {
-    int newCoordX = coordX + direction.getX();
-    int newCoordY = coordY + direction.getY();
-    return mapGrid.canMove(newCoordX, newCoordY);
+  private boolean canMove(Point coords, Direction direction) {
+    Point newCoords = new Point(coords);
+    // Calculate new coordinates
+    newCoords.translate(direction.getX(), direction.getY());
+    return mapGrid.canMove(newCoords);
   }
 
 }

@@ -1,9 +1,11 @@
 package core.movement;
 
+import java.awt.Point;
+
 import core.Direction;
 
 public interface Movement {
-  Direction getNextDirection(int coordX, int coordY);
+  Direction getNextDirection(Point coords);
 
   Direction getDirection();
 

@@ -44,8 +44,10 @@ public class Waka extends Actor {
     return movement.isMoving();
   }
 
-  public void tick(List<Tile> tileList) {
-    // // Handles logic
+  // public void tick() {
+    // Handles logic
+
+
     // setTileList(tileList);
     // // System.out.println(getCoord());
     // if (checkCollision(currentMove)) {
@@ -62,7 +64,7 @@ public class Waka extends Actor {
     // }
     // this.x += this.xVel;
     // this.y += this.yVel;
-  }
+  // }
 
   // public boolean isMoving() {
   // return movementStrategy.isMoving();
@@ -183,22 +185,36 @@ public class Waka extends Actor {
   //   }
   // }
 
+
   public void move(PApplet app) {
-    switch (app.keyCode) {
-      case app.UP:
-        setNextDirection(Direction.UP);
-        break;
-      case app.DOWN:
-        setNextDirection(Direction.DOWN);
-        break;
-      case app.LEFT:
-        setNextDirection(Direction.LEFT);
-        break;
-      case app.RIGHT:
-        setNextDirection(Direction.RIGHT);
-        break;
+    if (app.keyCode == app.UP) {
+      setNextDirection(Direction.UP);
+    } else if (app.keyCode == app.DOWN) {
+      setNextDirection(Direction.DOWN);
+    } else if (app.keyCode == app.LEFT) {
+      setNextDirection(Direction.LEFT);
+    } else if (app.keyCode == app.RIGHT) {
+      setNextDirection(Direction.RIGHT);
     }
   }
+
+  // public void move(PApplet app) {
+  //   if (app.keyCode == app.UP)
+  //   switch (app.keyCode) {
+  //     case app.UP:
+  //       setNextDirection(Direction.UP);
+  //       break;
+  //     case app.DOWN:
+  //       setNextDirection(Direction.DOWN);
+  //       break;
+  //     case app.LEFT:
+  //       setNextDirection(Direction.LEFT);
+  //       break;
+  //     case app.RIGHT:
+  //       setNextDirection(Direction.RIGHT);
+  //       break;
+  //   }
+  // }
 
   // public void moveU() {
   //   this.currentMove = new int[] { -Tile.SIZE / 16, 0, 0, 0 };
