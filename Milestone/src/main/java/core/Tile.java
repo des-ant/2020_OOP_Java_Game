@@ -11,6 +11,9 @@ public abstract class Tile {
   protected int x;
   protected int y;
 
+  protected int coordX;
+  protected int coordY;
+
   protected PImage sprite;
 
   protected int edgeLeft;
@@ -26,6 +29,8 @@ public abstract class Tile {
     this.edgeRight = x + (sprite.width / 2);
     this.edgeTop = y - (sprite.height / 2);
     this.edgeBottom = y + (sprite.height / 2);
+    this.coordX = (x + SIZE/2)/SIZE;
+    this.coordY = (y + SIZE/2)/SIZE;
   }
 
   public void draw(PApplet app) {
@@ -65,6 +70,14 @@ public abstract class Tile {
 
   public int getEdgeBottom() {
     return edgeBottom;
+  }
+
+  public int getCoordX() {
+    return coordX;
+  }
+
+  public int getCoordY() {
+    return coordY;
   }
 
   public abstract boolean isMovable();

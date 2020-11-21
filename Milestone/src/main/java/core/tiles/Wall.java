@@ -50,7 +50,7 @@ public class Wall extends Tile {
   }
 
   public void msg() {
-    System.out.println("Wall at " + (getX() - 8)/16 + ", " + (getY() - 8)/16);
+    System.out.println("Wall at " + getCoordX() + ", " + getCoordY());
   }
 
 }

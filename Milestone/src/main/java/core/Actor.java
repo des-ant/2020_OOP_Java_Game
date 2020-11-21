@@ -1,12 +1,10 @@
 package core;
 
+import core.movement.Movement;
 import processing.core.PApplet;
 import processing.core.PImage;
 
 public abstract class Actor {
-  
-  // Each grid space is 16x16 pixels
-  public static int SIZE = 16;
 
   // Attributes accessible by subclass Pacman, Ghost
   protected int x;
@@ -15,13 +13,16 @@ public abstract class Actor {
   protected int yVel = 0;
   protected int speed;
 
+  protected Movement movement;
+
   protected PImage sprite;
 
-  public Actor(int x, int y, PImage sprite, int speed) {
+  public Actor(int x, int y, PImage sprite, int speed, Movement movement) {
     this.x = x;
     this.y = y;
     this.sprite = sprite;
     this.speed = speed;
+    this.movement = movement;
   }
 
   public void draw(PApplet app) {
@@ -30,7 +31,7 @@ public abstract class Actor {
     app.fill(0, 0);
     app.rect(this.x, this.y, sprite.width, sprite.height);
     app.fill(255, 0, 0);
-    app.rect(this.x, this.y, SIZE, SIZE);
+    app.rect(this.x, this.y, Tile.SIZE, Tile.SIZE);
   }
 
   public int getX() {
@@ -42,11 +43,11 @@ public abstract class Actor {
   }
 
   public int getWidth() {
-    return SIZE;
+    return Tile.SIZE;
   }
 
   public int getHeight() {
-    return SIZE;
+    return Tile.SIZE;
   }
 
   public int getEdgeLeft() {
@@ -66,11 +67,11 @@ public abstract class Actor {
   }
 
   public int getCoordX() {
-    return (x - SIZE) / SIZE;
+    return (x + Tile.SIZE/2) / Tile.SIZE;
   }
 
   public int getCoordY() {
-    return (y - SIZE) / SIZE;
+    return (y + Tile.SIZE/2) / Tile.SIZE;
   }
 
   public String getCoord() {

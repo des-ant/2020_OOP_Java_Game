@@ -1,15 +1,15 @@
 package core;
 
 import core.actors.Ghost;
-import core.actors.Player;
+import core.actors.Waka;
 import processing.core.PApplet;
 
 public class Game {
   
   private Config config;
-  private Player player;
+  private Waka waka;
   private Ghost ghost;
-  private Map map;
+  private MapGrid mapGrid;
   private PApplet app;
 
   public Game(PApplet app) {
@@ -32,28 +32,28 @@ public class Game {
     app.rectMode(app.CENTER);
     app.stroke(255, 255, 255);
 
-    // Map will load wall and fruit images
-    this.map = new Map(config.getMap(), app);
+    // MapGrid will load wall and fruit images
+    this.mapGrid = new MapGrid(config.getMapGrid(), app);
 
     // Load images here
-    this.player = new Player(map.getPlayerX(), map.getPlayerY(), app, config.getSpeed(), config.getLives());
-    this.ghost = new Ghost(map.getGhostX(), map.getGhostY(), app, config.getSpeed());
+    this.waka = new Waka(mapGrid.getWakaX(), mapGrid.getWakaY(), app, config.getSpeed(), config.getLives(), mapGrid);
+    this.ghost = new Ghost(mapGrid.getGhostX(), mapGrid.getGhostY(), app, config.getSpeed());
     
   }
 
   public void draw() {
     app.background(0, 0, 0);
-    map.draw(app);
-    player.tick(map.getTileList());
+    mapGrid.draw(app);
+    waka.tick(mapGrid.getTileList());
 
-    player.draw(app);
+    waka.draw(app);
     ghost.draw(app);
   }
 
   public void keyPressed() {
     // Arrow keys input
     if (app.key == app.CODED) {
-      player.move(app);
+      waka.move(app);
     }
   }
 

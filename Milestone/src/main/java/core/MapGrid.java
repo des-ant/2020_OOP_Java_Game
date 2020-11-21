@@ -10,11 +10,11 @@ import core.tiles.Fruit;
 import core.tiles.Wall;
 import processing.core.PApplet;
 
-public class Map {
+public class MapGrid {
 
   // Location
-  private int playerX;
-  private int playerY;
+  private int wakaX;
+  private int wakaY;
 
   private int ghostX;
   private int ghostY;
@@ -25,28 +25,48 @@ public class Map {
 
   private List<Tile> tileList = new ArrayList<Tile>();
 
-  public Map(String mapFilename, PApplet app) {
-    readMap(mapFilename, app);
+  public MapGrid(String mapFilename, PApplet app) {
+    readMapGrid(mapFilename, app);
   }
 
   public List<Tile> getTileList() {
     return tileList;
   }
-  
-  public int getPlayerX() {
-    return playerX;
+
+  // Check if tile allows movement
+  public boolean canMove(int coordX, int coordY) {
+    Tile checkTile = tileAt(coordX, coordY);
+    if (checkTile == null) {
+      return false;
+    }
+    return checkTile.isMovable();
   }
 
-  public int getPlayerY() {
-    return playerY;
+  // Get tile at specific coordinate
+  // Returns null if tile does not exist
+  public Tile tileAt(int coordX, int coordY) {
+    for (Tile tile : tileList) {
+      if (tile.getCoordX() == coordX && tile.getCoordY() == coordY) {
+        return tile;
+      }
+    }
+    return null;
   }
 
-  public void setPlayerX(int playerX) {
-    this.playerX = playerX;
+  public int getWakaX() {
+    return wakaX;
   }
 
-  public void setPlayerY(int playerY) {
-    this.playerY = playerY;
+  public int getWakaY() {
+    return wakaY;
+  }
+
+  public void setWakaX(int wakaX) {
+    this.wakaX = wakaX;
+  }
+
+  public void setWakaY(int wakaY) {
+    this.wakaY = wakaY;
   }
 
   public int getGhostX() {
@@ -66,18 +86,18 @@ public class Map {
   }
 
   // Helper method for opening file
-	public Scanner openFile(String filename) {
-		try {
-			File f = new File(filename);
-			Scanner scan = new Scanner(f);
-			return scan;
-		} catch (FileNotFoundException e) {
-			return null;
-		}
-	}
+  public Scanner openFile(String filename) {
+    try {
+      File f = new File(filename);
+      Scanner scan = new Scanner(f);
+      return scan;
+    } catch (FileNotFoundException e) {
+      return null;
+    }
+  }
 
   // Transform the input into a grid.
-  public void readMap(String filename, PApplet app) {
+  public void readMapGrid(String filename, PApplet app) {
     // If the file doesn't exist, return null.
     if (filename == null) {
       return;
@@ -86,7 +106,7 @@ public class Map {
     if (scan == null) {
       return;
     }
-    
+
     // If the file does exist, parse file
     scan.nextLine();
     int x = xOffset;
@@ -128,8 +148,8 @@ public class Map {
             tileList.add(new Fruit(x, y, app));
             break;
           case 'p':
-            setPlayerX(x);
-            setPlayerY(y);
+            setWakaX(x);
+            setWakaY(y);
             break;
           case 'g':
             setGhostX(x);

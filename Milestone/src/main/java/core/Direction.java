@@ -1,35 +1,35 @@
-// package core;
+package core;
 
-// import java.util.EnumSet;
+import java.util.EnumSet;
 
-// public enum Direction {
+public enum Direction {
 
-//   UP(0, -1, 130),
-//   DOWN(0, 1, 310),
-//   LEFT(-1, 0, 220),
-//   RIGHT(1, 0, 40),
-//   NONE(0, 0, 0);
+  UP(0, -1, 130), DOWN(0, 1, 310), LEFT(-1, 0, 220), RIGHT(1, 0, 40), NONE(0, 0, 0);
 
-//   private final int x;
-//   private final int y;
-//   private final int startAngle;
+  private final int x;
+  private final int y;
+  private final int angle;
 
-//   private Direction(int x, int y, int startAngle) {
-//     this.x = x;
-//     this.y = y;
-//     this.startAngle = startAngle;
-//   }
+  private Direction(int x, int y, int angle) {
+    this.x = x;
+    this.y = y;
+    this.angle = angle;
+  }
 
-//   public TileCoordinate tileDelta() {
-//       return new TileCoordinate(x, y);
-//   }
+  public int getX() {
+    return x;
+  }
 
-//   public int getStartAngle() {
-//       return startAngle;
-//   }
+  public int getY() {
+    return y;
+  }
 
-//   public static EnumSet<Direction> validMovements() {
-//       return EnumSet.of(UP, DOWN, LEFT, RIGHT);
-//   }
+  public int getAngle() {
+    return angle;
+  }
 
-// }
+  public static EnumSet<Direction> validMovements() {
+    return EnumSet.of(UP, DOWN, LEFT, RIGHT);
+  }
+
+}
