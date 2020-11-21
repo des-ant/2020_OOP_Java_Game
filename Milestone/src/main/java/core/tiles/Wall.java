@@ -1,13 +1,15 @@
 package core.tiles;
 
-import processing.core.PApplet;
-
 import core.Tile;
+import processing.core.PApplet;
 
 public class Wall extends Tile {
 
+  PApplet app;
+
   public Wall(int x, int y, PApplet app, int type) {
     super(x, y, app.loadImage(wallSprite(type)));
+    this.app = app;
   }
 
   private static String wallSprite(int type) {
@@ -43,4 +45,12 @@ public class Wall extends Tile {
     return src;
   }
   
+  public boolean isMovable() {
+    return false;
+  }
+
+  public void msg() {
+    System.out.println("Wall at " + getCoordX() + ", " + getCoordY());
+  }
+
 }

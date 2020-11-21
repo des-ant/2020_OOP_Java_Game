@@ -1,9 +1,7 @@
 package core.tiles;
 
-import processing.core.PApplet;
-import processing.core.PImage;
-
 import core.Tile;
+import processing.core.PApplet;
 
 public class Fruit extends Tile {
 
@@ -11,4 +9,12 @@ public class Fruit extends Tile {
     super(x, y, app.loadImage("src/main/resources/fruit.png"));
   }
   
+  public boolean isMovable() {
+    return true;
+  }
+
+  public void msg() {
+    System.out.println("Fruit at " + getX() + ", " + getY());
+  }
+
 }

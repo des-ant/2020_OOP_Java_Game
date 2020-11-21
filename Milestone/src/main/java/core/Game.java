@@ -1,16 +1,15 @@
 package core;
 
+import core.actors.Ghost;
+import core.actors.Waka;
 import processing.core.PApplet;
-import processing.core.PImage;
-
-import core.actors.*;
 
 public class Game {
   
   private Config config;
-  private Player player;
+  private Waka waka;
   private Ghost ghost;
-  private Map map;
+  private MapGrid mapGrid;
   private PApplet app;
 
   public Game(PApplet app) {
@@ -30,30 +29,30 @@ public class Game {
     // Show black background on window launch
     app.background(0, 0, 0);
 
-    // Map will load wall and fruit images
-    this.map = new Map(config.getMap(), app);
+    app.rectMode(app.CENTER);
+    app.stroke(255, 255, 255);
 
+    // MapGrid will load wall and fruit images
+    this.mapGrid = new MapGrid(config.getMapGrid(), app);
     // Load images here
-    this.player = new Player(map.getPlayerX(), map.getPlayerY(), app, config.getSpeed(), config.getLives());
-    this.ghost = new Ghost(map.getGhostX(), map.getGhostY(), app, config.getSpeed());
+    this.waka = new Waka(mapGrid.getWakaX(), mapGrid.getWakaY(), app, config.getSpeed(), config.getLives(), mapGrid);
+    this.ghost = new Ghost(mapGrid.getGhostX(), mapGrid.getGhostY(), app, config.getSpeed());
     
   }
 
   public void draw() {
     app.background(0, 0, 0);
+    mapGrid.draw(app);
+    waka.tick();
 
-    map.draw(app);
-
-    player.tick();
-
-    player.draw(app);
+    waka.draw(app);
     ghost.draw(app);
   }
 
   public void keyPressed() {
     // Arrow keys input
     if (app.key == app.CODED) {
-      player.move(app);
+      waka.move(app);
     }
   }
 
