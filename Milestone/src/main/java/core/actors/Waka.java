@@ -23,8 +23,7 @@ public class Waka extends Actor {
 
   public Waka(int x, int y, PApplet app, int speed, int lives, MapGrid mapGrid) {
     // Inherit attributes and methods from Actor
-    super(x, y, app.loadImage("src/main/resources/playerClosed.png"), speed,
-        new PlayerMovement(mapGrid, Direction.LEFT));
+    super(x, y, app.loadImage("src/main/resources/playerClosed.png"), speed, new PlayerMovement(mapGrid, Direction.NONE));
     this.lives = lives;
   }
 
@@ -36,10 +35,12 @@ public class Waka extends Actor {
     ((PlayerMovement) movement).setNextDirection(direction);
   }
 
+  // For animation
   public Direction getDirection() {
     return movement.getDirection();
   }
 
+  // For animation
   public boolean isMoving() {
     return movement.isMoving();
   }

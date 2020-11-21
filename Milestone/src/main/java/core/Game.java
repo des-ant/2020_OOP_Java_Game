@@ -34,7 +34,6 @@ public class Game {
 
     // MapGrid will load wall and fruit images
     this.mapGrid = new MapGrid(config.getMapGrid(), app);
-
     // Load images here
     this.waka = new Waka(mapGrid.getWakaX(), mapGrid.getWakaY(), app, config.getSpeed(), config.getLives(), mapGrid);
     this.ghost = new Ghost(mapGrid.getGhostX(), mapGrid.getGhostY(), app, config.getSpeed());
