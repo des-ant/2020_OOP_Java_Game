@@ -17,26 +17,56 @@ public class Config {
   private int speed;
   private ArrayList<Integer> modeLengths;
 
+  /**
+  * Constructs Config from given config file
+  *
+  * @param  configFilename  the name of config file
+  */
   public Config(String configFilename) {
     readConfig(configFilename);
   }
 
+  /**
+  * Returns name of map file
+  *
+  * @return  name of map file
+  */
   public String getMapGrid() {
     return this.mapFile;
   }
 
+  /**
+  * Returns number of player lives
+  *
+  * @return  number of player lives
+  */
   public int getLives() {
     return this.lives;
   }
 
+  /**
+  * Returns speed of Actor movement
+  *
+  * @return  speed of Actor movement
+  */
   public int getSpeed() {
     return this.speed;
   }
 
+  /**
+  * Returns list of modes
+  *
+  * @return  list of modes
+  */
   public ArrayList<Integer> getMode() {
     return this.modeLengths;
   }
 
+  /**
+  * Reads config file from filename. Prints exceptions if they arise.
+  *
+  * @param  configFilename  the name of config file
+  */
   private void readConfig(String configFilename) {
     // JSON parser object to parse read file
     JSONParser jsonParser = new JSONParser();
@@ -62,6 +92,11 @@ public class Config {
     }
   }
 
+  /**
+  * Set config properties from config JSON file
+  *
+  * @param  config  the config JSON object
+  */
   private void parseConfigObject(JSONObject config) {
     // Get MapGrid
     this.mapFile = (String) config.get("map");
