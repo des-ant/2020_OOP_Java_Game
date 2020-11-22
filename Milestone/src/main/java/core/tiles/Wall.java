@@ -48,7 +48,7 @@ public class Wall extends Tile {
   /**
   * Returns true if Wall tile allows Actor movement
   *
-  * @return            true if Wall tile allows Actor movement
+  * @return  true if Wall tile allows Actor movement
   */
   public boolean isMovable() {
     return false;
