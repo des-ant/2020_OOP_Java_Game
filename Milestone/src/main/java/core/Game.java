@@ -12,6 +12,11 @@ public class Game {
   private MapGrid mapGrid;
   private PApplet app;
 
+  /**
+  * Constructs Game from given Papplet window
+  *
+  * @param  app  the PApplet window to be drawn to
+  */
   public Game(PApplet app) {
     // Load Papplet
     this.app = app;
@@ -20,6 +25,9 @@ public class Game {
     this.config = new Config("config.json");
   }
 
+  /**
+  * Set up game
+  */
   public void setup() {
     app.frameRate(60);
 
@@ -39,7 +47,10 @@ public class Game {
     this.ghost = new Ghost(mapGrid.getGhostX(), mapGrid.getGhostY(), app, config.getSpeed());
     
   }
-
+  
+  /**
+  * Draw game to PApplet window
+  */
   public void draw() {
     app.background(0, 0, 0);
     mapGrid.draw(app);
@@ -49,6 +60,9 @@ public class Game {
     ghost.draw(app);
   }
 
+  /**
+  * Send user input to PApplet window
+  */
   public void keyPressed() {
     // Arrow keys input
     if (app.key == app.CODED) {
