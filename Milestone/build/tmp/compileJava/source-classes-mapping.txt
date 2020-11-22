@@ -2,8 +2,8 @@ core/tiles/Wall.java
  core.tiles.Wall
 core/Actor.java
  core.Actor
-core/movement/PlayerMovement.java
- core.movement.PlayerMovement
+core/Tile.java
+ core.Tile
 core/actors/Ghost.java
  core.actors.Ghost
 core/Direction.java
@@ -12,8 +12,8 @@ core/Config.java
  core.Config
 core/MapGrid.java
  core.MapGrid
-core/Tile.java
- core.Tile
+core/movement/PlayerMovement.java
+ core.movement.PlayerMovement
 core/App.java
  core.App
 core/movement/Movement.java

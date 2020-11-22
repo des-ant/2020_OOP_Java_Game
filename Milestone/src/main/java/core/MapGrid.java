@@ -12,8 +12,8 @@ import core.tiles.Wall;
 import processing.core.PApplet;
 
 public class MapGrid {
-  public static int MAPHEIGHT = 36;
-  public static int MAPWIDTH = 28;
+  public final static int MAPHEIGHT = 36;
+  public final static int MAPWIDTH = 28;
 
   // Location
   private int wakaX;
@@ -116,7 +116,6 @@ public class MapGrid {
     }
 
     // If the file does exist, parse file
-    scan.nextLine();
     int x = xOffset;
     int y = yOffset;
     while (scan.hasNextLine()) {

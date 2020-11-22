@@ -6,6 +6,17 @@ public class PointMaths {
 
   private static int SIZE = MapGrid.GRIDSIZE;
   
+  // /**
+  // * Returns value as pixel location on game display
+  // *
+  // * @param  value  the value of a coordinate point
+  // * @return        value as pixel location on game display
+  // */
+  // public static int toPx(int value) {
+  //   int Px = value * SIZE + SIZE / 2;
+  //   return Px;
+  // }
+
   public static Point toPixelCoords(Point coords) {
     Double doubleX = coords.getX() * SIZE + SIZE / 2;
     Double doubleY = coords.getY() * SIZE + SIZE / 2;

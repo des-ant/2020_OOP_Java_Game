@@ -4,16 +4,14 @@ import java.util.EnumSet;
 
 public enum Direction {
 
-  UP(0, -1, 130), DOWN(0, 1, 310), LEFT(-1, 0, 220), RIGHT(1, 0, 40), NONE(0, 0, 0);
+  UP(0, -1), DOWN(0, 1), LEFT(-1, 0), RIGHT(1, 0), NONE(0, 0);
 
   private final int x;
   private final int y;
-  private final int angle;
 
-  private Direction(int x, int y, int angle) {
+  private Direction(int x, int y) {
     this.x = x;
     this.y = y;
-    this.angle = angle;
   }
 
   public int getX() {
@@ -22,10 +20,6 @@ public enum Direction {
 
   public int getY() {
     return y;
-  }
-
-  public int getAngle() {
-    return angle;
   }
 
   public static EnumSet<Direction> validMovements() {

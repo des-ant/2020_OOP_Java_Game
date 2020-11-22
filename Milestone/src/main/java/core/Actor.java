@@ -21,8 +21,6 @@ public abstract class Actor {
 
   protected Movement movement;
 
-  protected PImage sprite;
-
   /**
   * Constructs Actor from given position, image, speed, movement
   *
@@ -32,33 +30,32 @@ public abstract class Actor {
   * @param  speed     the speed at which Actor will move
   * @param  movement  the type of movement being implemented
   */
-  public Actor(int x, int y, PImage sprite, int speed, Movement movement) {
+  public Actor(int x, int y, int speed, Movement movement) {
     this.x = x;
     this.y = y;
-    this.sprite = sprite;
     this.speed = speed;
     this.movement = movement;
     this.startX = x;
     this.startY = y;
   }
 
-  /**
-  * Draws Actor to PApplet window
-  *
-  * @param  app  the PApplet window to be drawn to
-  */
-  public void draw(PApplet app) {
-    // Handling graphics
-    app.image(this.sprite, this.x, this.y);
-    app.fill(0, 0);
-    app.rect(this.x, this.y, sprite.width, sprite.height);
-    app.fill(255, 0, 0, 120);
-    app.rect(this.x, this.y, SIZE, SIZE);
-    app.fill(255, 100, 100, 120);
-    int closestX = (int) PointMaths.toPixelCoords(getCoords()).getX();
-    int closestY = (int) PointMaths.toPixelCoords(getCoords()).getY();
-    app.rect(closestX, closestY, SIZE, SIZE);
-  }
+  // /**
+  // * Draws Actor to PApplet window
+  // *
+  // * @param  app  the PApplet window to be drawn to
+  // */
+  // public void draw(PApplet app) {
+  //   // Handling graphics
+  //   app.image(this.sprite, this.x, this.y);
+  //   app.fill(0, 0);
+  //   app.rect(this.x, this.y, sprite.width, sprite.height);
+  //   app.fill(255, 0, 0, 120);
+  //   app.rect(this.x, this.y, SIZE, SIZE);
+  //   app.fill(255, 100, 100, 120);
+  //   int closestX = (int) PointMaths.toPixelCoords(getCoords()).getX();
+  //   int closestY = (int) PointMaths.toPixelCoords(getCoords()).getY();
+  //   app.rect(closestX, closestY, SIZE, SIZE);
+  // }
 
   /**
   * Returns horizontal pixel coordinate of Actor centre

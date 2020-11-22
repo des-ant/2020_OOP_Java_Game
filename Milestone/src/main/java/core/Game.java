@@ -56,8 +56,8 @@ public class Game {
     mapGrid.draw(app);
     waka.tick();
 
-    waka.draw(app);
     ghost.draw(app);
+    waka.draw(app);
   }
 
   /**
