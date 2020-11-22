@@ -29,7 +29,7 @@ public class PlayerMovement implements Movement {
   /**
   * Set next Direction of player
   *
-  * @param  direction  the direction to be applied
+  * @param  nextDirection  the direction to be applied
   */
   public void setNextDirection(Direction nextDirection) {
     this.nextDirection = nextDirection;
