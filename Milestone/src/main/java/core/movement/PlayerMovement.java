@@ -13,6 +13,12 @@ public class PlayerMovement implements Movement {
   private Direction previousDirection;
   private Direction currentDirection;
 
+  /**
+  * Constructs Movement with given map and initial direction
+  *
+  * @param  mapGrid           the map containing the player
+  * @param  initialDirection  the initial direction that is applied to the player
+  */
   public PlayerMovement(MapGrid mapGrid, Direction initialDirection) {
     this.mapGrid = mapGrid;
     this.currentDirection = initialDirection;
@@ -20,10 +26,21 @@ public class PlayerMovement implements Movement {
     this.previousDirection = initialDirection;
   }
 
+  /**
+  * Set next Direction of player
+  *
+  * @param  direction  the direction to be applied
+  */
   public void setNextDirection(Direction nextDirection) {
     this.nextDirection = nextDirection;
   }
 
+  /**
+  * Returns Direction that player is facing
+  *
+  * @return         Direction that player is facing
+  */
+  @Override
   public Direction getDirection() {
     if (isMoving()) {
       return currentDirection;
@@ -31,10 +48,24 @@ public class PlayerMovement implements Movement {
     return previousDirection;
   }
 
+  /**
+  * Returns true if player is not stationary
+  *
+  * @return         true if player is not stationary
+  */
+  @Override
   public boolean isMoving() {
     return currentDirection != Direction.NONE;
   }
 
+  /**
+  * Returns true if player is in centre of tile
+  *
+  * @param  coords  the current player Point coordinate
+  * @param  x       the current player pixel horizontal coordinate
+  * @param  y       the current player pixel vertical coordinate
+  * @return         true if player is in centre of tile
+  */
   public boolean hasReachedTile(Point coords, int x, int y) {
     Point newCoords = new Point(coords);
     // Centre of player must reach centre of Tile first
@@ -47,6 +78,15 @@ public class PlayerMovement implements Movement {
     return false;
   }
 
+  /**
+  * Returns Point coordinate of next movable direction
+  *
+  * @param  coords  the current player Point coordinate
+  * @param  x       the current player pixel horizontal coordinate
+  * @param  y       the current player pixel vertical coordinate
+  * @return         coordinate of next movable direction
+  */
+  @Override
   public Direction getNextDirection(Point coords, int x, int y) {
     if (canMove(coords, nextDirection, x, y)) {
       currentDirection = nextDirection;
@@ -60,6 +100,15 @@ public class PlayerMovement implements Movement {
     return currentDirection;
   }
 
+  /**
+  * Returns true if next move is possible
+  *
+  * @param  coords     the current Point coordinate
+  * @param  direction  the direction to be applied
+  * @param  x          the current pixel horizontal coordinate
+  * @param  y          the current pixel vertical coordinate
+  * @return            true if next move is possible
+  */
   private boolean canMove(Point coords, Direction direction, int x, int y) {
     Point newCoords = new Point(coords);
     // Centre of player must reach centre of Tile first
