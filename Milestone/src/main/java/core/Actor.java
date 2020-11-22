@@ -11,85 +11,117 @@ public abstract class Actor {
   // Attributes accessible by subclass Pacman, Ghost
   protected int x;
   protected int y;
+  protected int startX;
+  protected int startY;
   protected int xVel = 0;
   protected int yVel = 0;
   protected int speed;
+
+  protected int SIZE = MapGrid.GRIDSIZE;
 
   protected Movement movement;
 
   protected PImage sprite;
 
+  /**
+  * Constructs Actor from given position, image, speed, movement
+  *
+  * @param  x         the initial horizontal pixel coordinate of Actor
+  * @param  y         the initial vertical pixel coordinate of Actor
+  * @param  sprite    the image used to present Actor
+  * @param  speed     the speed at which Actor will move
+  * @param  movement  the type of movement being implemented
+  */
   public Actor(int x, int y, PImage sprite, int speed, Movement movement) {
     this.x = x;
     this.y = y;
     this.sprite = sprite;
     this.speed = speed;
     this.movement = movement;
+    this.startX = x;
+    this.startY = y;
   }
 
+  /**
+  * Draws Actor to PApplet window
+  *
+  * @param  app  the PApplet window to be drawn to
+  */
   public void draw(PApplet app) {
     // Handling graphics
     app.image(this.sprite, this.x, this.y);
     app.fill(0, 0);
     app.rect(this.x, this.y, sprite.width, sprite.height);
     app.fill(255, 0, 0, 120);
-    app.rect(this.x, this.y, Tile.SIZE, Tile.SIZE);
+    app.rect(this.x, this.y, SIZE, SIZE);
     app.fill(255, 100, 100, 120);
-    int closestX = (int) Tile.toPixelCoords(getCoords()).getX();
-    int closestY = (int) Tile.toPixelCoords(getCoords()).getY();
-    app.rect(closestX, closestY, Tile.SIZE, Tile.SIZE);
+    int closestX = (int) PointMaths.toPixelCoords(getCoords()).getX();
+    int closestY = (int) PointMaths.toPixelCoords(getCoords()).getY();
+    app.rect(closestX, closestY, SIZE, SIZE);
   }
 
+  /**
+  * Returns horizontal pixel coordinate of Actor centre
+  *
+  * @return  horizontal pixel coordinate of Actor centre
+  */
   public int getX() {
     return x;
   }
 
+  /**
+  * Returns vertical pixel coordinate of Actor centre
+  *
+  * @return  vertical pixel coordinate of Actor centre
+  */
   public int getY() {
     return y;
   }
 
-  public int getWidth() {
-    return Tile.SIZE;
-  }
-
-  public int getHeight() {
-    return Tile.SIZE;
-  }
-
-  public int getEdgeLeft() {
-    return x - (getWidth() / 2);
-  }
-
-  public int getEdgeRight() {
-    return x + (getWidth() / 2);
-  }
-
-  public int getEdgeTop() {
-    return y - (getHeight() / 2);
-  }
-
-  public int getEdgeBottom() {
-    return y + (getHeight() / 2);
-  }
-
+  /**
+  * Returns horizontal tile coordinate of Actor centre
+  *
+  * @return  horizontal tile coordinate of Actor centre
+  */
   public int getCoordX() {
-    return Math.round((x - Tile.SIZE / 2) / Tile.SIZE);
+    return x / SIZE;
+    // return Math.round((x - SIZE / 2) / SIZE);
   }
 
+  /**
+  * Returns vertical tile coordinate of Actor centre
+  *
+  * @return  vertical tile coordinate of Actor centre
+  */
   public int getCoordY() {
-    return Math.round((y - Tile.SIZE / 2) / Tile.SIZE);
+    return y / SIZE;
+    // return Math.round((y - SIZE / 2) / SIZE);
   }
 
-  public String getCoord() {
-    return getCoordX() + ", " + getCoordY();
-  }
-
+  /**
+  * Returns Point at tile coordinate of Actor centre
+  *
+  * @return  Point at tile coordinate of Actor centre
+  */
   public Point getCoords() {
     return new Point(getCoordX(), getCoordY());
   }
 
+  /**
+  * Returns Point at pixel coordinate of Actor centre
+  *
+  * @return  Point at pixel coordinate of Actor centre
+  */
   public Point getPixelCoords() {
     return new Point(x, y);
+  }
+  
+  /**
+  * Resets Actor to initial position
+  */
+  public void resetPixelCoords() {
+    x = startX;
+    y = startY;
   }
 
   public void setPixelCoords(Point coords) {

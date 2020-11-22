@@ -31,6 +31,11 @@ public class Waka extends Actor {
     this.tileList = tileList;
   }
 
+  /**
+  * Set direction of Waka
+  *
+  * @param  direction  the Direction to be applied  
+  */
   public void setNextDirection(Direction direction) {
     ((PlayerMovement) movement).setNextDirection(direction);
   }
@@ -186,7 +191,11 @@ public class Waka extends Actor {
   //   }
   // }
 
-
+  /**
+  * Set direction of Waka using arrow keys
+  *
+  * @param  app  the current PApplet window that Waka is in  
+  */
   public void move(PApplet app) {
     if (app.keyCode == app.UP) {
       setNextDirection(Direction.UP);
