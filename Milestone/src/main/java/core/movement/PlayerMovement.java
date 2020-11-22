@@ -38,7 +38,7 @@ public class PlayerMovement implements Movement {
   /**
   * Returns Direction that player is facing
   *
-  * @return         Direction that player is facing
+  * @return  Direction that player is facing
   */
   @Override
   public Direction getDirection() {
@@ -51,7 +51,7 @@ public class PlayerMovement implements Movement {
   /**
   * Returns true if player is not stationary
   *
-  * @return         true if player is not stationary
+  * @return  true if player is not stationary
   */
   @Override
   public boolean isMoving() {
