@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Config.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Milestone</a> &gt; <a href="index.source.html" class="el_package">core</a> &gt; <span class="el_source">Config.java</span></div><h1>Config.java</h1><pre class="source lang-java linenums">package core;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+public class Config {
+
+  private String mapFile;
+  private int lives;
+  private int speed;
+  private ArrayList&lt;Integer&gt; modeLengths;
+
+  /**
+  * Constructs Config from given config file
+  *
+  * @param  configFilename  the name of config file
+  */
+<span class="fc" id="L25">  public Config(String configFilename) {</span>
+<span class="fc" id="L26">    readConfig(configFilename);</span>
+<span class="fc" id="L27">  }</span>
+
+  /**
+  * Returns name of map file
+  *
+  * @return  name of map file
+  */
+  public String getMapGrid() {
+<span class="nc" id="L35">    return this.mapFile;</span>
+  }
+
+  /**
+  * Returns number of player lives
+  *
+  * @return  number of player lives
+  */
+  public int getLives() {
+<span class="nc" id="L44">    return this.lives;</span>
+  }
+
+  /**
+  * Returns speed of Actor movement
+  *
+  * @return  speed of Actor movement
+  */
+  public int getSpeed() {
+<span class="nc" id="L53">    return this.speed;</span>
+  }
+
+  /*
+  * Returns list of modes
+  *
+  * @return  list of modes
+  */
+  public ArrayList&lt;Integer&gt; getMode() {
+<span class="nc" id="L62">    return this.modeLengths;</span>
+  }
+
+  /*
+  * Reads config file from filename. Prints exceptions if they arise.
+  */
+  private void readConfig(String configFilename) {
+    // JSON parser object to parse read file
+<span class="fc" id="L70">    JSONParser jsonParser = new JSONParser();</span>
+      
+    try {
+<span class="fc" id="L73">      FileReader reader = new FileReader(configFilename);</span>
+
+      // Read JSON file
+<span class="fc" id="L76">      Object obj = jsonParser.parse(reader);</span>
+
+      // typecasting obj to JSONObject
+<span class="fc" id="L79">      JSONObject jo = (JSONObject) obj;</span>
+
+      // parse JSON object
+<span class="fc" id="L82">      parseConfigObject(jo);</span>
+
+<span class="nc" id="L84">    } catch (FileNotFoundException e) {</span>
+<span class="nc" id="L85">        e.printStackTrace();</span>
+<span class="nc" id="L86">    } catch (IOException e) {</span>
+<span class="nc" id="L87">        e.printStackTrace();</span>
+<span class="nc" id="L88">    } catch (ParseException e) {</span>
+<span class="nc" id="L89">        e.printStackTrace();</span>
+<span class="pc" id="L90">    }</span>
+<span class="fc" id="L91">  }</span>
+
+  /*
+  * Set config properties from config JSON file
+  */
+  private void parseConfigObject(JSONObject config) {
+    // Get MapGrid
+<span class="fc" id="L98">    this.mapFile = (String) config.get(&quot;map&quot;);</span>
+      
+    // Get lives
+<span class="fc" id="L101">    this.lives = ((Long) config.get(&quot;lives&quot;)).intValue();  </span>
+      
+    // Get speed
+<span class="fc" id="L104">    this.speed = ((Long) config.get(&quot;speed&quot;)).intValue();</span>
+
+    // Create arraylist to store modeLengths
+<span class="fc" id="L107">    this.modeLengths = new ArrayList&lt;Integer&gt;();</span>
+    // Get modeLengths
+<span class="fc" id="L109">    JSONArray ja = (JSONArray) config.get(&quot;modeLengths&quot;);</span>
+<span class="fc bfc" id="L110" title="All 2 branches covered.">    for (int i = 0; i &lt; ja.size(); i++) {</span>
+<span class="fc" id="L111">      modeLengths.add(((Long) ja.get(i)).intValue());</span>
+    }
+<span class="fc" id="L113">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

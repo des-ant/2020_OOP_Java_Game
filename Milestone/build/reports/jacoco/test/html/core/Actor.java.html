@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Actor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Milestone</a> &gt; <a href="index.source.html" class="el_package">core</a> &gt; <span class="el_source">Actor.java</span></div><h1>Actor.java</h1><pre class="source lang-java linenums">package core;
+
+import java.awt.Point;
+
+import core.movement.Movement;
+import processing.core.PApplet;
+import processing.core.PImage;
+
+public abstract class Actor {
+
+  // Attributes accessible by subclass Pacman, Ghost
+  protected int x;
+  protected int y;
+  protected int startX;
+  protected int startY;
+<span class="nc" id="L16">  protected int xVel = 0;</span>
+<span class="nc" id="L17">  protected int yVel = 0;</span>
+  protected int speed;
+
+<span class="nc" id="L20">  protected int SIZE = MapGrid.GRIDSIZE;</span>
+
+  protected Movement movement;
+
+  protected PImage sprite;
+
+  /**
+  * Constructs Actor from given position, image, speed, movement
+  *
+  * @param  x         the initial horizontal pixel coordinate of Actor
+  * @param  y         the initial vertical pixel coordinate of Actor
+  * @param  sprite    the image used to present Actor
+  * @param  speed     the speed at which Actor will move
+  * @param  movement  the type of movement being implemented
+  */
+<span class="nc" id="L35">  public Actor(int x, int y, PImage sprite, int speed, Movement movement) {</span>
+<span class="nc" id="L36">    this.x = x;</span>
+<span class="nc" id="L37">    this.y = y;</span>
+<span class="nc" id="L38">    this.sprite = sprite;</span>
+<span class="nc" id="L39">    this.speed = speed;</span>
+<span class="nc" id="L40">    this.movement = movement;</span>
+<span class="nc" id="L41">    this.startX = x;</span>
+<span class="nc" id="L42">    this.startY = y;</span>
+<span class="nc" id="L43">  }</span>
+
+  /**
+  * Draws Actor to PApplet window
+  *
+  * @param  app  the PApplet window to be drawn to
+  */
+  public void draw(PApplet app) {
+    // Handling graphics
+<span class="nc" id="L52">    app.image(this.sprite, this.x, this.y);</span>
+<span class="nc" id="L53">    app.fill(0, 0);</span>
+<span class="nc" id="L54">    app.rect(this.x, this.y, sprite.width, sprite.height);</span>
+<span class="nc" id="L55">    app.fill(255, 0, 0, 120);</span>
+<span class="nc" id="L56">    app.rect(this.x, this.y, SIZE, SIZE);</span>
+<span class="nc" id="L57">    app.fill(255, 100, 100, 120);</span>
+<span class="nc" id="L58">    int closestX = (int) PointMaths.toPixelCoords(getCoords()).getX();</span>
+<span class="nc" id="L59">    int closestY = (int) PointMaths.toPixelCoords(getCoords()).getY();</span>
+<span class="nc" id="L60">    app.rect(closestX, closestY, SIZE, SIZE);</span>
+<span class="nc" id="L61">  }</span>
+
+  /**
+  * Returns horizontal pixel coordinate of Actor centre
+  *
+  * @return  horizontal pixel coordinate of Actor centre
+  */
+  public int getX() {
+<span class="nc" id="L69">    return x;</span>
+  }
+
+  /**
+  * Returns vertical pixel coordinate of Actor centre
+  *
+  * @return  vertical pixel coordinate of Actor centre
+  */
+  public int getY() {
+<span class="nc" id="L78">    return y;</span>
+  }
+
+  /**
+  * Returns horizontal tile coordinate of Actor centre
+  *
+  * @return  horizontal tile coordinate of Actor centre
+  */
+  public int getCoordX() {
+<span class="nc" id="L87">    return x / SIZE;</span>
+    // return Math.round((x - SIZE / 2) / SIZE);
+  }
+
+  /**
+  * Returns vertical tile coordinate of Actor centre
+  *
+  * @return  vertical tile coordinate of Actor centre
+  */
+  public int getCoordY() {
+<span class="nc" id="L97">    return y / SIZE;</span>
+    // return Math.round((y - SIZE / 2) / SIZE);
+  }
+
+  /**
+  * Returns Point at tile coordinate of Actor centre
+  *
+  * @return  Point at tile coordinate of Actor centre
+  */
+  public Point getCoords() {
+<span class="nc" id="L107">    return new Point(getCoordX(), getCoordY());</span>
+  }
+
+  /**
+  * Returns Point at pixel coordinate of Actor centre
+  *
+  * @return  Point at pixel coordinate of Actor centre
+  */
+  public Point getPixelCoords() {
+<span class="nc" id="L116">    return new Point(x, y);</span>
+  }
+  
+  /**
+  * Resets Actor to initial position
+  */
+  public void resetPixelCoords() {
+<span class="nc" id="L123">    x = startX;</span>
+<span class="nc" id="L124">    y = startY;</span>
+<span class="nc" id="L125">  }</span>
+
+  public void setPixelCoords(Point coords) {
+<span class="nc" id="L128">    Double doubleX = coords.getX();</span>
+<span class="nc" id="L129">    Double doubleY = coords.getY();</span>
+<span class="nc" id="L130">    int intX = (int) Math.round(doubleX);</span>
+<span class="nc" id="L131">    int intY = (int) Math.round(doubleY);</span>
+<span class="nc" id="L132">    this.x = intX;</span>
+<span class="nc" id="L133">    this.y = intY;</span>
+<span class="nc" id="L134">  }</span>
+
+  private Point getNextCoords(Point currentCoords) {
+<span class="nc" id="L137">    Direction nextDirection = movement.getNextDirection(currentCoords, x, y);</span>
+<span class="nc" id="L138">    Point newCoords = new Point(currentCoords);</span>
+<span class="nc" id="L139">    newCoords.translate(nextDirection.getX(), nextDirection.getY());</span>
+<span class="nc" id="L140">    return newCoords;</span>
+  }
+
+  public void tick() {
+<span class="nc" id="L144">    Point currentCoords = getCoords();</span>
+<span class="nc" id="L145">    Direction nextDirection = movement.getNextDirection(currentCoords, x, y);</span>
+<span class="nc" id="L146">    xVel = nextDirection.getX() * speed;</span>
+<span class="nc" id="L147">    yVel = nextDirection.getY() * speed;</span>
+<span class="nc" id="L148">    x += xVel;</span>
+<span class="nc" id="L149">    y += yVel;</span>
+<span class="nc" id="L150">  }</span>
+
+  // private void moveActor(int distance) {
+  //   // Get coordinates of Actor
+  //   Point currentCoords = getCoords();
+  //   // Get next coordinates
+  //   Point nextCoords = getNextCoords(currentCoords);
+  //   // Get centre pixel of next tile
+  //   Point nextTileCentre = Tile.toPixelCoords(nextCoords);
+  //   // Get pixel distance from next Tile centre to current Actor centre
+  //   Point pixelDistance = Tile.subtract(nextTileCentre, getPixelCoords());
+  //   // Next position lies along a diagonal, adjust distance to next tile
+  //   if (Tile.isDiagonal(pixelDistance)) {
+  //     // Get centre pixel of current tile being occupied by Actor
+  //     Point currentTileCentre = Tile.toPixelCoords(currentCoords);
+  //     // Get pixel distance from Tile centre to Actor centre
+  //     int pixelMagnitude = Tile.magnitude(Tile.subtract(currentTileCentre, getPixelCoords()));
+  //     // Adjust distance
+  //     distance -= pixelMagnitude;
+  //     // Get pixel distance from next Tile centre to current Tile centre
+  //     pixelDistance = Tile.subtract(nextTileCentre, currentTileCentre);
+  //     setPixelCoords(currentTileCentre);
+  //   }
+
+  //   int pxDistMag = Tile.magnitude(pixelDistance);
+
+  //   if (pxDistMag &gt; 0) {
+  //     if (pxDistMag == distance) {
+  //       setPixelCoords(Tile.remainder(nextTileCentre));
+  //     } else if (pxDistMag &lt; distance) {
+  //       setPixelCoords(Tile.remainder(nextTileCentre));
+  //       moveActor(distance - pxDistMag);
+  //     } else {
+  //       Point distMoved = Tile.times(Tile.unit(pixelDistance), distance);
+  //       Point pxMoved = Tile.add(getPixelCoords(), distMoved);
+  //       Point pxRemainder = Tile.remainder(pxMoved);
+  //       setPixelCoords(pxRemainder);
+  //     }
+  //   }
+  // }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Waka.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Milestone</a> &gt; <a href="index.source.html" class="el_package">core.actors</a> &gt; <span class="el_source">Waka.java</span></div><h1>Waka.java</h1><pre class="source lang-java linenums">package core.actors;
+
+import java.util.List;
+
+import core.Actor;
+import core.Direction;
+import core.MapGrid;
+import core.Tile;
+import core.movement.PlayerMovement;
+import processing.core.PApplet;
+
+public class Waka extends Actor {
+
+  private int lives;
+
+<span class="nc" id="L16">  private int[] currentMove = { 0, 0, 0, 0 };</span>
+
+  private List&lt;Tile&gt; tileList;
+
+<span class="nc" id="L20">  public int desiredMove = 0;</span>
+
+<span class="nc" id="L22">  private int[] nextMove = { 0, 0, 0, 0 };</span>
+
+  public Waka(int x, int y, PApplet app, int speed, int lives, MapGrid mapGrid) {
+    // Inherit attributes and methods from Actor
+<span class="nc" id="L26">    super(x, y, app.loadImage(&quot;src/main/resources/playerClosed.png&quot;), speed, new PlayerMovement(mapGrid, Direction.NONE));</span>
+<span class="nc" id="L27">    this.lives = lives;</span>
+<span class="nc" id="L28">  }</span>
+
+  public void setTileList(List&lt;Tile&gt; tileList) {
+<span class="nc" id="L31">    this.tileList = tileList;</span>
+<span class="nc" id="L32">  }</span>
+
+  /**
+  * Set direction of Waka
+  *
+  * @param  direction  the Direction to be applied  
+  */
+  public void setNextDirection(Direction direction) {
+<span class="nc" id="L40">    ((PlayerMovement) movement).setNextDirection(direction);</span>
+<span class="nc" id="L41">  }</span>
+
+  // For animation
+  public Direction getDirection() {
+<span class="nc" id="L45">    return movement.getDirection();</span>
+  }
+
+  // For animation
+  public boolean isMoving() {
+<span class="nc" id="L50">    return movement.isMoving();</span>
+  }
+
+  // public void tick() {
+    // Handles logic
+
+
+    // setTileList(tileList);
+    // // System.out.println(getCoord());
+    // if (checkCollision(currentMove)) {
+    //   this.collide();
+    //   return;
+    // }
+    // // &amp;&amp; setCoord() goes in if condition
+    // if (desiredMove != 0) {
+    //   if (checkCollision(nextMove)) {
+    //     System.out.println(&quot;next collides&quot;);
+    //   } else {
+    //     applyNextMove();
+    //   }
+    // }
+    // this.x += this.xVel;
+    // this.y += this.yVel;
+  // }
+
+  // public boolean isMoving() {
+  // return movementStrategy.isMoving();
+  // }
+
+  // public boolean setCoord() {
+  // int newCoordX = getCoordX();
+  // int newCoordY = getCoordY();
+  // if (coordX != newCoordX &amp;&amp; coordY != newCoordY) {
+  // coordX = newCoordX;
+  // coordY = newCoordY;
+  // return true;
+  // } else if (coordX != newCoordX) {
+  // coordX = newCoordX;
+  // return true;
+  // } else if (coordY != newCoordY) {
+  // coordY = newCoordY;
+  // return true;
+  // }
+  // return false;
+  // }
+
+  // public void collide() {
+  //   this.currentMove = new int[] { 0, 0, 0, 0 };
+  //   this.xVel = 0;
+  //   this.yVel = 0;
+  // }
+
+  // public void applyNextMove() {
+  //   switch (desiredMove) {
+  //     case 1:
+  //       moveU();
+  //       desiredMove = 0;
+  //       break;
+  //     case 2:
+  //       moveD();
+  //       desiredMove = 0;
+  //       break;
+  //     case 3:
+  //       moveL();
+  //       desiredMove = 0;
+  //       break;
+  //     case 4:
+  //       moveR();
+  //       desiredMove = 0;
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // }
+
+  // public boolean isMoving() {
+  //   if (this.xVel != 0 || this.yVel != 0) {
+  //     return true;
+  //   }
+  //   return false;
+  // }
+
+  // public boolean checkCollision(int[] moveArray) {
+  //   for (Tile tile : this.tileList) {
+  //     if (this.getEdgeRight() + moveArray[3] &gt; tile.getEdgeLeft()
+  //         &amp;&amp; this.getEdgeLeft() + moveArray[2] &lt; tile.getEdgeRight()
+  //         &amp;&amp; this.getEdgeBottom() + moveArray[1] &gt; tile.getEdgeTop()
+  //         &amp;&amp; this.getEdgeTop() + moveArray[0] &lt; tile.getEdgeBottom()) {
+  //       if (!tile.isMovable()) {
+  //         tile.msg();
+  //         System.out.println(getCoordX());
+  //         System.out.println(getCoordY());
+  //         return true;
+  //       } else {
+  //         tile.msg();
+  //         tileList.remove(tile);
+  //         return false;
+  //       }
+  //     }
+  //   }
+  //   return false;
+  // }
+
+  // public void setNextDirection(Direction direction) {
+  // ((UserControlledMovementStrategy)
+  // movementStrategy).setNextDirection//(direction);
+  // }
+
+  // public void move(PApplet app) {
+  //   if (app.keyCode == app.UP) {
+  //     if (isMoving()) {
+  //       desiredMove = 1;
+  //       System.out.println(desiredMove);
+  //       nextMove = new int[] { -Tile.SIZE / 16, 0, 0, 0 };
+  //       return;
+  //     }
+  //     moveU();
+  //   } else if (app.keyCode == app.DOWN) {
+  //     if (isMoving()) {
+  //       desiredMove = 2;
+  //       System.out.println(desiredMove);
+  //       nextMove = new int[] { 0, Tile.SIZE / 16, 0, 0 };
+  //       return;
+  //     }
+  //     moveD();
+  //   } else if (app.keyCode == app.LEFT) {
+  //     if (isMoving()) {
+  //       desiredMove = 3;
+  //       System.out.println(desiredMove);
+  //       nextMove = new int[] { 0, 0, -Tile.SIZE / 16, 0 };
+  //       return;
+  //     }
+  //     moveL();
+  //   } else if (app.keyCode == app.RIGHT) {
+  //     if (isMoving()) {
+  //       desiredMove = 4;
+  //       System.out.println(desiredMove);
+  //       nextMove = new int[] { 0, 0, 0, Tile.SIZE / 16 };
+  //       return;
+  //     }
+  //     moveR();
+  //   }
+  // }
+
+  /**
+  * Set direction of Waka using arrow keys
+  *
+  * @param  app  the current PApplet window that Waka is in  
+  */
+  public void move(PApplet app) {
+<span class="nc bnc" id="L200" title="All 2 branches missed.">    if (app.keyCode == app.UP) {</span>
+<span class="nc" id="L201">      setNextDirection(Direction.UP);</span>
+<span class="nc bnc" id="L202" title="All 2 branches missed.">    } else if (app.keyCode == app.DOWN) {</span>
+<span class="nc" id="L203">      setNextDirection(Direction.DOWN);</span>
+<span class="nc bnc" id="L204" title="All 2 branches missed.">    } else if (app.keyCode == app.LEFT) {</span>
+<span class="nc" id="L205">      setNextDirection(Direction.LEFT);</span>
+<span class="nc bnc" id="L206" title="All 2 branches missed.">    } else if (app.keyCode == app.RIGHT) {</span>
+<span class="nc" id="L207">      setNextDirection(Direction.RIGHT);</span>
+    }
+<span class="nc" id="L209">  }</span>
+
+  // public void move(PApplet app) {
+  //   if (app.keyCode == app.UP)
+  //   switch (app.keyCode) {
+  //     case app.UP:
+  //       setNextDirection(Direction.UP);
+  //       break;
+  //     case app.DOWN:
+  //       setNextDirection(Direction.DOWN);
+  //       break;
+  //     case app.LEFT:
+  //       setNextDirection(Direction.LEFT);
+  //       break;
+  //     case app.RIGHT:
+  //       setNextDirection(Direction.RIGHT);
+  //       break;
+  //   }
+  // }
+
+  // public void moveU() {
+  //   this.currentMove = new int[] { -Tile.SIZE / 16, 0, 0, 0 };
+  //   this.xVel = 0;
+  //   this.yVel = -1 * speed;
+  // }
+
+  // public void moveD() {
+  //   this.currentMove = new int[] { 0, Tile.SIZE / 16, 0, 0 };
+  //   this.xVel = 0;
+  //   this.yVel = 1 * speed;
+  // }
+
+  // public void moveL() {
+  //   this.currentMove = new int[] { 0, 0, -Tile.SIZE / 16, 0 };
+  //   this.xVel = -1 * speed;
+  //   this.yVel = 0;
+  // }
+
+  // public void moveR() {
+  //   this.currentMove = new int[] { 0, 0, 0, Tile.SIZE / 16 };
+  //   this.xVel = 1 * speed;
+  //   this.yVel = 0;
+  // }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
