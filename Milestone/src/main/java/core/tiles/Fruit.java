@@ -12,7 +12,7 @@ public class Fruit extends Tile {
   /**
   * Returns true if Fruit tile allows Actor movement
   *
-  * @return            true if Fruit tile allows Actor movement
+  * @return  true if Fruit tile allows Actor movement
   */
   @Override
   public boolean isMovable() {
