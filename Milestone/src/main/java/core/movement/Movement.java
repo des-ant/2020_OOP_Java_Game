@@ -18,14 +18,14 @@ public interface Movement {
   /**
   * Returns Direction that Actor is facing
   *
-  * @return         Direction that Actor is facing
+  * @return  Direction that Actor is facing
   */
   Direction getDirection();
 
   /**
   * Returns true if Actor is not stationary
   *
-  * @return         true if Actor is not stationary
+  * @return  true if Actor is not stationary
   */
   boolean isMoving();
 }
