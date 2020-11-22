@@ -4,7 +4,7 @@ import java.awt.Point;
 
 import core.Direction;
 import core.MapGrid;
-import core.Tile;
+import core.PointMaths;
 
 public class PlayerMovement implements Movement {
 
@@ -67,9 +67,8 @@ public class PlayerMovement implements Movement {
   * @return         true if player is in centre of tile
   */
   public boolean hasReachedTile(Point coords, int x, int y) {
-    Point newCoords = new Point(coords);
     // Centre of player must reach centre of Tile first
-    Point currentTile = Tile.toPixelCoords(coords);
+    Point currentTile = PointMaths.toPixelCoords(coords);
     int currentTileX = (int) currentTile.getX();
     int currentTileY = (int) currentTile.getY();
     if (x == currentTileX && y == currentTileY) {

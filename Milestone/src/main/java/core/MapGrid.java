@@ -22,9 +22,10 @@ public class MapGrid {
   private int ghostX;
   private int ghostY;
 
-  private int gridSpace = 16;
-  private int xOffset = gridSpace / 2;
-  private int yOffset = gridSpace / 2;
+  // Each grid space is 16x16 pixels
+  public final static int GRIDSIZE = 16;
+  private int xOffset = GRIDSIZE / 2;
+  private int yOffset = GRIDSIZE / 2;
 
   private List<Tile> tileList = new ArrayList<Tile>();
 
@@ -165,9 +166,9 @@ public class MapGrid {
           default:
             break;
         }
-        x += gridSpace;
+        x += GRIDSIZE;
       }
-      y += gridSpace;
+      y += GRIDSIZE;
     }
   }
 

@@ -17,6 +17,8 @@ public abstract class Actor {
   protected int yVel = 0;
   protected int speed;
 
+  protected int SIZE = MapGrid.GRIDSIZE;
+
   protected Movement movement;
 
   protected PImage sprite;
@@ -51,11 +53,11 @@ public abstract class Actor {
     app.fill(0, 0);
     app.rect(this.x, this.y, sprite.width, sprite.height);
     app.fill(255, 0, 0, 120);
-    app.rect(this.x, this.y, Tile.SIZE, Tile.SIZE);
+    app.rect(this.x, this.y, SIZE, SIZE);
     app.fill(255, 100, 100, 120);
-    int closestX = (int) Tile.toPixelCoords(getCoords()).getX();
-    int closestY = (int) Tile.toPixelCoords(getCoords()).getY();
-    app.rect(closestX, closestY, Tile.SIZE, Tile.SIZE);
+    int closestX = (int) PointMaths.toPixelCoords(getCoords()).getX();
+    int closestY = (int) PointMaths.toPixelCoords(getCoords()).getY();
+    app.rect(closestX, closestY, SIZE, SIZE);
   }
 
   /**
@@ -76,38 +78,14 @@ public abstract class Actor {
     return y;
   }
 
-  public int getWidth() {
-    return Tile.SIZE;
-  }
-
-  public int getHeight() {
-    return Tile.SIZE;
-  }
-
-  public int getEdgeLeft() {
-    return x - (getWidth() / 2);
-  }
-
-  public int getEdgeRight() {
-    return x + (getWidth() / 2);
-  }
-
-  public int getEdgeTop() {
-    return y - (getHeight() / 2);
-  }
-
-  public int getEdgeBottom() {
-    return y + (getHeight() / 2);
-  }
-
   /**
   * Returns horizontal tile coordinate of Actor centre
   *
   * @return  horizontal tile coordinate of Actor centre
   */
   public int getCoordX() {
-    return x / Tile.SIZE;
-    // return Math.round((x - Tile.SIZE / 2) / Tile.SIZE);
+    return x / SIZE;
+    // return Math.round((x - SIZE / 2) / SIZE);
   }
 
   /**
@@ -116,12 +94,8 @@ public abstract class Actor {
   * @return  vertical tile coordinate of Actor centre
   */
   public int getCoordY() {
-    return y / Tile.SIZE;
-    // return Math.round((y - Tile.SIZE / 2) / Tile.SIZE);
-  }
-
-  public String getCoord() {
-    return getCoordX() + ", " + getCoordY();
+    return y / SIZE;
+    // return Math.round((y - SIZE / 2) / SIZE);
   }
 
   /**
