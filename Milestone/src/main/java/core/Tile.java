@@ -33,6 +33,11 @@ public abstract class Tile {
     this.coords = new Point((x - SIZE / 2) / SIZE, (y - SIZE / 2) / SIZE);
   }
 
+  /**
+  * Draws Tile to PApplet window
+  *
+  * @param  app  the PApplet window to be drawn to
+  */
   public void draw(PApplet app) {
     // Handling graphics
     app.image(this.sprite, this.x, this.y);
@@ -40,6 +45,11 @@ public abstract class Tile {
     app.rect(this.x, this.y, getWidth(), getHeight());
   }
 
+  /**
+  * Returns true if Tile allows Actor movement
+  *
+  * @return            true if Tile allows Actor movement
+  */
   public abstract boolean isMovable();
 
   public abstract void msg();
