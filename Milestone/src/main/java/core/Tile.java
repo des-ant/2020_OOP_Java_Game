@@ -48,7 +48,7 @@ public abstract class Tile {
   /**
   * Returns true if Tile allows Actor movement
   *
-  * @return            true if Tile allows Actor movement
+  * @return  true if Tile allows Actor movement
   */
   public abstract boolean isMovable();
 
