@@ -73,11 +73,13 @@ public abstract class Actor {
   }
 
   public int getCoordX() {
-    return Math.round((x - Tile.SIZE / 2) / Tile.SIZE);
+    return x / Tile.SIZE;
+    // return Math.round((x - Tile.SIZE / 2) / Tile.SIZE);
   }
 
   public int getCoordY() {
-    return Math.round((y - Tile.SIZE / 2) / Tile.SIZE);
+    return y / Tile.SIZE;
+    // return Math.round((y - Tile.SIZE / 2) / Tile.SIZE);
   }
 
   public String getCoord() {
