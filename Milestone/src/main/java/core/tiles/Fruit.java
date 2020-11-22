@@ -9,6 +9,12 @@ public class Fruit extends Tile {
     super(x, y, app.loadImage("src/main/resources/fruit.png"));
   }
   
+  /**
+  * Returns true if Fruit tile allows Actor movement
+  *
+  * @return            true if Fruit tile allows Actor movement
+  */
+  @Override
   public boolean isMovable() {
     return true;
   }
