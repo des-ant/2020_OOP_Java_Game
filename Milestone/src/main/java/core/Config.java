@@ -53,7 +53,7 @@ public class Config {
     return this.speed;
   }
 
-  /**
+  /*
   * Returns list of modes
   *
   * @return  list of modes
@@ -62,10 +62,8 @@ public class Config {
     return this.modeLengths;
   }
 
-  /**
+  /*
   * Reads config file from filename. Prints exceptions if they arise.
-  *
-  * @param  configFilename  the name of config file
   */
   private void readConfig(String configFilename) {
     // JSON parser object to parse read file
@@ -92,10 +90,8 @@ public class Config {
     }
   }
 
-  /**
+  /*
   * Set config properties from config JSON file
-  *
-  * @param  config  the config JSON object
   */
   private void parseConfigObject(JSONObject config) {
     // Get MapGrid
