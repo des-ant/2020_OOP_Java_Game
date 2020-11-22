@@ -2,8 +2,8 @@ core/tiles/Wall.java
  core.tiles.Wall
 core/Actor.java
  core.Actor
-core/Tile.java
- core.Tile
+core/Game.java
+ core.Game
 core/actors/Ghost.java
  core.actors.Ghost
 core/Direction.java
@@ -18,11 +18,11 @@ core/App.java
  core.App
 core/movement/Movement.java
  core.movement.Movement
-core/PointMaths.java
- core.PointMaths
-core/tiles/Fruit.java
- core.tiles.Fruit
-core/Game.java
- core.Game
 core/actors/Waka.java
  core.actors.Waka
+core/tiles/Fruit.java
+ core.tiles.Fruit
+core/PointMaths.java
+ core.PointMaths
+core/Tile.java
+ core.Tile

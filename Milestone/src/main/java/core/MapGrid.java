@@ -16,11 +16,8 @@ public class MapGrid {
   public final static int MAPWIDTH = 28;
 
   // Location
-  private int wakaX;
-  private int wakaY;
-
-  private int ghostX;
-  private int ghostY;
+  private Point wakaCoord;
+  private List<Point> ghostCoords = new ArrayList<Point>();
 
   // Each grid space is 16x16 pixels
   public final static int GRIDSIZE = 16;
@@ -61,36 +58,12 @@ public class MapGrid {
     return null;
   }
 
-  public int getWakaX() {
-    return wakaX;
+  public Point getWakaCoord() {
+    return wakaCoord;
   }
 
-  public int getWakaY() {
-    return wakaY;
-  }
-
-  public void setWakaX(int wakaX) {
-    this.wakaX = wakaX;
-  }
-
-  public void setWakaY(int wakaY) {
-    this.wakaY = wakaY;
-  }
-
-  public int getGhostX() {
-    return ghostX;
-  }
-
-  public int getGhostY() {
-    return ghostY;
-  }
-
-  public void setGhostX(int ghostX) {
-    this.ghostX = ghostX;
-  }
-
-  public void setGhostY(int ghostY) {
-    this.ghostY = ghostY;
+  public List<Point> getGhostCoords() {
+    return ghostCoords;
   }
 
   // Helper method for opening file
@@ -155,12 +128,10 @@ public class MapGrid {
             tileList.add(new Fruit(x, y, app));
             break;
           case 'p':
-            setWakaX(x);
-            setWakaY(y);
+            wakaCoord = new Point(x, y);
             break;
           case 'g':
-            setGhostX(x);
-            setGhostY(y);
+            ghostCoords.add(new Point(x, y));
             break;
           default:
             break;

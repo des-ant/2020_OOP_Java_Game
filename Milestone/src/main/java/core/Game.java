@@ -1,5 +1,9 @@
 package core;
 
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
+
 import core.actors.Ghost;
 import core.actors.Waka;
 import processing.core.PApplet;
@@ -8,7 +12,7 @@ public class Game {
   
   private Config config;
   private Waka waka;
-  private Ghost ghost;
+  private List<Ghost> ghosts = new ArrayList<Ghost>();
   private MapGrid mapGrid;
   private PApplet app;
 
@@ -43,8 +47,10 @@ public class Game {
     // MapGrid will load wall and fruit images
     this.mapGrid = new MapGrid(config.getMapGrid(), app);
     // Load images here
-    this.waka = new Waka(mapGrid.getWakaX(), mapGrid.getWakaY(), app, config.getSpeed(), config.getLives(), mapGrid);
-    this.ghost = new Ghost(mapGrid.getGhostX(), mapGrid.getGhostY(), app, config.getSpeed());
+    this.waka = new Waka((int) mapGrid.getWakaCoord().getX(), (int) mapGrid.getWakaCoord().getY(), app, config.getSpeed(), config.getLives(), mapGrid);
+    for (Point point : mapGrid.getGhostCoords()) {
+      this.ghosts.add(new Ghost((int) point.getX(), (int) point.getY(), app, config.getSpeed()));
+    }
     
   }
   
@@ -56,7 +62,9 @@ public class Game {
     mapGrid.draw(app);
     waka.tick();
 
-    ghost.draw(app);
+    for (Ghost ghost : ghosts) {
+      ghost.draw(app);
+    }
     waka.draw(app);
   }
 
