@@ -100,7 +100,7 @@ public class PlayerMovement implements Movement {
     return currentDirection;
   }
 
-  /**
+  /*
   * Returns true if next move is possible
   *
   * @param  coords     the current Point coordinate
