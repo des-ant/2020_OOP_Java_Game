@@ -52,6 +52,10 @@ public class Waka extends Actor {
     return movement.isMoving();
   }
 
+  public boolean eatFruit() {
+    return ((PlayerMovement) movement).eatFruit(getCoords());
+  }
+
   /**
   * Set direction of Waka using arrow keys
   *

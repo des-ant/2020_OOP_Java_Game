@@ -5,6 +5,7 @@ import java.awt.Point;
 import core.Direction;
 import core.MapGrid;
 import core.PointMaths;
+import core.Tile;
 
 public class PlayerMovement implements Movement {
 
@@ -75,6 +76,14 @@ public class PlayerMovement implements Movement {
       return true;
     }
     return false;
+  }
+
+  public boolean eatFruit(Point coords) {
+    Tile tileTouched = mapGrid.tileAt(coords);
+    if (tileTouched == null || !tileTouched.isMovable()) {
+      return false;
+    }
+    return (mapGrid.removeTile(tileTouched));
   }
 
   /**

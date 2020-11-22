@@ -46,8 +46,9 @@ public class Game {
 
     // MapGrid will load wall and fruit images
     this.mapGrid = new MapGrid(config.getMapGrid(), app);
-    // Load images here
+    // Create waka from coordinates
     this.waka = new Waka((int) mapGrid.getWakaCoord().getX(), (int) mapGrid.getWakaCoord().getY(), app, config.getSpeed(), config.getLives(), mapGrid);
+    // Create ghosts from coordinates
     for (Point point : mapGrid.getGhostCoords()) {
       this.ghosts.add(new Ghost((int) point.getX(), (int) point.getY(), app, config.getSpeed()));
     }
@@ -58,14 +59,19 @@ public class Game {
   * Draw game to PApplet window
   */
   public void draw() {
-    app.background(0, 0, 0);
-    mapGrid.draw(app);
-    waka.tick();
-
-    for (Ghost ghost : ghosts) {
-      ghost.draw(app);
+    if (mapGrid.getNumFruit() > 0) {
+      app.background(0, 0, 0);
+      mapGrid.draw(app);
+      waka.tick();
+      waka.eatFruit();
+  
+      for (Ghost ghost : ghosts) {
+        ghost.draw(app);
+      }
+      waka.draw(app);
+    } else {
+      app.background(150, 150, 150);
     }
-    waka.draw(app);
   }
 
   /**

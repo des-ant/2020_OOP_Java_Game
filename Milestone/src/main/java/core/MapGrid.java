@@ -25,6 +25,7 @@ public class MapGrid {
   private int yOffset = GRIDSIZE / 2;
 
   private List<Tile> tileList = new ArrayList<Tile>();
+  private int numFruit = 0;
 
   public MapGrid(String mapFilename, PApplet app) {
     readMapGrid(mapFilename, app);
@@ -58,12 +59,31 @@ public class MapGrid {
     return null;
   }
 
+  // Remove tile from list
+  public boolean removeTile(Tile tileRemove) {
+    if (tileRemove == null) {
+      return false;
+    }
+    for (Tile tile : tileList) {
+      if (tile == tileRemove) {
+        tileList.remove(tile);
+        numFruit--;
+        return true;
+      }
+    }
+    return false;
+  }
+
   public Point getWakaCoord() {
     return wakaCoord;
   }
 
   public List<Point> getGhostCoords() {
     return ghostCoords;
+  }
+
+  public int getNumFruit() {
+    return numFruit;
   }
 
   // Helper method for opening file
@@ -126,6 +146,7 @@ public class MapGrid {
             break;
           case '7':
             tileList.add(new Fruit(x, y, app));
+            numFruit++;
             break;
           case 'p':
             wakaCoord = new Point(x, y);
