@@ -3,7 +3,6 @@ package core.movement;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import core.Direction;
 import core.MapGrid;
@@ -16,7 +15,8 @@ public class TargetMovement implements Movement {
   private Direction previousDirection;
   private Direction currentDirection;
   private Point previousCoords;
-  private final Random random = new Random();
+  private Target targetChase;
+  private Target targetScatter;
 
   /**
   * Constructs Movement with given map and initial direction
@@ -25,12 +25,14 @@ public class TargetMovement implements Movement {
   * @param  initialDirection  the initial direction that is applied to the player
   */
   public TargetMovement(MapGrid mapGrid, Direction initialDirection, 
-  Point previousCoords) {
+  Point previousCoords, Target targetChase, Target targetScatter) {
     this.mapGrid = mapGrid;
     this.currentDirection = initialDirection;
     this.nextDirection = initialDirection;
     this.previousDirection = initialDirection;
     this.previousCoords = previousCoords;
+    this.targetChase = targetChase;
+    this.targetScatter = targetScatter;
   }
 
   /**
@@ -89,8 +91,7 @@ public class TargetMovement implements Movement {
     // Only updates next direction if ghost has moved
     if (!coords.equals(previousCoords)) {
       List<Direction> availableDirections = getPossibleDirections(coords, x, y);
-      int randomIndex = random.nextInt(availableDirections.size());
-      nextDirection = availableDirections.get(randomIndex);
+      nextDirection = targetChase.chosenDirection(availableDirections);
       previousCoords = coords;
     }
     // Check if can move in next direction

@@ -8,6 +8,7 @@ import core.MapGrid;
 import core.PointMaths;
 import core.movement.TargetMovement;
 import core.GhostMode;
+import core.movement.ChaserTarget;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -19,7 +20,8 @@ public class Ghost extends Actor{
 
   public Ghost(int x, int y, PApplet app, int speed, List<Integer> modeLengths, 
   MapGrid mapGrid) {
-    super(x, y, speed, new TargetMovement(mapGrid, Direction.NONE, null));
+    super(x, y, speed, new TargetMovement(mapGrid, Direction.NONE, null, 
+    new ChaserTarget(mapGrid), new ChaserTarget(mapGrid)));
     this.sprite = app.loadImage("src/main/resources/ghost.png");
     this.ghostMode = GhostMode.SCATTER;
     this.modeLengths = modeLengths;
