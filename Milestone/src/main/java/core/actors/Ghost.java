@@ -23,10 +23,10 @@ public class Ghost extends Actor{
   protected List<Integer> modeLengths;
 
   public Ghost(int x, int y, PApplet app, int speed, List<Integer> modeLengths, 
-  MapGrid mapGrid) {
+  MapGrid mapGrid, GhostType ghostType) {
     super(x, y, speed, new TargetMovement(mapGrid, Direction.NONE, null, 
-    new ChaserTarget(mapGrid), new Scatter(mapGrid, ScatterMode.TL)));
-    this.sprite = app.loadImage("src/main/resources/ghost.png");
+    new ChaserTarget(mapGrid), new Scatter(mapGrid, ghostType.getScatterMode())));
+    this.sprite = app.loadImage(ghostType.getSprite());
     this.ghostMode = GhostMode.SCATTER;
     this.modeLengths = modeLengths;
   }

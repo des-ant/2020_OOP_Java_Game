@@ -1,9 +1,9 @@
-core/Tile.java
- core.Tile
+core/Game.java
+ core.Game
 core/Actor.java
  core.Actor
-core/movement/Target.java
- core.movement.Target
+core/actors/Ghost.java
+ core.actors.Ghost
 core/tiles/Wall.java
  core.tiles.Wall
 core/movement/TargetMovement.java
@@ -28,13 +28,15 @@ core/actors/Waka.java
  core.actors.Waka
 core/movement/Movement.java
  core.movement.Movement
+core/actors/GhostType.java
+ core.actors.GhostType
 core/tiles/Fruit.java
  core.tiles.Fruit
 core/PointMaths.java
  core.PointMaths
 core/movement/ScatterMode.java
  core.movement.ScatterMode
-core/Game.java
- core.Game
-core/actors/Ghost.java
- core.actors.Ghost
+core/movement/Target.java
+ core.movement.Target
+core/Tile.java
+ core.Tile

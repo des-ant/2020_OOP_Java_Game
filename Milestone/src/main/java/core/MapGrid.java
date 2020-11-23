@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import core.tiles.Fruit;
 import core.tiles.Wall;
+import core.actors.GhostType;
 import processing.core.PApplet;
 
 public class MapGrid {
@@ -23,6 +24,7 @@ public class MapGrid {
   // Location
   private Point wakaCoord;
   private List<Point> ghostCoords = new ArrayList<Point>();
+  private List<GhostType> ghostTypes = new ArrayList<GhostType>();
 
   // Each grid space is 16x16 pixels
   public final static int GRIDSIZE = 16;
@@ -92,6 +94,10 @@ public class MapGrid {
     return ghostCoords;
   }
 
+  public List<GhostType> getGhostTypes() {
+    return ghostTypes;
+  }
+
   public int getNumFruit() {
     return numFruit;
   }
@@ -158,11 +164,28 @@ public class MapGrid {
             tileList.add(new Fruit(x, y, app));
             numFruit++;
             break;
+          case 'a':
+            ghostCoords.add(new Point(x, y));
+            ghostTypes.add(GhostType.AMBUSHER);
+            break;
+          case 'c':
+            ghostCoords.add(new Point(x, y));
+            ghostTypes.add(GhostType.CHASER);
+            break;
+          case 'i':
+            ghostCoords.add(new Point(x, y));
+            ghostTypes.add(GhostType.IGNORANT);
+            break;
           case 'p':
             wakaCoord = new Point(x, y);
             break;
           case 'g':
             ghostCoords.add(new Point(x, y));
+            ghostTypes.add(GhostType.CHASER);
+            break;
+          case 'w':
+            ghostCoords.add(new Point(x, y));
+            ghostTypes.add(GhostType.WHIM);
             break;
           default:
             break;

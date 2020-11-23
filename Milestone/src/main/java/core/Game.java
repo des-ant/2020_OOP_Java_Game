@@ -6,6 +6,7 @@ import java.util.List;
 
 import core.actors.Ghost;
 import core.actors.Waka;
+import core.actors.GhostType;
 import processing.core.PApplet;
 
 public class Game {
@@ -51,10 +52,17 @@ public class Game {
     // MapGrid will load wall and fruit images
     this.mapGrid = new MapGrid(config.getMapGrid(), app, this);
     // Create waka from coordinates
-    this.waka = new Waka((int) mapGrid.getWakaCoord().getX(), (int) mapGrid.getWakaCoord().getY(), app, config.getSpeed(), config.getLives(), mapGrid);
+    this.waka = new Waka((int) mapGrid.getWakaCoord().getX(),
+     (int) mapGrid.getWakaCoord().getY(), app, config.getSpeed(), 
+     config.getLives(), mapGrid);
     // Create ghosts from coordinates
+    List<GhostType> ghostTypes = mapGrid.getGhostTypes();
+    int index = 0;
     for (Point point : mapGrid.getGhostCoords()) {
-      this.ghosts.add(new Ghost((int) point.getX(), (int) point.getY(), app, config.getSpeed(), config.getModeLengths(), mapGrid));
+      this.ghosts.add(new Ghost((int) point.getX(), (int) point.getY(), 
+      app, config.getSpeed(), config.getModeLengths(), mapGrid, 
+      ghostTypes.get(index)));
+      index++;
     }
     
   }
