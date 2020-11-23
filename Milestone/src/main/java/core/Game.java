@@ -16,6 +16,10 @@ public class Game {
   private MapGrid mapGrid;
   private PApplet app;
 
+  public Waka getWaka() {
+    return waka;
+  }
+
   /**
   * Constructs Game from given Papplet window
   *
@@ -45,7 +49,7 @@ public class Game {
     app.stroke(255, 255, 255);
 
     // MapGrid will load wall and fruit images
-    this.mapGrid = new MapGrid(config.getMapGrid(), app);
+    this.mapGrid = new MapGrid(config.getMapGrid(), app, this);
     // Create waka from coordinates
     this.waka = new Waka((int) mapGrid.getWakaCoord().getX(), (int) mapGrid.getWakaCoord().getY(), app, config.getSpeed(), config.getLives(), mapGrid);
     // Create ghosts from coordinates

@@ -26,6 +26,16 @@ public class PointMaths {
     return pixelCoords;
   }
 
+  public static Double distance(Point coords1, Point coords2) {
+    Double x1 = coords1.getX();
+    Double y1 = coords1.getY();
+    Double x2 = coords2.getX();
+    Double y2 = coords2.getY();
+    Double distanceSq = Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2);
+    Double distance = Math.sqrt(distanceSq);
+    return distance;
+  }
+
   public static boolean isDiagonal(Point coords) {
     return coords.getX() != 0 && coords.getY() != 0;
   }

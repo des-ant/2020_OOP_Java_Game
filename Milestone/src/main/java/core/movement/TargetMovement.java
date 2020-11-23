@@ -35,6 +35,10 @@ public class TargetMovement implements Movement {
     this.targetScatter = targetScatter;
   }
 
+  public Point getTargetCoord() {
+    return targetChase.getTargetCoord();
+  }
+
   /**
   * Returns Direction that player is facing
   *
@@ -91,7 +95,7 @@ public class TargetMovement implements Movement {
     // Only updates next direction if ghost has moved
     if (!coords.equals(previousCoords)) {
       List<Direction> availableDirections = getPossibleDirections(coords, x, y);
-      nextDirection = targetChase.chosenDirection(availableDirections);
+      nextDirection = targetChase.chosenDirection(availableDirections, x, y);
       previousCoords = coords;
     }
     // Check if can move in next direction

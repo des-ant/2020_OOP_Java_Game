@@ -14,6 +14,11 @@ import processing.core.PApplet;
 public class MapGrid {
   public final static int MAPHEIGHT = 36;
   public final static int MAPWIDTH = 28;
+  public final static Double MAXDIST = 
+  Math.sqrt(Math.pow(MAPWIDTH, 2) + Math.pow(MAPHEIGHT, 2));
+
+  // Current game instance
+  private Game game;
 
   // Location
   private Point wakaCoord;
@@ -27,8 +32,13 @@ public class MapGrid {
   private List<Tile> tileList = new ArrayList<Tile>();
   private int numFruit = 0;
 
-  public MapGrid(String mapFilename, PApplet app) {
+  public MapGrid(String mapFilename, PApplet app, Game game) {
     readMapGrid(mapFilename, app);
+    this.game = game;
+  }
+
+  public Game getGame() {
+    return game;
   }
 
   public List<Tile> getTileList() {

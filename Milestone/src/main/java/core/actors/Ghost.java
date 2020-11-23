@@ -1,6 +1,7 @@
 package core.actors;
 
 import java.util.List;
+import java.awt.Point;
 
 import core.Actor;
 import core.Direction;
@@ -34,15 +35,18 @@ public class Ghost extends Actor{
   */
   public void draw(PApplet app) {
     // Handling graphics
+    int targetX = (int) PointMaths.toPixelCoords(getTargetCoord()).getX();
+    int targetY = (int) PointMaths.toPixelCoords(getTargetCoord()).getY();
+    app.line(x, y, targetX, targetY);
+
     app.image(this.sprite, this.x, this.y);
-    app.fill(0, 0);
-    app.rect(this.x, this.y, sprite.width, sprite.height);
-    app.fill(255, 0, 0, 120);
-    app.rect(this.x, this.y, SIZE, SIZE);
-    app.fill(255, 100, 100, 120);
-    int closestX = (int) PointMaths.toPixelCoords(getCoords()).getX();
-    int closestY = (int) PointMaths.toPixelCoords(getCoords()).getY();
-    app.rect(closestX, closestY, SIZE, SIZE);
+    // app.fill(0, 0);
+    // app.rect(this.x, this.y, sprite.width, sprite.height);
+    // app.fill(255, 0, 0, 120);
+    // app.rect(this.x, this.y, SIZE, SIZE);
+    // app.fill(255, 100, 100, 120);
+    // int closestX = (int) PointMaths.toPixelCoords(getCoords()).getX();
+    // int closestY = (int) PointMaths.toPixelCoords(getCoords()).getY();
   }
 
   public GhostMode getGhostMode() {
@@ -55,6 +59,10 @@ public class Ghost extends Actor{
 
   public List<Integer> getModeLengths() {
     return modeLengths;
+  }
+
+  public Point getTargetCoord() {
+    return ((TargetMovement) movement).getTargetCoord();
   }
 
   // /**
