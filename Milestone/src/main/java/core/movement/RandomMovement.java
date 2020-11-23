@@ -3,23 +3,20 @@ package core.movement;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import core.Direction;
 import core.MapGrid;
 import core.PointMaths;
-import core.GhostMode;
 
-public class TargetMovement implements Movement {
+public class RandomMovement implements Movement {
 
   private MapGrid mapGrid;
   private Direction nextDirection;
   private Direction previousDirection;
   private Direction currentDirection;
   private Point previousCoords;
-  private Target targetChase;
-  private Target targetScatter;
-  private Target targetFrightened;
-  private Target targetMode;
+  private final Random random = new Random();
 
   /**
   * Constructs Movement with given map and initial direction
@@ -27,33 +24,13 @@ public class TargetMovement implements Movement {
   * @param  mapGrid           the map containing the player
   * @param  initialDirection  the initial direction that is applied to the player
   */
-  public TargetMovement(MapGrid mapGrid, Direction initialDirection, 
-  Point previousCoords, Target targetChase, Target targetScatter, 
-  Target targetFrightened) {
+  public RandomMovement(MapGrid mapGrid, Direction initialDirection, 
+  Point previousCoords) {
     this.mapGrid = mapGrid;
     this.currentDirection = initialDirection;
     this.nextDirection = initialDirection;
     this.previousDirection = initialDirection;
     this.previousCoords = previousCoords;
-    this.targetChase = targetChase;
-    this.targetScatter = targetScatter;
-    this.targetFrightened = targetFrightened;
-    // Set inital mode to chase
-    this.targetMode = targetChase;
-  }
-
-  public Point getTargetCoord() {
-    return targetMode.getTargetCoord();
-  }
-
-  public void setTargetMode(GhostMode ghostMode) {
-    if (ghostMode == GhostMode.CHASE) {
-      targetMode = targetChase;
-    } else if (ghostMode == GhostMode.SCATTER) {
-      targetMode = targetScatter;
-    } else {
-      targetMode = targetFrightened;
-    }
   }
 
   /**
@@ -112,7 +89,8 @@ public class TargetMovement implements Movement {
     // Only updates next direction if ghost has moved
     if (!coords.equals(previousCoords)) {
       List<Direction> availableDirections = getPossibleDirections(coords, x, y);
-      nextDirection = targetMode.chosenDirection(availableDirections, x, y);
+      int randomIndex = random.nextInt(availableDirections.size());
+      nextDirection = availableDirections.get(randomIndex);
       previousCoords = coords;
     }
     // Check if can move in next direction
@@ -162,19 +140,6 @@ public class TargetMovement implements Movement {
         if (mapGrid.canMove(nextCoords) && !nextCoords.equals(previousCoords)) {
             availableDirections.add(direction);
         }
-    }
-    // If ghost is trapped, allow move backwards
-    if (availableDirections.isEmpty()) {
-      for (Direction direction : Direction.validMovements()) {
-        // Store current ghost position to prevent change to current position
-        Point nextCoords = new Point(coords);
-        // Get next position
-        nextCoords.translate(direction.getX(), direction.getY());
-        // Check next move is possible
-        if (mapGrid.canMove(nextCoords)) {
-            availableDirections.add(direction);
-        }
-      }
     }
     return availableDirections;
   }

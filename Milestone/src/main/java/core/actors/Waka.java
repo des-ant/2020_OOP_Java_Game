@@ -1,9 +1,13 @@
 package core.actors;
 
+import java.util.List;
+
 import core.Actor;
 import core.Direction;
 import core.MapGrid;
 import core.PointMaths;
+import core.Game;
+import core.actors.Ghost;
 import core.movement.PlayerMovement;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -11,7 +15,7 @@ import processing.core.PImage;
 public class Waka extends Actor {
 
   private int lives;
-
+  private Game game;
   private PImage spriteU;
   private PImage spriteD;
   private PImage spriteL;
@@ -22,7 +26,8 @@ public class Waka extends Actor {
 
   private int livesY = (MapGrid.MAPHEIGHT - 1) * SIZE;
 
-  public Waka(int x, int y, PApplet app, int speed, int lives, MapGrid mapGrid) {
+  public Waka(int x, int y, PApplet app, int speed, int lives, MapGrid mapGrid, 
+  Game game) {
     // Inherit attributes and methods from Actor
     super(x, y, speed, new PlayerMovement(mapGrid, Direction.NONE));
     this.lives = lives;
@@ -31,6 +36,7 @@ public class Waka extends Actor {
     this.spriteD = app.loadImage("src/main/resources/playerDown.png");
     this.spriteL = app.loadImage("src/main/resources/playerLeft.png");
     this.spriteR = app.loadImage("src/main/resources/playerRight.png");
+    this.game = game;
   }
 
   /**
@@ -99,6 +105,36 @@ public class Waka extends Actor {
     for (int i = 0; i < lives; i++) {
       app.image(this.spriteR, (spriteR.width + spriteR.width/8) * i + (SIZE + spriteR.width) / 2, livesY);
     }
+  }
+
+  private Ghost touchGhost() {
+    for (Ghost ghost : game.getGhosts()) {
+      if (getCoords().equals(ghost.getCoords())) {
+        return ghost;
+      }
+    }
+    return null;
+  }
+
+  public boolean isAlive() {
+    if (lives > 0) {
+      return true;
+    }
+    return false;
+  }
+
+  public boolean checkKilled() {
+    if (touchGhost() == null) {
+      return false;
+    }
+    if (isAlive()) {
+      lives--;
+    }
+    for (Ghost ghost : game.getGhosts()) {
+      ghost.resetPixelCoords();
+    }
+    resetPixelCoords();
+    return true;
   }
 
 }

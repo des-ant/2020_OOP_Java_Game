@@ -55,8 +55,4 @@ public class Wall extends Tile {
     return false;
   }
 
-  public void msg() {
-    System.out.println("Wall at " + getCoordX() + ", " + getCoordY());
-  }
-
 }

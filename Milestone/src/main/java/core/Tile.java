@@ -31,8 +31,6 @@ public abstract class Tile {
   public void draw(PApplet app) {
     // Handling graphics
     app.image(this.sprite, this.x, this.y);
-    app.fill(0, 0);
-    app.rect(this.x, this.y, SIZE, SIZE);
   }
 
   /**
@@ -41,8 +39,6 @@ public abstract class Tile {
   * @return  true if Tile allows Actor movement
   */
   public abstract boolean isMovable();
-
-  public abstract void msg();
 
   public int getX() {
     return x;
