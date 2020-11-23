@@ -31,9 +31,7 @@ public abstract class Tile {
   public void draw(PApplet app) {
     // Handling graphics
 <span class="nc" id="L33">    app.image(this.sprite, this.x, this.y);</span>
-<span class="nc" id="L34">    app.fill(0, 0);</span>
-<span class="nc" id="L35">    app.rect(this.x, this.y, SIZE, SIZE);</span>
-<span class="nc" id="L36">  }</span>
+<span class="nc" id="L34">  }</span>
 
   /**
   * Returns true if Tile allows Actor movement
@@ -42,30 +40,28 @@ public abstract class Tile {
   */
   public abstract boolean isMovable();
 
-  public abstract void msg();
-
   public int getX() {
-<span class="nc" id="L48">    return x;</span>
+<span class="nc" id="L44">    return x;</span>
   }
 
   public int getY() {
-<span class="nc" id="L52">    return y;</span>
+<span class="nc" id="L48">    return y;</span>
   }
 
   public Point getCoords() {
-<span class="nc" id="L56">    return coords;</span>
+<span class="nc" id="L52">    return coords;</span>
   }
 
   public int getCoordX() {
-<span class="nc" id="L60">    Double doubleX = coords.getX();</span>
-<span class="nc" id="L61">    int intX = (int) Math.round(doubleX);</span>
-<span class="nc" id="L62">    return intX;</span>
+<span class="nc" id="L56">    Double doubleX = coords.getX();</span>
+<span class="nc" id="L57">    int intX = (int) Math.round(doubleX);</span>
+<span class="nc" id="L58">    return intX;</span>
   }
 
   public int getCoordY() {
-<span class="nc" id="L66">    Double doubleY = coords.getY();</span>
-<span class="nc" id="L67">    int intY = (int) Math.round(doubleY);</span>
-<span class="nc" id="L68">    return intY;</span>
+<span class="nc" id="L62">    Double doubleY = coords.getY();</span>
+<span class="nc" id="L63">    int intY = (int) Math.round(doubleY);</span>
+<span class="nc" id="L64">    return intY;</span>
   }
 
 }

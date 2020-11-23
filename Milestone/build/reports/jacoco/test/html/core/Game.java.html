@@ -1,74 +1,163 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Game.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Milestone</a> &gt; <a href="index.source.html" class="el_package">core</a> &gt; <span class="el_source">Game.java</span></div><h1>Game.java</h1><pre class="source lang-java linenums">package core;
 
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
+
 import core.actors.Ghost;
 import core.actors.Waka;
+import core.actors.GhostType;
 import processing.core.PApplet;
 
 public class Game {
   
   private Config config;
   private Waka waka;
-  private Ghost ghost;
+<span class="fc" id="L16">  private List&lt;Ghost&gt; ghosts = new ArrayList&lt;Ghost&gt;();</span>
+  private List&lt;Integer&gt; modeLengths;
   private MapGrid mapGrid;
   private PApplet app;
+  private boolean debug;
+  private long initialTimestamp;
+  private long currentTimestamp;
+  private int modeIndex;
+
+  public Waka getWaka() {
+<span class="nc" id="L26">    return waka;</span>
+  }
+
+  public boolean getDebug() {
+<span class="nc" id="L30">    return debug;</span>
+  }
+
+  public List&lt;Ghost&gt; getGhosts() {
+<span class="nc" id="L34">    return ghosts;</span>
+  }
+
+  public long timer() {
+<span class="nc" id="L38">    return currentTimestamp - initialTimestamp;</span>
+  }
+
+  public void setInitialTimestamp() {
+<span class="nc" id="L42">    this.initialTimestamp = System.currentTimeMillis() / 1000;</span>
+<span class="nc" id="L43">  }</span>
+
+  public void setCurrentTimestamp() {
+<span class="nc" id="L46">    this.currentTimestamp = System.currentTimeMillis() / 1000;</span>
+<span class="nc" id="L47">  }</span>
 
   /**
   * Constructs Game from given Papplet window
   *
   * @param  app  the PApplet window to be drawn to
   */
-<span class="fc" id="L20">  public Game(PApplet app) {</span>
+<span class="fc" id="L54">  public Game(PApplet app) {</span>
     // Load Papplet
-<span class="fc" id="L22">    this.app = app;</span>
-
+<span class="fc" id="L56">    this.app = app;</span>
     // Load Config file
-<span class="fc" id="L25">    this.config = new Config(&quot;config.json&quot;);</span>
-<span class="fc" id="L26">  }</span>
+<span class="fc" id="L58">    this.config = new Config(&quot;config.json&quot;);</span>
+    // Debug mode off
+<span class="fc" id="L60">    this.debug = false;</span>
+    // Set initial time
+<span class="fc" id="L62">    this.initialTimestamp = System.currentTimeMillis() / 1000;</span>
+<span class="fc" id="L63">    this.currentTimestamp = System.currentTimeMillis() / 1000;</span>
+<span class="fc" id="L64">    this.modeIndex = 0;</span>
+<span class="fc" id="L65">  }</span>
 
   /**
   * Set up game
   */
   public void setup() {
-<span class="nc" id="L32">    app.frameRate(60);</span>
+<span class="nc" id="L71">    app.frameRate(60);</span>
 
     // Draw images centered at the given x and y position
-<span class="nc" id="L35">    app.imageMode(app.CENTER);</span>
+<span class="nc" id="L74">    app.imageMode(app.CENTER);</span>
 
     // Show black background on window launch
-<span class="nc" id="L38">    app.background(0, 0, 0);</span>
+<span class="nc" id="L77">    app.background(0, 0, 0);</span>
 
-<span class="nc" id="L40">    app.rectMode(app.CENTER);</span>
-<span class="nc" id="L41">    app.stroke(255, 255, 255);</span>
+<span class="nc" id="L79">    app.rectMode(app.CENTER);</span>
+<span class="nc" id="L80">    app.stroke(255, 255, 255);</span>
 
     // MapGrid will load wall and fruit images
-<span class="nc" id="L44">    this.mapGrid = new MapGrid(config.getMapGrid(), app);</span>
-    // Load images here
-<span class="nc" id="L46">    this.waka = new Waka(mapGrid.getWakaX(), mapGrid.getWakaY(), app, config.getSpeed(), config.getLives(), mapGrid);</span>
-<span class="nc" id="L47">    this.ghost = new Ghost(mapGrid.getGhostX(), mapGrid.getGhostY(), app, config.getSpeed());</span>
+<span class="nc" id="L83">    this.mapGrid = new MapGrid(config.getMapGrid(), app, this);</span>
+    // Create waka from coordinates
+<span class="nc" id="L85">    this.waka = new Waka((int) mapGrid.getWakaCoord().getX(),</span>
+<span class="nc" id="L86">     (int) mapGrid.getWakaCoord().getY(), app, config.getSpeed(), </span>
+<span class="nc" id="L87">     config.getLives(), mapGrid, this);</span>
+    // Store mode lengths
+<span class="nc" id="L89">    this.modeLengths = config.getModeLengths();</span>
+    // Create ghosts from coordinates
+<span class="nc" id="L91">    List&lt;GhostType&gt; ghostTypes = mapGrid.getGhostTypes();</span>
+<span class="nc" id="L92">    int index = 0;</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">    for (Point point : mapGrid.getGhostCoords()) {</span>
+<span class="nc" id="L94">      this.ghosts.add(new Ghost((int) point.getX(), (int) point.getY(), </span>
+<span class="nc" id="L95">      app, config.getSpeed(), mapGrid, </span>
+<span class="nc" id="L96">      ghostTypes.get(index)));</span>
+<span class="nc" id="L97">      index++;</span>
+<span class="nc" id="L98">    }</span>
     
-<span class="nc" id="L49">  }</span>
+<span class="nc" id="L100">  }</span>
   
   /**
   * Draw game to PApplet window
   */
   public void draw() {
-<span class="nc" id="L55">    app.background(0, 0, 0);</span>
-<span class="nc" id="L56">    mapGrid.draw(app);</span>
-<span class="nc" id="L57">    waka.tick();</span>
+    // Game will continue to run until no fruits in map
+    // and Waka still alive
+<span class="nc bnc" id="L108" title="All 4 branches missed.">    if (mapGrid.getNumFruit() &gt; 0 &amp;&amp; waka.isAlive()) {</span>
+<span class="nc" id="L109">      app.background(0, 0, 0);</span>
 
-<span class="nc" id="L59">    waka.draw(app);</span>
-<span class="nc" id="L60">    ghost.draw(app);</span>
-<span class="nc" id="L61">  }</span>
+      // Change mode according to config file
+<span class="nc" id="L112">      setCurrentTimestamp();</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">      if (timer() &gt;= modeLengths.get(modeIndex)) {</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">        if (modeIndex &lt; modeLengths.size()) {</span>
+<span class="nc" id="L115">          modeIndex++;</span>
+        } else {
+<span class="nc" id="L117">          modeIndex = 0;</span>
+        }
+<span class="nc" id="L119">        setInitialTimestamp();</span>
+      }
+
+<span class="nc" id="L122">      mapGrid.draw(app);</span>
+<span class="nc bnc" id="L123" title="All 2 branches missed.">      for (Ghost ghost : ghosts) {</span>
+<span class="nc bnc" id="L124" title="All 2 branches missed.">        if (modeIndex % 2 == 0) {</span>
+<span class="nc" id="L125">          ghost.setGhostMode(GhostMode.CHASE);</span>
+        } else {
+<span class="nc" id="L127">          ghost.setGhostMode(GhostMode.SCATTER);</span>
+        }
+<span class="nc" id="L129">        ghost.tick();</span>
+<span class="nc" id="L130">        ghost.draw(app, debug);</span>
+<span class="nc" id="L131">      }</span>
+      // Reset mode if Waka killed
+<span class="nc bnc" id="L133" title="All 2 branches missed.">      if (waka.checkKilled()) {</span>
+<span class="nc" id="L134">        setInitialTimestamp();</span>
+<span class="nc" id="L135">        modeIndex = 0;</span>
+      };
+<span class="nc" id="L137">      waka.eatFruit();</span>
+<span class="nc" id="L138">      waka.tick();</span>
+<span class="nc" id="L139">      waka.draw(app);</span>
+    } else {
+<span class="nc" id="L141">      app.background(150, 150, 150);</span>
+    }
+<span class="nc" id="L143">  }</span>
 
   /**
   * Send user input to PApplet window
   */
   public void keyPressed() {
     // Arrow keys input
-<span class="nc bnc" id="L68" title="All 2 branches missed.">    if (app.key == app.CODED) {</span>
-<span class="nc" id="L69">      waka.move(app);</span>
+<span class="nc bnc" id="L150" title="All 2 branches missed.">    if (app.key == app.CODED) {</span>
+<span class="nc" id="L151">      waka.move(app);</span>
     }
-<span class="nc" id="L71">  }</span>
+<span class="nc bnc" id="L153" title="All 2 branches missed.">    if (app.key == ' ') {</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">      if (debug) {</span>
+<span class="nc" id="L155">        debug = false;</span>
+      } else {
+<span class="nc" id="L157">        debug = true;</span>
+      }
+    }
+<span class="nc" id="L160">  }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

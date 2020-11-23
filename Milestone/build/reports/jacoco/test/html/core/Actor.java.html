@@ -21,8 +21,6 @@ public abstract class Actor {
 
   protected Movement movement;
 
-  protected PImage sprite;
-
   /**
   * Constructs Actor from given position, image, speed, movement
   *
@@ -32,33 +30,14 @@ public abstract class Actor {
   * @param  speed     the speed at which Actor will move
   * @param  movement  the type of movement being implemented
   */
-<span class="nc" id="L35">  public Actor(int x, int y, PImage sprite, int speed, Movement movement) {</span>
-<span class="nc" id="L36">    this.x = x;</span>
-<span class="nc" id="L37">    this.y = y;</span>
-<span class="nc" id="L38">    this.sprite = sprite;</span>
-<span class="nc" id="L39">    this.speed = speed;</span>
-<span class="nc" id="L40">    this.movement = movement;</span>
-<span class="nc" id="L41">    this.startX = x;</span>
-<span class="nc" id="L42">    this.startY = y;</span>
-<span class="nc" id="L43">  }</span>
-
-  /**
-  * Draws Actor to PApplet window
-  *
-  * @param  app  the PApplet window to be drawn to
-  */
-  public void draw(PApplet app) {
-    // Handling graphics
-<span class="nc" id="L52">    app.image(this.sprite, this.x, this.y);</span>
-<span class="nc" id="L53">    app.fill(0, 0);</span>
-<span class="nc" id="L54">    app.rect(this.x, this.y, sprite.width, sprite.height);</span>
-<span class="nc" id="L55">    app.fill(255, 0, 0, 120);</span>
-<span class="nc" id="L56">    app.rect(this.x, this.y, SIZE, SIZE);</span>
-<span class="nc" id="L57">    app.fill(255, 100, 100, 120);</span>
-<span class="nc" id="L58">    int closestX = (int) PointMaths.toPixelCoords(getCoords()).getX();</span>
-<span class="nc" id="L59">    int closestY = (int) PointMaths.toPixelCoords(getCoords()).getY();</span>
-<span class="nc" id="L60">    app.rect(closestX, closestY, SIZE, SIZE);</span>
-<span class="nc" id="L61">  }</span>
+<span class="nc" id="L33">  public Actor(int x, int y, int speed, Movement movement) {</span>
+<span class="nc" id="L34">    this.x = x;</span>
+<span class="nc" id="L35">    this.y = y;</span>
+<span class="nc" id="L36">    this.speed = speed;</span>
+<span class="nc" id="L37">    this.movement = movement;</span>
+<span class="nc" id="L38">    this.startX = x;</span>
+<span class="nc" id="L39">    this.startY = y;</span>
+<span class="nc" id="L40">  }</span>
 
   /**
   * Returns horizontal pixel coordinate of Actor centre
@@ -66,7 +45,7 @@ public abstract class Actor {
   * @return  horizontal pixel coordinate of Actor centre
   */
   public int getX() {
-<span class="nc" id="L69">    return x;</span>
+<span class="nc" id="L48">    return x;</span>
   }
 
   /**
@@ -75,7 +54,7 @@ public abstract class Actor {
   * @return  vertical pixel coordinate of Actor centre
   */
   public int getY() {
-<span class="nc" id="L78">    return y;</span>
+<span class="nc" id="L57">    return y;</span>
   }
 
   /**
@@ -84,7 +63,7 @@ public abstract class Actor {
   * @return  horizontal tile coordinate of Actor centre
   */
   public int getCoordX() {
-<span class="nc" id="L87">    return x / SIZE;</span>
+<span class="nc" id="L66">    return x / SIZE;</span>
     // return Math.round((x - SIZE / 2) / SIZE);
   }
 
@@ -94,7 +73,7 @@ public abstract class Actor {
   * @return  vertical tile coordinate of Actor centre
   */
   public int getCoordY() {
-<span class="nc" id="L97">    return y / SIZE;</span>
+<span class="nc" id="L76">    return y / SIZE;</span>
     // return Math.round((y - SIZE / 2) / SIZE);
   }
 
@@ -104,7 +83,7 @@ public abstract class Actor {
   * @return  Point at tile coordinate of Actor centre
   */
   public Point getCoords() {
-<span class="nc" id="L107">    return new Point(getCoordX(), getCoordY());</span>
+<span class="nc" id="L86">    return new Point(getCoordX(), getCoordY());</span>
   }
 
   /**
@@ -113,80 +92,41 @@ public abstract class Actor {
   * @return  Point at pixel coordinate of Actor centre
   */
   public Point getPixelCoords() {
-<span class="nc" id="L116">    return new Point(x, y);</span>
+<span class="nc" id="L95">    return new Point(x, y);</span>
   }
   
   /**
   * Resets Actor to initial position
   */
   public void resetPixelCoords() {
-<span class="nc" id="L123">    x = startX;</span>
-<span class="nc" id="L124">    y = startY;</span>
-<span class="nc" id="L125">  }</span>
+<span class="nc" id="L102">    x = startX;</span>
+<span class="nc" id="L103">    y = startY;</span>
+<span class="nc" id="L104">  }</span>
 
   public void setPixelCoords(Point coords) {
-<span class="nc" id="L128">    Double doubleX = coords.getX();</span>
-<span class="nc" id="L129">    Double doubleY = coords.getY();</span>
-<span class="nc" id="L130">    int intX = (int) Math.round(doubleX);</span>
-<span class="nc" id="L131">    int intY = (int) Math.round(doubleY);</span>
-<span class="nc" id="L132">    this.x = intX;</span>
-<span class="nc" id="L133">    this.y = intY;</span>
-<span class="nc" id="L134">  }</span>
+<span class="nc" id="L107">    Double doubleX = coords.getX();</span>
+<span class="nc" id="L108">    Double doubleY = coords.getY();</span>
+<span class="nc" id="L109">    int intX = (int) Math.round(doubleX);</span>
+<span class="nc" id="L110">    int intY = (int) Math.round(doubleY);</span>
+<span class="nc" id="L111">    this.x = intX;</span>
+<span class="nc" id="L112">    this.y = intY;</span>
+<span class="nc" id="L113">  }</span>
 
   private Point getNextCoords(Point currentCoords) {
-<span class="nc" id="L137">    Direction nextDirection = movement.getNextDirection(currentCoords, x, y);</span>
-<span class="nc" id="L138">    Point newCoords = new Point(currentCoords);</span>
-<span class="nc" id="L139">    newCoords.translate(nextDirection.getX(), nextDirection.getY());</span>
-<span class="nc" id="L140">    return newCoords;</span>
+<span class="nc" id="L116">    Direction nextDirection = movement.getNextDirection(currentCoords, x, y);</span>
+<span class="nc" id="L117">    Point newCoords = new Point(currentCoords);</span>
+<span class="nc" id="L118">    newCoords.translate(nextDirection.getX(), nextDirection.getY());</span>
+<span class="nc" id="L119">    return newCoords;</span>
   }
 
   public void tick() {
-<span class="nc" id="L144">    Point currentCoords = getCoords();</span>
-<span class="nc" id="L145">    Direction nextDirection = movement.getNextDirection(currentCoords, x, y);</span>
-<span class="nc" id="L146">    xVel = nextDirection.getX() * speed;</span>
-<span class="nc" id="L147">    yVel = nextDirection.getY() * speed;</span>
-<span class="nc" id="L148">    x += xVel;</span>
-<span class="nc" id="L149">    y += yVel;</span>
-<span class="nc" id="L150">  }</span>
-
-  // private void moveActor(int distance) {
-  //   // Get coordinates of Actor
-  //   Point currentCoords = getCoords();
-  //   // Get next coordinates
-  //   Point nextCoords = getNextCoords(currentCoords);
-  //   // Get centre pixel of next tile
-  //   Point nextTileCentre = Tile.toPixelCoords(nextCoords);
-  //   // Get pixel distance from next Tile centre to current Actor centre
-  //   Point pixelDistance = Tile.subtract(nextTileCentre, getPixelCoords());
-  //   // Next position lies along a diagonal, adjust distance to next tile
-  //   if (Tile.isDiagonal(pixelDistance)) {
-  //     // Get centre pixel of current tile being occupied by Actor
-  //     Point currentTileCentre = Tile.toPixelCoords(currentCoords);
-  //     // Get pixel distance from Tile centre to Actor centre
-  //     int pixelMagnitude = Tile.magnitude(Tile.subtract(currentTileCentre, getPixelCoords()));
-  //     // Adjust distance
-  //     distance -= pixelMagnitude;
-  //     // Get pixel distance from next Tile centre to current Tile centre
-  //     pixelDistance = Tile.subtract(nextTileCentre, currentTileCentre);
-  //     setPixelCoords(currentTileCentre);
-  //   }
-
-  //   int pxDistMag = Tile.magnitude(pixelDistance);
-
-  //   if (pxDistMag &gt; 0) {
-  //     if (pxDistMag == distance) {
-  //       setPixelCoords(Tile.remainder(nextTileCentre));
-  //     } else if (pxDistMag &lt; distance) {
-  //       setPixelCoords(Tile.remainder(nextTileCentre));
-  //       moveActor(distance - pxDistMag);
-  //     } else {
-  //       Point distMoved = Tile.times(Tile.unit(pixelDistance), distance);
-  //       Point pxMoved = Tile.add(getPixelCoords(), distMoved);
-  //       Point pxRemainder = Tile.remainder(pxMoved);
-  //       setPixelCoords(pxRemainder);
-  //     }
-  //   }
-  // }
+<span class="nc" id="L123">    Point currentCoords = getCoords();</span>
+<span class="nc" id="L124">    Direction nextDirection = movement.getNextDirection(currentCoords, x, y);</span>
+<span class="nc" id="L125">    xVel = nextDirection.getX() * speed;</span>
+<span class="nc" id="L126">    yVel = nextDirection.getY() * speed;</span>
+<span class="nc" id="L127">    x += xVel;</span>
+<span class="nc" id="L128">    y += yVel;</span>
+<span class="nc" id="L129">  }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

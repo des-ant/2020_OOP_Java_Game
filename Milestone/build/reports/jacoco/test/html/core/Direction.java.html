@@ -2,34 +2,28 @@
 
 import java.util.EnumSet;
 
-<span class="nc" id="L5">public enum Direction {</span>
+<span class="fc" id="L5">public enum Direction {</span>
 
-<span class="nc" id="L7">  UP(0, -1, 130), DOWN(0, 1, 310), LEFT(-1, 0, 220), RIGHT(1, 0, 40), NONE(0, 0, 0);</span>
+<span class="fc" id="L7">  UP(0, -1), DOWN(0, 1), LEFT(-1, 0), RIGHT(1, 0), NONE(0, 0);</span>
 
   private final int x;
   private final int y;
-  private final int angle;
 
-<span class="nc" id="L13">  private Direction(int x, int y, int angle) {</span>
-<span class="nc" id="L14">    this.x = x;</span>
-<span class="nc" id="L15">    this.y = y;</span>
-<span class="nc" id="L16">    this.angle = angle;</span>
-<span class="nc" id="L17">  }</span>
+<span class="fc" id="L12">  private Direction(int x, int y) {</span>
+<span class="fc" id="L13">    this.x = x;</span>
+<span class="fc" id="L14">    this.y = y;</span>
+<span class="fc" id="L15">  }</span>
 
   public int getX() {
-<span class="nc" id="L20">    return x;</span>
+<span class="fc" id="L18">    return x;</span>
   }
 
   public int getY() {
-<span class="nc" id="L24">    return y;</span>
-  }
-
-  public int getAngle() {
-<span class="nc" id="L28">    return angle;</span>
+<span class="fc" id="L22">    return y;</span>
   }
 
   public static EnumSet&lt;Direction&gt; validMovements() {
-<span class="nc" id="L32">    return EnumSet.of(UP, DOWN, LEFT, RIGHT);</span>
+<span class="fc" id="L26">    return EnumSet.of(UP, DOWN, LEFT, RIGHT);</span>
   }
 
 }

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Scatter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Milestone</a> &gt; <a href="index.source.html" class="el_package">core.movement</a> &gt; <span class="el_source">Scatter.java</span></div><h1>Scatter.java</h1><pre class="source lang-java linenums">package core.movement;
+
+import java.awt.Point;
+import java.util.List;
+
+import core.Direction;
+import core.MapGrid;
+import core.PointMaths;
+import core.actors.Waka;
+
+public class Scatter implements Target {
+
+  private MapGrid mapGrid;
+  private int SIZE;
+  private Point targetCoord;
+
+<span class="nc" id="L17">  public Scatter(MapGrid mapGrid, ScatterMode scatterMode) {</span>
+<span class="nc" id="L18">    this.mapGrid = mapGrid;</span>
+<span class="nc" id="L19">    this.SIZE = mapGrid.GRIDSIZE;</span>
+    // Target top right corner of Map
+<span class="nc" id="L21">    this.targetCoord = new Point(scatterMode.getX(),scatterMode.getY());</span>
+<span class="nc" id="L22">  };</span>
+
+  @Override
+  public Direction chosenDirection(List&lt;Direction&gt; availableDirections, int x, int y) {
+    // Filter out available directions based on euclidian distance
+<span class="nc" id="L27">    Direction chosenDirection = Direction.NONE;</span>
+<span class="nc" id="L28">    Double minDistance = mapGrid.MAXDIST;</span>
+<span class="nc bnc" id="L29" title="All 2 branches missed.">    for (Direction direction : availableDirections) {</span>
+      // Store current ghost position
+<span class="nc" id="L31">      Point nextCoords = new Point((int) x / SIZE, (int) y / SIZE);</span>
+<span class="nc" id="L32">      nextCoords.translate(direction.getX(), direction.getY());</span>
+<span class="nc" id="L33">      Double distance = PointMaths.distance(targetCoord, nextCoords);</span>
+<span class="nc bnc" id="L34" title="All 2 branches missed.">      if (distance &lt; minDistance) {</span>
+<span class="nc" id="L35">        minDistance = distance;</span>
+<span class="nc" id="L36">        chosenDirection = direction;</span>
+      }
+<span class="nc" id="L38">    }</span>
+<span class="nc" id="L39">    return chosenDirection;</span>
+  }
+
+  // For debug mode
+  @Override
+  public Point getTargetCoord() {
+<span class="nc" id="L45">    return this.targetCoord;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

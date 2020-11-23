@@ -4,12 +4,22 @@
 package core;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.*;
 
-class AppTest {
-    @Test 
-    public void simpleTest() {
-        App classUnderTest = new App();
-        assertNotNull(classUnderTest);
-    }
+public class AppTest {
+
+  private App app;
+
+  @BeforeEach
+  public void setUp() throws Exception {
+    app = new App();
+  }
+
+  // Test app constructor
+  @Test 
+  public void testConstruction() {
+    assertNotNull(app);
+  }
+
 }

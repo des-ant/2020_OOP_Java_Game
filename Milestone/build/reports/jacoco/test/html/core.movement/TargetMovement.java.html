@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TargetMovement.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Milestone</a> &gt; <a href="index.source.html" class="el_package">core.movement</a> &gt; <span class="el_source">TargetMovement.java</span></div><h1>TargetMovement.java</h1><pre class="source lang-java linenums">package core.movement;
+
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
+
+import core.Direction;
+import core.MapGrid;
+import core.PointMaths;
+import core.GhostMode;
+
+public class TargetMovement implements Movement {
+
+  private MapGrid mapGrid;
+  private Direction nextDirection;
+  private Direction previousDirection;
+  private Direction currentDirection;
+  private Point previousCoords;
+  private Target targetChase;
+  private Target targetScatter;
+  private Target targetFrightened;
+  private Target targetMode;
+
+  /**
+  * Constructs Movement with given map and initial direction
+  *
+  * @param  mapGrid           the map containing the player
+  * @param  initialDirection  the initial direction that is applied to the player
+  */
+  public TargetMovement(MapGrid mapGrid, Direction initialDirection, 
+  Point previousCoords, Target targetChase, Target targetScatter, 
+<span class="nc" id="L32">  Target targetFrightened) {</span>
+<span class="nc" id="L33">    this.mapGrid = mapGrid;</span>
+<span class="nc" id="L34">    this.currentDirection = initialDirection;</span>
+<span class="nc" id="L35">    this.nextDirection = initialDirection;</span>
+<span class="nc" id="L36">    this.previousDirection = initialDirection;</span>
+<span class="nc" id="L37">    this.previousCoords = previousCoords;</span>
+<span class="nc" id="L38">    this.targetChase = targetChase;</span>
+<span class="nc" id="L39">    this.targetScatter = targetScatter;</span>
+<span class="nc" id="L40">    this.targetFrightened = targetFrightened;</span>
+    // Set inital mode to chase
+<span class="nc" id="L42">    this.targetMode = targetChase;</span>
+<span class="nc" id="L43">  }</span>
+
+  public Point getTargetCoord() {
+<span class="nc" id="L46">    return targetMode.getTargetCoord();</span>
+  }
+
+  public void setTargetMode(GhostMode ghostMode) {
+<span class="nc bnc" id="L50" title="All 2 branches missed.">    if (ghostMode == GhostMode.CHASE) {</span>
+<span class="nc" id="L51">      targetMode = targetChase;</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">    } else if (ghostMode == GhostMode.SCATTER) {</span>
+<span class="nc" id="L53">      targetMode = targetScatter;</span>
+    } else {
+<span class="nc" id="L55">      targetMode = targetFrightened;</span>
+    }
+<span class="nc" id="L57">  }</span>
+
+  /**
+  * Returns Direction that player is facing
+  *
+  * @return  Direction that player is facing
+  */
+  @Override
+  public Direction getDirection() {
+<span class="nc bnc" id="L66" title="All 2 branches missed.">    if (isMoving()) {</span>
+<span class="nc" id="L67">      return currentDirection;</span>
+    }
+<span class="nc" id="L69">    return previousDirection;</span>
+  }
+
+  /**
+  * Returns true if player is not stationary
+  *
+  * @return  true if player is not stationary
+  */
+  @Override
+  public boolean isMoving() {
+<span class="nc bnc" id="L79" title="All 2 branches missed.">    return currentDirection != Direction.NONE;</span>
+  }
+
+  /**
+  * Returns true if player is in centre of tile
+  *
+  * @param  coords  the current player Point coordinate
+  * @param  x       the current player pixel horizontal coordinate
+  * @param  y       the current player pixel vertical coordinate
+  * @return         true if player is in centre of tile
+  */
+  public boolean hasReachedTile(Point coords, int x, int y) {
+    // Centre of player must reach centre of Tile first
+<span class="nc" id="L92">    Point currentTile = PointMaths.toPixelCoords(coords);</span>
+<span class="nc" id="L93">    int currentTileX = (int) currentTile.getX();</span>
+<span class="nc" id="L94">    int currentTileY = (int) currentTile.getY();</span>
+<span class="nc bnc" id="L95" title="All 4 branches missed.">    if (x == currentTileX &amp;&amp; y == currentTileY) {</span>
+<span class="nc" id="L96">      return true;</span>
+    }
+<span class="nc" id="L98">    return false;</span>
+  }
+
+  /**
+  * Returns Point coordinate of next movable direction
+  *
+  * @param  coords  the current player Point coordinate
+  * @param  x       the current player pixel horizontal coordinate
+  * @param  y       the current player pixel vertical coordinate
+  * @return         coordinate of next movable direction
+  */
+  @Override
+  public Direction getNextDirection(Point coords, int x, int y) {
+    // Check next position is different to previous position
+    // Only updates next direction if ghost has moved
+<span class="nc bnc" id="L113" title="All 2 branches missed.">    if (!coords.equals(previousCoords)) {</span>
+<span class="nc" id="L114">      List&lt;Direction&gt; availableDirections = getPossibleDirections(coords, x, y);</span>
+<span class="nc" id="L115">      nextDirection = targetMode.chosenDirection(availableDirections, x, y);</span>
+<span class="nc" id="L116">      previousCoords = coords;</span>
+    }
+    // Check if can move in next direction
+    // Update current direction if can move
+<span class="nc bnc" id="L120" title="All 2 branches missed.">    if (canMove(coords, nextDirection, x, y)) {</span>
+<span class="nc" id="L121">      currentDirection = nextDirection;</span>
+<span class="nc bnc" id="L122" title="All 2 branches missed.">    } else if (!canMove(coords, currentDirection, x, y)) {</span>
+      // Return current direction if player is moving and has not reached
+      // centre of current Tile
+<span class="nc bnc" id="L125" title="All 4 branches missed.">      if (isMoving() &amp;&amp; !hasReachedTile(coords, x, y)) {</span>
+<span class="nc" id="L126">        return currentDirection;</span>
+      }
+<span class="nc" id="L128">      previousDirection = currentDirection;</span>
+<span class="nc" id="L129">      currentDirection = Direction.NONE;</span>
+    }
+<span class="nc" id="L131">    return currentDirection;</span>
+  }
+
+  /*
+  * Returns true if next move is possible
+  *
+  * @param  coords     the current Point coordinate
+  * @param  direction  the direction to be applied
+  * @param  x          the current pixel horizontal coordinate
+  * @param  y          the current pixel vertical coordinate
+  * @return            true if next move is possible
+  */
+  private boolean canMove(Point coords, Direction direction, int x, int y) {
+<span class="nc" id="L144">    Point newCoords = new Point(coords);</span>
+    // Centre of player must reach centre of Tile first
+<span class="nc bnc" id="L146" title="All 2 branches missed.">    if (!hasReachedTile(coords, x, y)) {</span>
+<span class="nc" id="L147">      return false;</span>
+    }
+    // Calculate new coordinates
+<span class="nc" id="L150">    newCoords.translate(direction.getX(), direction.getY());</span>
+<span class="nc" id="L151">    return mapGrid.canMove(newCoords);</span>
+  }
+
+  private List&lt;Direction&gt; getPossibleDirections(Point coords, int x, int y) {
+<span class="nc" id="L155">    List&lt;Direction&gt; availableDirections = new ArrayList&lt;Direction&gt;();</span>
+<span class="nc bnc" id="L156" title="All 2 branches missed.">    for (Direction direction : Direction.validMovements()) {</span>
+        // Store current ghost position to prevent change to current position
+<span class="nc" id="L158">        Point nextCoords = new Point(coords);</span>
+        // Get next position
+<span class="nc" id="L160">        nextCoords.translate(direction.getX(), direction.getY());</span>
+        // Check next move is possible and does not allow backtracking
+<span class="nc bnc" id="L162" title="All 4 branches missed.">        if (mapGrid.canMove(nextCoords) &amp;&amp; !nextCoords.equals(previousCoords)) {</span>
+<span class="nc" id="L163">            availableDirections.add(direction);</span>
+        }
+<span class="nc" id="L165">    }</span>
+    // If ghost is trapped, allow move backwards
+<span class="nc bnc" id="L167" title="All 2 branches missed.">    if (availableDirections.isEmpty()) {</span>
+<span class="nc bnc" id="L168" title="All 2 branches missed.">      for (Direction direction : Direction.validMovements()) {</span>
+        // Store current ghost position to prevent change to current position
+<span class="nc" id="L170">        Point nextCoords = new Point(coords);</span>
+        // Get next position
+<span class="nc" id="L172">        nextCoords.translate(direction.getX(), direction.getY());</span>
+        // Check next move is possible
+<span class="nc bnc" id="L174" title="All 2 branches missed.">        if (mapGrid.canMove(nextCoords)) {</span>
+<span class="nc" id="L175">            availableDirections.add(direction);</span>
+        }
+<span class="nc" id="L177">      }</span>
+    }
+<span class="nc" id="L179">    return availableDirections;</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
