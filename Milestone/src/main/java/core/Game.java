@@ -50,7 +50,7 @@ public class Game {
     this.waka = new Waka((int) mapGrid.getWakaCoord().getX(), (int) mapGrid.getWakaCoord().getY(), app, config.getSpeed(), config.getLives(), mapGrid);
     // Create ghosts from coordinates
     for (Point point : mapGrid.getGhostCoords()) {
-      this.ghosts.add(new Ghost((int) point.getX(), (int) point.getY(), app, config.getSpeed(), config.getModeLengths()));
+      this.ghosts.add(new Ghost((int) point.getX(), (int) point.getY(), app, config.getSpeed(), config.getModeLengths(), mapGrid));
     }
     
   }
@@ -67,7 +67,7 @@ public class Game {
       waka.eatFruit();
   
       for (Ghost ghost : ghosts) {
-        ghost.printMode();
+        ghost.tick();
         ghost.draw(app);
       }
       waka.draw(app);

@@ -47,11 +47,6 @@ public class Waka extends Actor {
     return movement.getDirection();
   }
 
-  // For animation
-  public boolean isMoving() {
-    return movement.isMoving();
-  }
-
   public boolean eatFruit() {
     return ((PlayerMovement) movement).eatFruit(getCoords());
   }

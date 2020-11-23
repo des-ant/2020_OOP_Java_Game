@@ -1,18 +1,22 @@
 package core.movement;
 
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 import core.Direction;
 import core.MapGrid;
 import core.PointMaths;
-import core.Tile;
 
-public class PlayerMovement implements Movement {
+public class TargetMovement implements Movement {
 
   private MapGrid mapGrid;
   private Direction nextDirection;
   private Direction previousDirection;
   private Direction currentDirection;
+  private Point previousCoords;
+  private final Random random = new Random();
 
   /**
   * Constructs Movement with given map and initial direction
@@ -20,20 +24,13 @@ public class PlayerMovement implements Movement {
   * @param  mapGrid           the map containing the player
   * @param  initialDirection  the initial direction that is applied to the player
   */
-  public PlayerMovement(MapGrid mapGrid, Direction initialDirection) {
+  public TargetMovement(MapGrid mapGrid, Direction initialDirection, 
+  Point previousCoords) {
     this.mapGrid = mapGrid;
     this.currentDirection = initialDirection;
     this.nextDirection = initialDirection;
     this.previousDirection = initialDirection;
-  }
-
-  /**
-  * Set next Direction of player
-  *
-  * @param  nextDirection  the direction to be applied
-  */
-  public void setNextDirection(Direction nextDirection) {
-    this.nextDirection = nextDirection;
+    this.previousCoords = previousCoords;
   }
 
   /**
@@ -78,14 +75,6 @@ public class PlayerMovement implements Movement {
     return false;
   }
 
-  public boolean eatFruit(Point coords) {
-    Tile tileTouched = mapGrid.tileAt(coords);
-    if (tileTouched == null || !tileTouched.isMovable()) {
-      return false;
-    }
-    return (mapGrid.removeTile(tileTouched));
-  }
-
   /**
   * Returns Point coordinate of next movable direction
   *
@@ -96,6 +85,14 @@ public class PlayerMovement implements Movement {
   */
   @Override
   public Direction getNextDirection(Point coords, int x, int y) {
+    // Check next position is different to previous position
+    // Only updates next direction if ghost has moved
+    if (!coords.equals(previousCoords)) {
+      List<Direction> availableDirections = getPossibleDirections(coords, x, y);
+      int randomIndex = random.nextInt(availableDirections.size());
+      nextDirection = availableDirections.get(randomIndex);
+      previousCoords = coords;
+    }
     // Check if can move in next direction
     // Update current direction if can move
     if (canMove(coords, nextDirection, x, y)) {
@@ -130,6 +127,21 @@ public class PlayerMovement implements Movement {
     // Calculate new coordinates
     newCoords.translate(direction.getX(), direction.getY());
     return mapGrid.canMove(newCoords);
+  }
+
+  private List<Direction> getPossibleDirections(Point coords, int x, int y) {
+    List<Direction> availableDirections = new ArrayList<Direction>();
+    for (Direction direction : Direction.validMovements()) {
+        // Store current ghost position to prevent change to current position
+        Point nextCoords = new Point(coords);
+        // Get next position
+        nextCoords.translate(direction.getX(), direction.getY());
+        // Check next move is possible and does not allow backtracking
+        if (mapGrid.canMove(nextCoords) && !nextCoords.equals(previousCoords)) {
+            availableDirections.add(direction);
+        }
+    }
+    return availableDirections;
   }
 
 }
