@@ -93,16 +93,9 @@ public class Waka extends Actor {
   */
   public void draw(PApplet app) {
     // Handling graphics
+    // Draw Waka
     app.image(getSprite(), this.x, this.y);
-    // app.fill(0, 0);
-    // app.rect(this.x, this.y, spriteR.width, spriteR.height);
-    // app.fill(255, 0, 0, 120);
-    // app.rect(this.x, this.y, SIZE, SIZE);
-    // app.fill(255, 100, 100, 120);
-    // int closestX = (int) PointMaths.toPixelCoords(getCoords()).getX();
-    // int closestY = (int) PointMaths.toPixelCoords(getCoords()).getY();
-    // app.rect(closestX, closestY, SIZE, SIZE);
-
+    // Draw Lives
     for (int i = 0; i < lives; i++) {
       app.image(this.spriteR, (spriteR.width + spriteR.width/8) * i + (SIZE + spriteR.width) / 2, livesY);
     }

@@ -35,18 +35,13 @@ public class Ghost extends Actor{
   */
   public void draw(PApplet app) {
     // Handling graphics
+    // Draw debug line
     int targetX = (int) PointMaths.toPixelCoords(getTargetCoord()).getX();
     int targetY = (int) PointMaths.toPixelCoords(getTargetCoord()).getY();
     app.line(x, y, targetX, targetY);
 
+    // Draw ghost
     app.image(this.sprite, this.x, this.y);
-    // app.fill(0, 0);
-    // app.rect(this.x, this.y, sprite.width, sprite.height);
-    // app.fill(255, 0, 0, 120);
-    // app.rect(this.x, this.y, SIZE, SIZE);
-    // app.fill(255, 100, 100, 120);
-    // int closestX = (int) PointMaths.toPixelCoords(getCoords()).getX();
-    // int closestY = (int) PointMaths.toPixelCoords(getCoords()).getY();
   }
 
   public GhostMode getGhostMode() {

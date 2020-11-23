@@ -146,6 +146,19 @@ public class TargetMovement implements Movement {
             availableDirections.add(direction);
         }
     }
+    // If ghost is trapped, allow move backwards
+    if (availableDirections.isEmpty()) {
+      for (Direction direction : Direction.validMovements()) {
+        // Store current ghost position to prevent change to current position
+        Point nextCoords = new Point(coords);
+        // Get next position
+        nextCoords.translate(direction.getX(), direction.getY());
+        // Check next move is possible
+        if (mapGrid.canMove(nextCoords)) {
+            availableDirections.add(direction);
+        }
+      }
+    }
     return availableDirections;
   }
 
