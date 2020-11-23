@@ -50,7 +50,7 @@ public class Game {
     this.waka = new Waka((int) mapGrid.getWakaCoord().getX(), (int) mapGrid.getWakaCoord().getY(), app, config.getSpeed(), config.getLives(), mapGrid);
     // Create ghosts from coordinates
     for (Point point : mapGrid.getGhostCoords()) {
-      this.ghosts.add(new Ghost((int) point.getX(), (int) point.getY(), app, config.getSpeed()));
+      this.ghosts.add(new Ghost((int) point.getX(), (int) point.getY(), app, config.getSpeed(), config.getModeLengths()));
     }
     
   }
@@ -59,6 +59,7 @@ public class Game {
   * Draw game to PApplet window
   */
   public void draw() {
+    // Game will continue to run until no fruits in map
     if (mapGrid.getNumFruit() > 0) {
       app.background(0, 0, 0);
       mapGrid.draw(app);
@@ -66,6 +67,7 @@ public class Game {
       waka.eatFruit();
   
       for (Ghost ghost : ghosts) {
+        ghost.printMode();
         ghost.draw(app);
       }
       waka.draw(app);

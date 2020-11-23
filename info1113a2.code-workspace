@@ -1,17 +1,19 @@
 {
 	"folders": [
 		{
-			"path": "."
+			"name": "Milestone",
+			"path": "Milestone"
 		},
 		{
+			"name": "pacman_workshop-master",
 			"path": "../../Usyd/2020 Semester 2/INFO1113/Assignment/Pacman/Java/pacman_workshop-master"
 		},
 		{
+			"name": "Pacman-master",
 			"path": "../../Usyd/2020 Semester 2/INFO1113/Assignment/Pacman/Java/Pacman-master"
 		}
 	],
 	"settings": {
-		"java.saveActions.organizeImports": true,
 		"java.format.settings.url": "eclipse-formatter.xml"
 	}
 }

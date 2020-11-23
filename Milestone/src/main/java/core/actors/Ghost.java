@@ -1,17 +1,24 @@
 package core.actors;
 
+import java.util.List;
+
 import core.Actor;
 import core.PointMaths;
+import core.GhostMode;
 import processing.core.PApplet;
 import processing.core.PImage;
 
 public class Ghost extends Actor{
 
-  private PImage sprite;
+  protected PImage sprite;
+  protected GhostMode ghostMode;
+  protected List<Integer> modeLengths;
 
-  public Ghost(int x, int y, PApplet app, int speed) {
+  public Ghost(int x, int y, PApplet app, int speed, List<Integer> modeLengths) {
     super(x, y, speed, null);
     this.sprite = app.loadImage("src/main/resources/ghost.png");
+    this.ghostMode = GhostMode.SCATTER;
+    this.modeLengths = modeLengths;
   }
   
   /**
@@ -30,6 +37,18 @@ public class Ghost extends Actor{
     int closestX = (int) PointMaths.toPixelCoords(getCoords()).getX();
     int closestY = (int) PointMaths.toPixelCoords(getCoords()).getY();
     app.rect(closestX, closestY, SIZE, SIZE);
+  }
+
+  public GhostMode getGhostMode() {
+    return ghostMode;
+  }
+
+  public void setGhostMode(GhostMode ghostMode) {
+    this.ghostMode = ghostMode;
+  }
+
+  public List<Integer> getModeLengths() {
+    return modeLengths;
   }
 
 }

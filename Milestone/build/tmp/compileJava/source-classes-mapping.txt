@@ -16,6 +16,8 @@ core/movement/PlayerMovement.java
  core.movement.PlayerMovement
 core/App.java
  core.App
+core/GhostMode.java
+ core.GhostMode
 core/movement/Movement.java
  core.movement.Movement
 core/actors/Waka.java

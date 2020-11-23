@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -15,7 +16,7 @@ public class Config {
   private String mapFile;
   private int lives;
   private int speed;
-  private ArrayList<Integer> modeLengths;
+  private List<Integer> modeLengths;
 
   /**
   * Constructs Config from given config file
@@ -58,8 +59,8 @@ public class Config {
   *
   * @return  list of modes
   */
-  public ArrayList<Integer> getMode() {
-    return this.modeLengths;
+  public List<Integer> getModeLengths() {
+    return modeLengths;
   }
 
   /*
@@ -103,10 +104,12 @@ public class Config {
     // Get speed
     this.speed = ((Long) config.get("speed")).intValue();
 
+    // Get modeLengths array
+    JSONArray ja = (JSONArray) config.get("modeLengths");
+
     // Create arraylist to store modeLengths
     this.modeLengths = new ArrayList<Integer>();
-    // Get modeLengths
-    JSONArray ja = (JSONArray) config.get("modeLengths");
+
     for (int i = 0; i < ja.size(); i++) {
       modeLengths.add(((Long) ja.get(i)).intValue());
     }
