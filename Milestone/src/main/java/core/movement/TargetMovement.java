@@ -7,6 +7,7 @@ import java.util.List;
 import core.Direction;
 import core.MapGrid;
 import core.PointMaths;
+import core.GhostMode;
 
 public class TargetMovement implements Movement {
 
@@ -17,6 +18,7 @@ public class TargetMovement implements Movement {
   private Point previousCoords;
   private Target targetChase;
   private Target targetScatter;
+  private Target targetMode;
 
   /**
   * Constructs Movement with given map and initial direction
@@ -33,10 +35,20 @@ public class TargetMovement implements Movement {
     this.previousCoords = previousCoords;
     this.targetChase = targetChase;
     this.targetScatter = targetScatter;
+    // Set inital mode to chase
+    this.targetMode = targetChase;
   }
 
   public Point getTargetCoord() {
-    return targetChase.getTargetCoord();
+    return targetMode.getTargetCoord();
+  }
+
+  public void setTargetMode(GhostMode ghostMode) {
+    if (ghostMode == GhostMode.CHASE) {
+      targetMode = targetChase;
+    } else {
+      targetMode = targetScatter;
+    }
   }
 
   /**
@@ -95,7 +107,7 @@ public class TargetMovement implements Movement {
     // Only updates next direction if ghost has moved
     if (!coords.equals(previousCoords)) {
       List<Direction> availableDirections = getPossibleDirections(coords, x, y);
-      nextDirection = targetChase.chosenDirection(availableDirections, x, y);
+      nextDirection = targetMode.chosenDirection(availableDirections, x, y);
       previousCoords = coords;
     }
     // Check if can move in next direction

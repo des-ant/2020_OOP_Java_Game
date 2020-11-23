@@ -9,7 +9,10 @@ import core.MapGrid;
 import core.PointMaths;
 import core.movement.TargetMovement;
 import core.GhostMode;
+import core.actors.GhostType;
 import core.movement.ChaserTarget;
+import core.movement.Scatter;
+import core.movement.ScatterMode;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -22,7 +25,7 @@ public class Ghost extends Actor{
   public Ghost(int x, int y, PApplet app, int speed, List<Integer> modeLengths, 
   MapGrid mapGrid) {
     super(x, y, speed, new TargetMovement(mapGrid, Direction.NONE, null, 
-    new ChaserTarget(mapGrid), new ChaserTarget(mapGrid)));
+    new ChaserTarget(mapGrid), new Scatter(mapGrid, ScatterMode.TL)));
     this.sprite = app.loadImage("src/main/resources/ghost.png");
     this.ghostMode = GhostMode.SCATTER;
     this.modeLengths = modeLengths;
@@ -50,6 +53,7 @@ public class Ghost extends Actor{
 
   public void setGhostMode(GhostMode ghostMode) {
     this.ghostMode = ghostMode;
+    ((TargetMovement) movement).setTargetMode(ghostMode);
   }
 
   public List<Integer> getModeLengths() {
@@ -59,23 +63,5 @@ public class Ghost extends Actor{
   public Point getTargetCoord() {
     return ((TargetMovement) movement).getTargetCoord();
   }
-
-  // /**
-  // * Set direction of Waka
-  // *
-  // * @param  direction  the Direction to be applied  
-  // */
-  // public void setNextDirection(Direction direction) {
-  //   ((TargetMovement) movement).setNextDirection(direction);
-  // }
-
-  // /**
-  // * Set direction of Waka using arrow keys
-  // *
-  // * @param  app  the current PApplet window that Waka is in  
-  // */
-  // public void move() {
-  //   setNextDirection(Direction.RIGHT);
-  // }
 
 }

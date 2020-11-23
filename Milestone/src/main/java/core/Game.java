@@ -71,6 +71,7 @@ public class Game {
       waka.eatFruit();
   
       for (Ghost ghost : ghosts) {
+        ghost.setGhostMode(GhostMode.SCATTER);
         ghost.tick();
         ghost.draw(app);
       }

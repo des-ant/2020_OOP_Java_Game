@@ -1,36 +1,40 @@
-core/GhostMode.java
- core.GhostMode
+core/Tile.java
+ core.Tile
 core/Actor.java
  core.Actor
 core/movement/Target.java
  core.movement.Target
 core/tiles/Wall.java
  core.tiles.Wall
-core/Tile.java
- core.Tile
+core/movement/TargetMovement.java
+ core.movement.TargetMovement
 core/Config.java
  core.Config
 core/Direction.java
  core.Direction
-core/PointMaths.java
- core.PointMaths
-core/tiles/Fruit.java
- core.tiles.Fruit
-core/movement/Movement.java
- core.movement.Movement
-core/App.java
- core.App
-core/Game.java
- core.Game
-core/movement/ChaserTarget.java
- core.movement.ChaserTarget
-core/actors/Waka.java
- core.actors.Waka
 core/MapGrid.java
  core.MapGrid
+core/movement/Scatter.java
+ core.movement.Scatter
 core/movement/PlayerMovement.java
  core.movement.PlayerMovement
-core/movement/TargetMovement.java
- core.movement.TargetMovement
+core/movement/ChaserTarget.java
+ core.movement.ChaserTarget
+core/App.java
+ core.App
+core/GhostMode.java
+ core.GhostMode
+core/actors/Waka.java
+ core.actors.Waka
+core/movement/Movement.java
+ core.movement.Movement
+core/tiles/Fruit.java
+ core.tiles.Fruit
+core/PointMaths.java
+ core.PointMaths
+core/movement/ScatterMode.java
+ core.movement.ScatterMode
+core/Game.java
+ core.Game
 core/actors/Ghost.java
  core.actors.Ghost
