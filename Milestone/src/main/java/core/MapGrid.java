@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import core.tiles.Fruit;
 import core.tiles.Wall;
+import core.tiles.WallType;
 import core.actors.GhostType;
 import processing.core.PApplet;
 
@@ -138,27 +139,27 @@ public class MapGrid {
             break;
           // Horizontal wall
           case '1':
-            tileList.add(new Wall(x, y, app, 1));
+            tileList.add(new Wall(x, y, app, WallType.H));
             break;
           // Vertical wall
           case '2':
-            tileList.add(new Wall(x, y, app, 2));
+            tileList.add(new Wall(x, y, app, WallType.V));
             break;
-          // Corner wall (up + left
+          // Corner wall (up + left)
           case '3':
-            tileList.add(new Wall(x, y, app, 3));
+            tileList.add(new Wall(x, y, app, WallType.UL));
             break;
           // Corner wall (up + right)
           case '4':
-            tileList.add(new Wall(x, y, app, 4));
+            tileList.add(new Wall(x, y, app, WallType.UR));
             break;
           // Corner wall (down + left)
           case '5':
-            tileList.add(new Wall(x, y, app, 5));
+            tileList.add(new Wall(x, y, app, WallType.DL));
             break;
           // Corner wall (down + right)
           case '6':
-            tileList.add(new Wall(x, y, app, 6));
+            tileList.add(new Wall(x, y, app, WallType.DR));
             break;
           case '7':
             tileList.add(new Fruit(x, y, app));

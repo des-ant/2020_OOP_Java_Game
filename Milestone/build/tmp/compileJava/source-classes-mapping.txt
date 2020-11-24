@@ -20,6 +20,8 @@ core/movement/PlayerMovement.java
  core.movement.PlayerMovement
 core/movement/ChaserTarget.java
  core.movement.ChaserTarget
+core/tiles/WallType.java
+ core.tiles.WallType
 core/App.java
  core.App
 core/GhostMode.java
