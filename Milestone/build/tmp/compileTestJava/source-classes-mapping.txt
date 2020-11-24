@@ -1,3 +1,7 @@
+core/tiles/FruitTest.java
+ core.tiles.FruitTest
+core/tiles/WallTest.java
+ core.tiles.WallTest
 core/DirectionTest.java
  core.DirectionTest
 core/GameTest.java

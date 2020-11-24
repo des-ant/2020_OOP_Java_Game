@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WallType.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Milestone</a> &gt; <a href="index.source.html" class="el_package">core.tiles</a> &gt; <span class="el_source">WallType.java</span></div><h1>WallType.java</h1><pre class="source lang-java linenums">package core.tiles;
+
+<span class="fc" id="L3">public enum WallType {</span>
+  // Horizontal wall
+<span class="fc" id="L5">  H(&quot;src/main/resources/horizontal.png&quot;),</span>
+  // Vertical wall
+<span class="fc" id="L7">  V(&quot;src/main/resources/vertical.png&quot;),</span>
+  // Corner wall (up + left)
+<span class="fc" id="L9">  UL(&quot;src/main/resources/upLeft.png&quot;),</span>
+  // Corner wall (up + right)
+<span class="fc" id="L11">  UR(&quot;src/main/resources/upRight.png&quot;),</span>
+  // Corner wall (down + left)
+<span class="fc" id="L13">  DL(&quot;src/main/resources/downLeft.png&quot;),</span>
+  // Corner wall (down + right)
+<span class="fc" id="L15">  DR(&quot;src/main/resources/downRight.png&quot;);</span>
+
+  private final String sprite;
+
+<span class="fc" id="L19">  private WallType(String sprite) {</span>
+<span class="fc" id="L20">    this.sprite = sprite;</span>
+<span class="fc" id="L21">  }</span>
+
+  public String getSprite() {
+<span class="fc" id="L24">    return sprite;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

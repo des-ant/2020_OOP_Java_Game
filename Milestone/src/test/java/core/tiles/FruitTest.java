@@ -7,9 +7,9 @@ import processing.core.PApplet;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class WallTest {
+public class FruitTest {
 
   private App app;
 
@@ -24,18 +24,18 @@ public class WallTest {
     app.keyPressed();
   }
 
-  // Test wall constructor
+  // Test fruit constructor
   @Test
   public void testConstruction() {
-    Wall wall = new Wall(16, 16, app, WallType.H);
-    assertNotNull(wall);
+    Fruit fruit = new Fruit(16, 16, app);
+    assertNotNull(fruit);
   }
 
-  // Wall should not be movable
+  // Fruit should be movable
   @Test
-  public void notMovable() {
-    Wall wall = new Wall(16, 16, app, WallType.V);
-    assertFalse(wall.isMovable());
+  public void isMovable() {
+    Fruit fruit = new Fruit(16, 16, app);
+    assertTrue(fruit.isMovable());
   }
   
 }
