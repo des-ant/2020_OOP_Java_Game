@@ -77,8 +77,8 @@ public class Waka extends Actor {
   // Helper function to get correct sprite for direction
   private PImage getSprite() {
     // Alternate between open-mouth and closed-mouth every 8 frames
-<span class="fc bfc" id="L80" title="All 2 branches covered.">    if (Math.floorDiv(frames++, 8) % 2 != 0) {</span>
-<span class="fc" id="L81">      return spriteC;</span>
+<span class="pc bpc" id="L80" title="1 of 2 branches missed.">    if (Math.floorDiv(frames++, 8) % 2 != 0) {</span>
+<span class="nc" id="L81">      return spriteC;</span>
 <span class="pc bpc" id="L82" title="1 of 2 branches missed.">    } else if (getDirection() == Direction.UP) {</span>
 <span class="nc" id="L83">      return spriteU;</span>
 <span class="pc bpc" id="L84" title="1 of 2 branches missed.">    } else if (getDirection() == Direction.DOWN) {</span>

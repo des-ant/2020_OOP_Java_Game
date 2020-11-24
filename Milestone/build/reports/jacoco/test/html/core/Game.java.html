@@ -27,7 +27,7 @@ public class Game {
   }
 
   public boolean getDebug() {
-<span class="nc" id="L30">    return debug;</span>
+<span class="fc" id="L30">    return debug;</span>
   }
 
   public List&lt;Ghost&gt; getGhosts() {
@@ -150,11 +150,11 @@ public class Game {
 <span class="pc bpc" id="L150" title="1 of 2 branches missed.">    if (app.key == app.CODED) {</span>
 <span class="nc" id="L151">      waka.move(app);</span>
     }
-<span class="pc bpc" id="L153" title="1 of 2 branches missed.">    if (app.key == ' ') {</span>
-<span class="nc bnc" id="L154" title="All 2 branches missed.">      if (debug) {</span>
-<span class="nc" id="L155">        debug = false;</span>
+<span class="fc bfc" id="L153" title="All 2 branches covered.">    if (app.key == ' ') {</span>
+<span class="fc bfc" id="L154" title="All 2 branches covered.">      if (debug) {</span>
+<span class="fc" id="L155">        debug = false;</span>
       } else {
-<span class="nc" id="L157">        debug = true;</span>
+<span class="fc" id="L157">        debug = true;</span>
       }
     }
 <span class="fc" id="L160">  }</span>

@@ -13,21 +13,26 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GameTest {
 
+  private App app;
   private Game game;
 
   @BeforeEach
   public void setUp() throws Exception {
-    App app = new App();
+    this.app = new App();
     PApplet.runSketch(new String[] {"App"}, app);
-    app.delay(1000); // Wait for assets to be loaded in
-    app.noLoop(); // This stops draw() being called automatically
+    // Wait for assets to be loaded in
+    app.delay(250);
+    // This stops draw() being called automatically
+    app.noLoop();
     app.keyPressed();
     this.game = new Game(app);
     game.setup();
-    game.keyPressed();
   }
 
   // Test game constructor
@@ -40,6 +45,20 @@ public class GameTest {
   @Test 
   public void getGhosts() {
     assertEquals(4, game.getGhosts().size());
+  }
+
+  // Debug mode should be off initially
+  @Test 
+  public void testDebug() {
+    assertFalse(game.getDebug());
+    app.key = ' ';
+    game.keyPressed();
+    game.draw();
+    assertTrue(game.getDebug());
+    app.key = ' ';
+    game.keyPressed();
+    game.draw();
+    assertFalse(game.getDebug());
   }
 
 }

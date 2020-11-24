@@ -43,7 +43,7 @@ public class TargetMovement implements Movement {
 <span class="fc" id="L43">  }</span>
 
   public Point getTargetCoord() {
-<span class="nc" id="L46">    return targetMode.getTargetCoord();</span>
+<span class="fc" id="L46">    return targetMode.getTargetCoord();</span>
   }
 
   public void setTargetMode(GhostMode ghostMode) {
@@ -159,7 +159,7 @@ public class TargetMovement implements Movement {
         // Get next position
 <span class="fc" id="L160">        nextCoords.translate(direction.getX(), direction.getY());</span>
         // Check next move is possible and does not allow backtracking
-<span class="fc bfc" id="L162" title="All 4 branches covered.">        if (mapGrid.canMove(nextCoords) &amp;&amp; !nextCoords.equals(previousCoords)) {</span>
+<span class="pc bpc" id="L162" title="1 of 4 branches missed.">        if (mapGrid.canMove(nextCoords) &amp;&amp; !nextCoords.equals(previousCoords)) {</span>
 <span class="fc" id="L163">            availableDirections.add(direction);</span>
         }
 <span class="fc" id="L165">    }</span>

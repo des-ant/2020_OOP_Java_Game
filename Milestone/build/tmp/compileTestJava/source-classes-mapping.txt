@@ -1,6 +1,6 @@
 core/DirectionTest.java
  core.DirectionTest
-core/AppTest.java
- core.AppTest
 core/GameTest.java
  core.GameTest
+core/AppTest.java
+ core.AppTest

@@ -40,10 +40,10 @@ public class Ghost extends Actor{
   public void draw(PApplet app, boolean debug) {
     // Handling graphics
     // Draw debug line
-<span class="pc bpc" id="L43" title="1 of 2 branches missed.">    if (debug) {</span>
-<span class="nc" id="L44">      int targetX = (int) PointMaths.toPixelCoords(getTargetCoord()).getX();</span>
-<span class="nc" id="L45">      int targetY = (int) PointMaths.toPixelCoords(getTargetCoord()).getY();</span>
-<span class="nc" id="L46">      app.line(x, y, targetX, targetY);</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">    if (debug) {</span>
+<span class="fc" id="L44">      int targetX = (int) PointMaths.toPixelCoords(getTargetCoord()).getX();</span>
+<span class="fc" id="L45">      int targetY = (int) PointMaths.toPixelCoords(getTargetCoord()).getY();</span>
+<span class="fc" id="L46">      app.line(x, y, targetX, targetY);</span>
     }
 
     // Draw ghost
@@ -60,7 +60,7 @@ public class Ghost extends Actor{
 <span class="fc" id="L60">  }</span>
 
   public Point getTargetCoord() {
-<span class="nc" id="L63">    return ((TargetMovement) movement).getTargetCoord();</span>
+<span class="fc" id="L63">    return ((TargetMovement) movement).getTargetCoord();</span>
   }
 
 }
