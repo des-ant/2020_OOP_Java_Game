@@ -1,21 +1,11 @@
+core/DirectionTest.java
+ core.DirectionTest
 core/tiles/FruitTest.java
  core.tiles.FruitTest
 core/tiles/WallTest.java
  core.tiles.WallTest
-<<<<<<< HEAD
-core/AppTest.java
- core.AppTest
-core/actors/GhostTest.java
- core.actors.GhostTest
-core/actors/WakaTest.java
- core.actors.WakaTest
-core/GameTest.java
- core.GameTest
 core/movement/MovementsTest.java
  core.movement.MovementsTest
-=======
-core/DirectionTest.java
- core.DirectionTest
 core/actors/GhostTest.java
  core.actors.GhostTest
 core/AppTest.java
@@ -24,4 +14,3 @@ core/GameTest.java
  core.GameTest
 core/actors/WakaTest.java
  core.actors.WakaTest
->>>>>>> main

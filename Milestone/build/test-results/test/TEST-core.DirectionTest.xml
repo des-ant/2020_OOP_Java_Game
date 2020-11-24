@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<testsuite name="core.DirectionTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-11-24T07:35:16" hostname="Anthonys-MacBook-Air.local" time="0.03">
+<testsuite name="core.DirectionTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-11-24T08:35:27" hostname="Anthonys-MacBook-Air.local" time="0.029">
   <properties/>
   <testcase name="testUpX()" classname="core.DirectionTest" time="0.003"/>
-  <testcase name="validMovements()" classname="core.DirectionTest" time="0.004"/>
-  <testcase name="invalidMovements()" classname="core.DirectionTest" time="0.002"/>
-  <testcase name="testRightY()" classname="core.DirectionTest" time="0.004"/>
-=======
-<testsuite name="core.DirectionTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-11-24T05:59:59" hostname="Anthonys-MacBook-Air.local" time="0.021">
-  <properties/>
-  <testcase name="testUpX()" classname="core.DirectionTest" time="0.004"/>
-  <testcase name="validMovements()" classname="core.DirectionTest" time="0.004"/>
+  <testcase name="validMovements()" classname="core.DirectionTest" time="0.008"/>
   <testcase name="invalidMovements()" classname="core.DirectionTest" time="0.002"/>
   <testcase name="testRightY()" classname="core.DirectionTest" time="0.002"/>
->>>>>>> main
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

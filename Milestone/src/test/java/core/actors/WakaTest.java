@@ -47,7 +47,7 @@ public class WakaTest {
     app.keyCode = app.RIGHT;
     app.keyPressed();
     // Move right until hit wall
-    for (int i = 0; i < 180; i++) {
+    for (int i = 0; i < 120; i++) {
       waka.move(app);
       waka.tick();
       waka.draw(app);
@@ -56,7 +56,7 @@ public class WakaTest {
     // Move up now that there is space
     app.keyCode = app.UP;
     app.keyPressed();
-    for (int i = 0; i < 30; i++) {
+    for (int i = 0; i < 10; i++) {
       waka.move(app);
       waka.tick();
       waka.draw(app);
