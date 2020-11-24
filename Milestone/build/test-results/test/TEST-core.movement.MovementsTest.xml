@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="core.movement.MovementsTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-11-24T08:35:24" hostname="Anthonys-MacBook-Air.local" time="1.467">
+<testsuite name="core.movement.MovementsTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-11-24T09:17:09" hostname="Anthonys-MacBook-Air.local" time="1.657">
   <properties/>
-  <testcase name="testTrapped()" classname="core.movement.MovementsTest" time="0.592"/>
-  <testcase name="testMovements()" classname="core.movement.MovementsTest" time="0.872"/>
+  <testcase name="testTrapped()" classname="core.movement.MovementsTest" time="0.703"/>
+  <testcase name="testMovements()" classname="core.movement.MovementsTest" time="0.949"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

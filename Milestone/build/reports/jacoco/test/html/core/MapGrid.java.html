@@ -74,17 +74,17 @@ public class MapGrid {
 
   // Remove tile from list
   public boolean removeTile(Tile tileRemove) {
-<span class="pc bpc" id="L77" title="1 of 2 branches missed.">    if (tileRemove == null) {</span>
-<span class="nc" id="L78">      return false;</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">    if (tileRemove == null) {</span>
+<span class="fc" id="L78">      return false;</span>
     }
-<span class="pc bpc" id="L80" title="1 of 2 branches missed.">    for (Tile tile : tileList) {</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">    for (Tile tile : tileList) {</span>
 <span class="fc bfc" id="L81" title="All 2 branches covered.">      if (tile == tileRemove) {</span>
 <span class="fc" id="L82">        tileList.remove(tile);</span>
 <span class="fc" id="L83">        numFruit--;</span>
 <span class="fc" id="L84">        return true;</span>
       }
 <span class="fc" id="L86">    }</span>
-<span class="nc" id="L87">    return false;</span>
+<span class="fc" id="L87">    return false;</span>
   }
 
   public Point getWakaCoord() {
@@ -109,20 +109,20 @@ public class MapGrid {
 <span class="fc" id="L109">      File f = new File(filename);</span>
 <span class="fc" id="L110">      Scanner scan = new Scanner(f);</span>
 <span class="fc" id="L111">      return scan;</span>
-<span class="nc" id="L112">    } catch (FileNotFoundException e) {</span>
-<span class="nc" id="L113">      return null;</span>
+<span class="fc" id="L112">    } catch (FileNotFoundException e) {</span>
+<span class="fc" id="L113">      return null;</span>
     }
   }
 
   // Transform the input into a grid.
-  public void readMapGrid(String filename, PApplet app) {
+  public boolean readMapGrid(String filename, PApplet app) {
     // If the file doesn't exist, return null.
-<span class="pc bpc" id="L120" title="1 of 2 branches missed.">    if (filename == null) {</span>
-<span class="nc" id="L121">      return;</span>
+<span class="fc bfc" id="L120" title="All 2 branches covered.">    if (filename == null) {</span>
+<span class="fc" id="L121">      return false;</span>
     }
 <span class="fc" id="L123">    Scanner scan = openFile(filename);</span>
-<span class="pc bpc" id="L124" title="1 of 2 branches missed.">    if (scan == null) {</span>
-<span class="nc" id="L125">      return;</span>
+<span class="fc bfc" id="L124" title="All 2 branches covered.">    if (scan == null) {</span>
+<span class="fc" id="L125">      return false;</span>
     }
 
     // If the file does exist, parse file
@@ -195,13 +195,14 @@ public class MapGrid {
       }
 <span class="fc" id="L196">      y += GRIDSIZE;</span>
 <span class="fc" id="L197">    }</span>
-<span class="fc" id="L198">  }</span>
+<span class="fc" id="L198">    return true;</span>
+  }
 
   public void draw(PApplet app) {
-<span class="fc bfc" id="L201" title="All 2 branches covered.">    for (Tile tile : tileList) {</span>
-<span class="fc" id="L202">      tile.draw(app);</span>
-<span class="fc" id="L203">    }</span>
-<span class="fc" id="L204">  }</span>
+<span class="fc bfc" id="L202" title="All 2 branches covered.">    for (Tile tile : tileList) {</span>
+<span class="fc" id="L203">      tile.draw(app);</span>
+<span class="fc" id="L204">    }</span>
+<span class="fc" id="L205">  }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

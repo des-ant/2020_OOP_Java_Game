@@ -115,14 +115,14 @@ public class MapGrid {
   }
 
   // Transform the input into a grid.
-  public void readMapGrid(String filename, PApplet app) {
+  public boolean readMapGrid(String filename, PApplet app) {
     // If the file doesn't exist, return null.
     if (filename == null) {
-      return;
+      return false;
     }
     Scanner scan = openFile(filename);
     if (scan == null) {
-      return;
+      return false;
     }
 
     // If the file does exist, parse file
@@ -195,6 +195,7 @@ public class MapGrid {
       }
       y += GRIDSIZE;
     }
+    return true;
   }
 
   public void draw(PApplet app) {

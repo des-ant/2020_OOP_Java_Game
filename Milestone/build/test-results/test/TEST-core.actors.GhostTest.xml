@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="core.actors.GhostTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-11-24T08:35:25" hostname="Anthonys-MacBook-Air.local" time="2.327">
+<testsuite name="core.actors.GhostTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-11-24T09:17:11" hostname="Anthonys-MacBook-Air.local" time="2.08">
   <properties/>
-  <testcase name="getGhostMode()" classname="core.actors.GhostTest" time="1.161"/>
-  <testcase name="testConstruction()" classname="core.actors.GhostTest" time="1.161"/>
+  <testcase name="getGhostMode()" classname="core.actors.GhostTest" time="0.937"/>
+  <testcase name="testConstruction()" classname="core.actors.GhostTest" time="1.142"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

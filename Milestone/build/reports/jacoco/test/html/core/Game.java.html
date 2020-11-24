@@ -134,21 +134,21 @@ public class Game {
 
       // Change mode according to config file
 <span class="fc" id="L136">      setCurrentTimestamp();</span>
-<span class="pc bpc" id="L137" title="1 of 2 branches missed.">      if (timer() &gt;= modeLengths.get(modeIndex)) {</span>
-<span class="nc bnc" id="L138" title="All 2 branches missed.">        if (modeIndex &lt; modeLengths.size() - 1) {</span>
-<span class="nc" id="L139">          modeIndex++;</span>
+<span class="fc bfc" id="L137" title="All 2 branches covered.">      if (timer() &gt;= modeLengths.get(modeIndex)) {</span>
+<span class="pc bpc" id="L138" title="1 of 2 branches missed.">        if (modeIndex &lt; modeLengths.size() - 1) {</span>
+<span class="fc" id="L139">          modeIndex++;</span>
         } else {
 <span class="nc" id="L141">          modeIndex = 0;</span>
         }
-<span class="nc" id="L143">        setInitialTimestamp();</span>
+<span class="fc" id="L143">        setInitialTimestamp();</span>
       }
 
 <span class="fc" id="L146">      mapGrid.draw(app);</span>
 <span class="fc bfc" id="L147" title="All 2 branches covered.">      for (Ghost ghost : ghosts) {</span>
-<span class="pc bpc" id="L148" title="1 of 2 branches missed.">        if (modeIndex % 2 == 0) {</span>
+<span class="fc bfc" id="L148" title="All 2 branches covered.">        if (modeIndex % 2 == 0) {</span>
 <span class="fc" id="L149">          ghost.setGhostMode(GhostMode.CHASE);</span>
         } else {
-<span class="nc" id="L151">          ghost.setGhostMode(GhostMode.SCATTER);</span>
+<span class="fc" id="L151">          ghost.setGhostMode(GhostMode.SCATTER);</span>
         }
 <span class="fc" id="L153">        ghost.tick();</span>
 <span class="fc" id="L154">        ghost.draw(app, debug);</span>

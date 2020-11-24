@@ -2,15 +2,17 @@ core/DirectionTest.java
  core.DirectionTest
 core/tiles/FruitTest.java
  core.tiles.FruitTest
+core/MapGridTest.java
+ core.MapGridTest
 core/tiles/WallTest.java
  core.tiles.WallTest
 core/movement/MovementsTest.java
  core.movement.MovementsTest
 core/actors/GhostTest.java
  core.actors.GhostTest
-core/AppTest.java
- core.AppTest
-core/GameTest.java
- core.GameTest
 core/actors/WakaTest.java
  core.actors.WakaTest
+core/GameTest.java
+ core.GameTest
+core/AppTest.java
+ core.AppTest

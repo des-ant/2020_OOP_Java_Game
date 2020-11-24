@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="core.MapGridTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-11-24T09:17:08" hostname="Anthonys-MacBook-Air.local" time="0.77">
+  <properties/>
+  <testcase name="negativeTest()" classname="core.MapGridTest" time="0.77"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
