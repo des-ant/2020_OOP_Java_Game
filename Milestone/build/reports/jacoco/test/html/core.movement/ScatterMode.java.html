@@ -2,27 +2,27 @@
 
 import core.MapGrid;
 
-<span class="nc" id="L5">public enum ScatterMode {</span>
-<span class="nc" id="L6">  BL(0, MapGrid.MAPHEIGHT - 1), </span>
-<span class="nc" id="L7">  BR(MapGrid.MAPWIDTH - 1, MapGrid.MAPHEIGHT - 1), </span>
-<span class="nc" id="L8">  TL(0, 0), </span>
-<span class="nc" id="L9">  TR(MapGrid.MAPWIDTH - 1, 0);</span>
+<span class="fc" id="L5">public enum ScatterMode {</span>
+<span class="fc" id="L6">  BL(0, MapGrid.MAPHEIGHT - 1), </span>
+<span class="fc" id="L7">  BR(MapGrid.MAPWIDTH - 1, MapGrid.MAPHEIGHT - 1), </span>
+<span class="fc" id="L8">  TL(0, 0), </span>
+<span class="fc" id="L9">  TR(MapGrid.MAPWIDTH - 1, 0);</span>
 
   private final int x;
   private final int y;
 
   // Set target for scatter
-<span class="nc" id="L15">  private ScatterMode(int x, int y) {</span>
-<span class="nc" id="L16">    this.x = x;</span>
-<span class="nc" id="L17">    this.y = y;</span>
-<span class="nc" id="L18">  }</span>
+<span class="fc" id="L15">  private ScatterMode(int x, int y) {</span>
+<span class="fc" id="L16">    this.x = x;</span>
+<span class="fc" id="L17">    this.y = y;</span>
+<span class="fc" id="L18">  }</span>
 
   public int getX() {
-<span class="nc" id="L21">    return x;</span>
+<span class="fc" id="L21">    return x;</span>
   }
 
   public int getY() {
-<span class="nc" id="L25">    return y;</span>
+<span class="fc" id="L25">    return y;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

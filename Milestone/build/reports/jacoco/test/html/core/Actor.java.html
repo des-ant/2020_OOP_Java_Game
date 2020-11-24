@@ -13,11 +13,11 @@ public abstract class Actor {
   protected int y;
   protected int startX;
   protected int startY;
-<span class="nc" id="L16">  protected int xVel = 0;</span>
-<span class="nc" id="L17">  protected int yVel = 0;</span>
+<span class="fc" id="L16">  protected int xVel = 0;</span>
+<span class="fc" id="L17">  protected int yVel = 0;</span>
   protected int speed;
 
-<span class="nc" id="L20">  protected int SIZE = MapGrid.GRIDSIZE;</span>
+<span class="fc" id="L20">  protected int SIZE = MapGrid.GRIDSIZE;</span>
 
   protected Movement movement;
 
@@ -30,14 +30,14 @@ public abstract class Actor {
   * @param  speed     the speed at which Actor will move
   * @param  movement  the type of movement being implemented
   */
-<span class="nc" id="L33">  public Actor(int x, int y, int speed, Movement movement) {</span>
-<span class="nc" id="L34">    this.x = x;</span>
-<span class="nc" id="L35">    this.y = y;</span>
-<span class="nc" id="L36">    this.speed = speed;</span>
-<span class="nc" id="L37">    this.movement = movement;</span>
-<span class="nc" id="L38">    this.startX = x;</span>
-<span class="nc" id="L39">    this.startY = y;</span>
-<span class="nc" id="L40">  }</span>
+<span class="fc" id="L33">  public Actor(int x, int y, int speed, Movement movement) {</span>
+<span class="fc" id="L34">    this.x = x;</span>
+<span class="fc" id="L35">    this.y = y;</span>
+<span class="fc" id="L36">    this.speed = speed;</span>
+<span class="fc" id="L37">    this.movement = movement;</span>
+<span class="fc" id="L38">    this.startX = x;</span>
+<span class="fc" id="L39">    this.startY = y;</span>
+<span class="fc" id="L40">  }</span>
 
   /**
   * Returns horizontal pixel coordinate of Actor centre
@@ -63,7 +63,7 @@ public abstract class Actor {
   * @return  horizontal tile coordinate of Actor centre
   */
   public int getCoordX() {
-<span class="nc" id="L66">    return x / SIZE;</span>
+<span class="fc" id="L66">    return x / SIZE;</span>
     // return Math.round((x - SIZE / 2) / SIZE);
   }
 
@@ -73,7 +73,7 @@ public abstract class Actor {
   * @return  vertical tile coordinate of Actor centre
   */
   public int getCoordY() {
-<span class="nc" id="L76">    return y / SIZE;</span>
+<span class="fc" id="L76">    return y / SIZE;</span>
     // return Math.round((y - SIZE / 2) / SIZE);
   }
 
@@ -83,7 +83,7 @@ public abstract class Actor {
   * @return  Point at tile coordinate of Actor centre
   */
   public Point getCoords() {
-<span class="nc" id="L86">    return new Point(getCoordX(), getCoordY());</span>
+<span class="fc" id="L86">    return new Point(getCoordX(), getCoordY());</span>
   }
 
   /**
@@ -120,13 +120,13 @@ public abstract class Actor {
   }
 
   public void tick() {
-<span class="nc" id="L123">    Point currentCoords = getCoords();</span>
-<span class="nc" id="L124">    Direction nextDirection = movement.getNextDirection(currentCoords, x, y);</span>
-<span class="nc" id="L125">    xVel = nextDirection.getX() * speed;</span>
-<span class="nc" id="L126">    yVel = nextDirection.getY() * speed;</span>
-<span class="nc" id="L127">    x += xVel;</span>
-<span class="nc" id="L128">    y += yVel;</span>
-<span class="nc" id="L129">  }</span>
+<span class="fc" id="L123">    Point currentCoords = getCoords();</span>
+<span class="fc" id="L124">    Direction nextDirection = movement.getNextDirection(currentCoords, x, y);</span>
+<span class="fc" id="L125">    xVel = nextDirection.getX() * speed;</span>
+<span class="fc" id="L126">    yVel = nextDirection.getY() * speed;</span>
+<span class="fc" id="L127">    x += xVel;</span>
+<span class="fc" id="L128">    y += yVel;</span>
+<span class="fc" id="L129">  }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

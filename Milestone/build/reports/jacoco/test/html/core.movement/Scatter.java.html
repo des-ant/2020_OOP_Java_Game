@@ -14,12 +14,12 @@ public class Scatter implements Target {
   private int SIZE;
   private Point targetCoord;
 
-<span class="nc" id="L17">  public Scatter(MapGrid mapGrid, ScatterMode scatterMode) {</span>
-<span class="nc" id="L18">    this.mapGrid = mapGrid;</span>
-<span class="nc" id="L19">    this.SIZE = mapGrid.GRIDSIZE;</span>
+<span class="fc" id="L17">  public Scatter(MapGrid mapGrid, ScatterMode scatterMode) {</span>
+<span class="fc" id="L18">    this.mapGrid = mapGrid;</span>
+<span class="fc" id="L19">    this.SIZE = mapGrid.GRIDSIZE;</span>
     // Target top right corner of Map
-<span class="nc" id="L21">    this.targetCoord = new Point(scatterMode.getX(),scatterMode.getY());</span>
-<span class="nc" id="L22">  };</span>
+<span class="fc" id="L21">    this.targetCoord = new Point(scatterMode.getX(),scatterMode.getY());</span>
+<span class="fc" id="L22">  };</span>
 
   @Override
   public Direction chosenDirection(List&lt;Direction&gt; availableDirections, int x, int y) {

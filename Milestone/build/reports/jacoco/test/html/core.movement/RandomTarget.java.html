@@ -12,14 +12,14 @@ import core.actors.Waka;
 public class RandomTarget implements Target {
 
   private MapGrid mapGrid;
-<span class="nc" id="L15">  private int SIZE = mapGrid.GRIDSIZE;</span>
+<span class="fc" id="L15">  private int SIZE = mapGrid.GRIDSIZE;</span>
   private Point targetCoord;
-<span class="nc" id="L17">  private final Random random = new Random();</span>
+<span class="fc" id="L17">  private final Random random = new Random();</span>
 
-<span class="nc" id="L19">  public RandomTarget(MapGrid mapGrid) {</span>
-<span class="nc" id="L20">    this.mapGrid = mapGrid;</span>
-<span class="nc" id="L21">    this.targetCoord = new Point(0, 0);</span>
-<span class="nc" id="L22">  };</span>
+<span class="fc" id="L19">  public RandomTarget(MapGrid mapGrid) {</span>
+<span class="fc" id="L20">    this.mapGrid = mapGrid;</span>
+<span class="fc" id="L21">    this.targetCoord = new Point(0, 0);</span>
+<span class="fc" id="L22">  };</span>
 
   @Override
   public Direction chosenDirection(List&lt;Direction&gt; availableDirections, int x, int y) {

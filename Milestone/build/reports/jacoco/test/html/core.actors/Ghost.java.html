@@ -25,12 +25,12 @@ public class Ghost extends Actor{
 
   public Ghost(int x, int y, PApplet app, int speed, 
   MapGrid mapGrid, GhostType ghostType) {
-<span class="nc" id="L28">    super(x, y, speed, new TargetMovement(mapGrid, Direction.NONE, null, </span>
-<span class="nc" id="L29">    new ChaserTarget(mapGrid), new Scatter(mapGrid, ghostType.getScatterMode()),</span>
+<span class="fc" id="L28">    super(x, y, speed, new TargetMovement(mapGrid, Direction.NONE, null, </span>
+<span class="fc" id="L29">    new ChaserTarget(mapGrid), new Scatter(mapGrid, ghostType.getScatterMode()),</span>
     new RandomTarget(mapGrid)));
-<span class="nc" id="L31">    this.sprite = app.loadImage(ghostType.getSprite());</span>
-<span class="nc" id="L32">    this.ghostMode = GhostMode.SCATTER;</span>
-<span class="nc" id="L33">  }</span>
+<span class="fc" id="L31">    this.sprite = app.loadImage(ghostType.getSprite());</span>
+<span class="fc" id="L32">    this.ghostMode = GhostMode.SCATTER;</span>
+<span class="fc" id="L33">  }</span>
   
   /**
   * Draws Actor to PApplet window
@@ -40,24 +40,24 @@ public class Ghost extends Actor{
   public void draw(PApplet app, boolean debug) {
     // Handling graphics
     // Draw debug line
-<span class="nc bnc" id="L43" title="All 2 branches missed.">    if (debug) {</span>
+<span class="pc bpc" id="L43" title="1 of 2 branches missed.">    if (debug) {</span>
 <span class="nc" id="L44">      int targetX = (int) PointMaths.toPixelCoords(getTargetCoord()).getX();</span>
 <span class="nc" id="L45">      int targetY = (int) PointMaths.toPixelCoords(getTargetCoord()).getY();</span>
 <span class="nc" id="L46">      app.line(x, y, targetX, targetY);</span>
     }
 
     // Draw ghost
-<span class="nc" id="L50">    app.image(this.sprite, this.x, this.y);</span>
-<span class="nc" id="L51">  }</span>
+<span class="fc" id="L50">    app.image(this.sprite, this.x, this.y);</span>
+<span class="fc" id="L51">  }</span>
 
   public GhostMode getGhostMode() {
 <span class="nc" id="L54">    return ghostMode;</span>
   }
 
   public void setGhostMode(GhostMode ghostMode) {
-<span class="nc" id="L58">    this.ghostMode = ghostMode;</span>
-<span class="nc" id="L59">    ((TargetMovement) movement).setTargetMode(ghostMode);</span>
-<span class="nc" id="L60">  }</span>
+<span class="fc" id="L58">    this.ghostMode = ghostMode;</span>
+<span class="fc" id="L59">    ((TargetMovement) movement).setTargetMode(ghostMode);</span>
+<span class="fc" id="L60">  }</span>
 
   public Point getTargetCoord() {
 <span class="nc" id="L63">    return ((TargetMovement) movement).getTargetCoord();</span>

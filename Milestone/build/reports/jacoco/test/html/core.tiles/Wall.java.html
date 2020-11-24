@@ -8,41 +8,41 @@ public class Wall extends Tile {
   PApplet app;
 
   public Wall(int x, int y, PApplet app, int type) {
-<span class="nc" id="L11">    super(x, y, app.loadImage(wallSprite(type)));</span>
-<span class="nc" id="L12">    this.app = app;</span>
-<span class="nc" id="L13">  }</span>
+<span class="fc" id="L11">    super(x, y, app.loadImage(wallSprite(type)));</span>
+<span class="fc" id="L12">    this.app = app;</span>
+<span class="fc" id="L13">  }</span>
 
   private static String wallSprite(int type) {
-<span class="nc" id="L16">    String src = &quot;&quot;;</span>
-<span class="nc bnc" id="L17" title="All 7 branches missed.">    switch (type) {</span>
+<span class="fc" id="L16">    String src = &quot;&quot;;</span>
+<span class="pc bpc" id="L17" title="1 of 7 branches missed.">    switch (type) {</span>
       // Horizontal wall
       case 1:
-<span class="nc" id="L20">        src = &quot;src/main/resources/horizontal.png&quot;;</span>
-<span class="nc" id="L21">        break;</span>
+<span class="fc" id="L20">        src = &quot;src/main/resources/horizontal.png&quot;;</span>
+<span class="fc" id="L21">        break;</span>
       // Vertical wall
       case 2:
-<span class="nc" id="L24">        src = &quot;src/main/resources/vertical.png&quot;;</span>
-<span class="nc" id="L25">        break;</span>
+<span class="fc" id="L24">        src = &quot;src/main/resources/vertical.png&quot;;</span>
+<span class="fc" id="L25">        break;</span>
       // Corner wall (up + left)
       case 3:
-<span class="nc" id="L28">        src = &quot;src/main/resources/upLeft.png&quot;;</span>
-<span class="nc" id="L29">        break;</span>
+<span class="fc" id="L28">        src = &quot;src/main/resources/upLeft.png&quot;;</span>
+<span class="fc" id="L29">        break;</span>
       // Corner wall (up + right)
       case 4:
-<span class="nc" id="L32">        src = &quot;src/main/resources/upRight.png&quot;;</span>
-<span class="nc" id="L33">        break;</span>
+<span class="fc" id="L32">        src = &quot;src/main/resources/upRight.png&quot;;</span>
+<span class="fc" id="L33">        break;</span>
       // Corner wall (down + left)
       case 5:
-<span class="nc" id="L36">        src = &quot;src/main/resources/downLeft.png&quot;;</span>
-<span class="nc" id="L37">        break;</span>
+<span class="fc" id="L36">        src = &quot;src/main/resources/downLeft.png&quot;;</span>
+<span class="fc" id="L37">        break;</span>
       // Corner wall (down + right)
       case 6:
-<span class="nc" id="L40">        src = &quot;src/main/resources/downRight.png&quot;;</span>
-<span class="nc" id="L41">        break;</span>
+<span class="fc" id="L40">        src = &quot;src/main/resources/downRight.png&quot;;</span>
+<span class="fc" id="L41">        break;</span>
       default:
         break;
     }
-<span class="nc" id="L45">    return src;</span>
+<span class="fc" id="L45">    return src;</span>
   }
   
   /**
@@ -52,7 +52,7 @@ public class Wall extends Tile {
   */
   @Override
   public boolean isMovable() {
-<span class="nc" id="L55">    return false;</span>
+<span class="fc" id="L55">    return false;</span>
   }
 
 }

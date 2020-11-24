@@ -2,26 +2,26 @@
 
 import core.movement.ScatterMode;
 
-<span class="nc" id="L5">public enum GhostType {</span>
-<span class="nc" id="L6">  AMBUSHER(&quot;src/main/resources/ambusher.png&quot;, ScatterMode.TR),</span>
-<span class="nc" id="L7">  CHASER(&quot;src/main/resources/chaser.png&quot;, ScatterMode.TL),</span>
-<span class="nc" id="L8">  IGNORANT(&quot;src/main/resources/ignorant.png&quot;, ScatterMode.BL),</span>
-<span class="nc" id="L9">  WHIM(&quot;src/main/resources/whim.png&quot;, ScatterMode.BR);</span>
+<span class="fc" id="L5">public enum GhostType {</span>
+<span class="fc" id="L6">  AMBUSHER(&quot;src/main/resources/ambusher.png&quot;, ScatterMode.TR),</span>
+<span class="fc" id="L7">  CHASER(&quot;src/main/resources/chaser.png&quot;, ScatterMode.TL),</span>
+<span class="fc" id="L8">  IGNORANT(&quot;src/main/resources/ignorant.png&quot;, ScatterMode.BL),</span>
+<span class="fc" id="L9">  WHIM(&quot;src/main/resources/whim.png&quot;, ScatterMode.BR);</span>
 
   private final String sprite;
   private final ScatterMode scatterMode;
 
-<span class="nc" id="L14">  private GhostType(String sprite, ScatterMode scatterMode) {</span>
-<span class="nc" id="L15">    this.sprite = sprite;</span>
-<span class="nc" id="L16">    this.scatterMode = scatterMode;</span>
-<span class="nc" id="L17">  }</span>
+<span class="fc" id="L14">  private GhostType(String sprite, ScatterMode scatterMode) {</span>
+<span class="fc" id="L15">    this.sprite = sprite;</span>
+<span class="fc" id="L16">    this.scatterMode = scatterMode;</span>
+<span class="fc" id="L17">  }</span>
 
   public String getSprite() {
-<span class="nc" id="L20">    return sprite;</span>
+<span class="fc" id="L20">    return sprite;</span>
   }
 
   public ScatterMode getScatterMode() {
-<span class="nc" id="L24">    return scatterMode;</span>
+<span class="fc" id="L24">    return scatterMode;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

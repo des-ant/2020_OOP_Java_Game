@@ -20,12 +20,12 @@ public class PlayerMovement implements Movement {
   * @param  mapGrid           the map containing the player
   * @param  initialDirection  the initial direction that is applied to the player
   */
-<span class="nc" id="L23">  public PlayerMovement(MapGrid mapGrid, Direction initialDirection) {</span>
-<span class="nc" id="L24">    this.mapGrid = mapGrid;</span>
-<span class="nc" id="L25">    this.currentDirection = initialDirection;</span>
-<span class="nc" id="L26">    this.nextDirection = initialDirection;</span>
-<span class="nc" id="L27">    this.previousDirection = initialDirection;</span>
-<span class="nc" id="L28">  }</span>
+<span class="fc" id="L23">  public PlayerMovement(MapGrid mapGrid, Direction initialDirection) {</span>
+<span class="fc" id="L24">    this.mapGrid = mapGrid;</span>
+<span class="fc" id="L25">    this.currentDirection = initialDirection;</span>
+<span class="fc" id="L26">    this.nextDirection = initialDirection;</span>
+<span class="fc" id="L27">    this.previousDirection = initialDirection;</span>
+<span class="fc" id="L28">  }</span>
 
   /**
   * Set next Direction of player
@@ -43,10 +43,10 @@ public class PlayerMovement implements Movement {
   */
   @Override
   public Direction getDirection() {
-<span class="nc bnc" id="L46" title="All 2 branches missed.">    if (isMoving()) {</span>
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">    if (isMoving()) {</span>
 <span class="nc" id="L47">      return currentDirection;</span>
     }
-<span class="nc" id="L49">    return previousDirection;</span>
+<span class="fc" id="L49">    return previousDirection;</span>
   }
 
   /**
@@ -56,7 +56,7 @@ public class PlayerMovement implements Movement {
   */
   @Override
   public boolean isMoving() {
-<span class="nc bnc" id="L59" title="All 2 branches missed.">    return currentDirection != Direction.NONE;</span>
+<span class="pc bpc" id="L59" title="1 of 2 branches missed.">    return currentDirection != Direction.NONE;</span>
   }
 
   /**
@@ -69,19 +69,19 @@ public class PlayerMovement implements Movement {
   */
   public boolean hasReachedTile(Point coords, int x, int y) {
     // Centre of player must reach centre of Tile first
-<span class="nc" id="L72">    Point currentTile = PointMaths.toPixelCoords(coords);</span>
-<span class="nc" id="L73">    int currentTileX = (int) currentTile.getX();</span>
-<span class="nc" id="L74">    int currentTileY = (int) currentTile.getY();</span>
-<span class="nc bnc" id="L75" title="All 4 branches missed.">    if (x == currentTileX &amp;&amp; y == currentTileY) {</span>
-<span class="nc" id="L76">      return true;</span>
+<span class="fc" id="L72">    Point currentTile = PointMaths.toPixelCoords(coords);</span>
+<span class="fc" id="L73">    int currentTileX = (int) currentTile.getX();</span>
+<span class="fc" id="L74">    int currentTileY = (int) currentTile.getY();</span>
+<span class="pc bpc" id="L75" title="2 of 4 branches missed.">    if (x == currentTileX &amp;&amp; y == currentTileY) {</span>
+<span class="fc" id="L76">      return true;</span>
     }
 <span class="nc" id="L78">    return false;</span>
   }
 
   public boolean eatFruit(Point coords) {
-<span class="nc" id="L82">    Tile tileTouched = mapGrid.tileAt(coords);</span>
-<span class="nc bnc" id="L83" title="All 4 branches missed.">    if (tileTouched == null || !tileTouched.isMovable()) {</span>
-<span class="nc" id="L84">      return false;</span>
+<span class="fc" id="L82">    Tile tileTouched = mapGrid.tileAt(coords);</span>
+<span class="pc bpc" id="L83" title="3 of 4 branches missed.">    if (tileTouched == null || !tileTouched.isMovable()) {</span>
+<span class="fc" id="L84">      return false;</span>
     }
 <span class="nc" id="L86">    return (mapGrid.removeTile(tileTouched));</span>
   }
@@ -98,8 +98,8 @@ public class PlayerMovement implements Movement {
   public Direction getNextDirection(Point coords, int x, int y) {
     // Check if can move in next direction
     // Update current direction if can move
-<span class="nc bnc" id="L101" title="All 2 branches missed.">    if (canMove(coords, nextDirection, x, y)) {</span>
-<span class="nc" id="L102">      currentDirection = nextDirection;</span>
+<span class="pc bpc" id="L101" title="1 of 2 branches missed.">    if (canMove(coords, nextDirection, x, y)) {</span>
+<span class="fc" id="L102">      currentDirection = nextDirection;</span>
 <span class="nc bnc" id="L103" title="All 2 branches missed.">    } else if (!canMove(coords, currentDirection, x, y)) {</span>
       // Return current direction if player is moving and has not reached
       // centre of current Tile
@@ -109,7 +109,7 @@ public class PlayerMovement implements Movement {
 <span class="nc" id="L109">      previousDirection = currentDirection;</span>
 <span class="nc" id="L110">      currentDirection = Direction.NONE;</span>
     }
-<span class="nc" id="L112">    return currentDirection;</span>
+<span class="fc" id="L112">    return currentDirection;</span>
   }
 
   /*
@@ -122,14 +122,14 @@ public class PlayerMovement implements Movement {
   * @return            true if next move is possible
   */
   private boolean canMove(Point coords, Direction direction, int x, int y) {
-<span class="nc" id="L125">    Point newCoords = new Point(coords);</span>
+<span class="fc" id="L125">    Point newCoords = new Point(coords);</span>
     // Centre of player must reach centre of Tile first
-<span class="nc bnc" id="L127" title="All 2 branches missed.">    if (!hasReachedTile(coords, x, y)) {</span>
+<span class="pc bpc" id="L127" title="1 of 2 branches missed.">    if (!hasReachedTile(coords, x, y)) {</span>
 <span class="nc" id="L128">      return false;</span>
     }
     // Calculate new coordinates
-<span class="nc" id="L131">    newCoords.translate(direction.getX(), direction.getY());</span>
-<span class="nc" id="L132">    return mapGrid.canMove(newCoords);</span>
+<span class="fc" id="L131">    newCoords.translate(direction.getX(), direction.getY());</span>
+<span class="fc" id="L132">    return mapGrid.canMove(newCoords);</span>
   }
 
 }

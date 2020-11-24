@@ -4,7 +4,7 @@ import java.awt.Point;
 
 <span class="nc" id="L5">public class PointMaths {</span>
 
-<span class="nc" id="L7">  private static int SIZE = MapGrid.GRIDSIZE;</span>
+<span class="fc" id="L7">  private static int SIZE = MapGrid.GRIDSIZE;</span>
   
   // /**
   // * Returns value as pixel location on game display
@@ -18,22 +18,22 @@ import java.awt.Point;
   // }
 
   public static Point toPixelCoords(Point coords) {
-<span class="nc" id="L21">    Double doubleX = coords.getX() * SIZE + SIZE / 2;</span>
-<span class="nc" id="L22">    Double doubleY = coords.getY() * SIZE + SIZE / 2;</span>
-<span class="nc" id="L23">    int intX = (int) Math.round(doubleX);</span>
-<span class="nc" id="L24">    int intY = (int) Math.round(doubleY);</span>
-<span class="nc" id="L25">    Point pixelCoords = new Point(intX, intY);</span>
-<span class="nc" id="L26">    return pixelCoords;</span>
+<span class="fc" id="L21">    Double doubleX = coords.getX() * SIZE + SIZE / 2;</span>
+<span class="fc" id="L22">    Double doubleY = coords.getY() * SIZE + SIZE / 2;</span>
+<span class="fc" id="L23">    int intX = (int) Math.round(doubleX);</span>
+<span class="fc" id="L24">    int intY = (int) Math.round(doubleY);</span>
+<span class="fc" id="L25">    Point pixelCoords = new Point(intX, intY);</span>
+<span class="fc" id="L26">    return pixelCoords;</span>
   }
 
   public static Double distance(Point coords1, Point coords2) {
-<span class="nc" id="L30">    Double x1 = coords1.getX();</span>
-<span class="nc" id="L31">    Double y1 = coords1.getY();</span>
-<span class="nc" id="L32">    Double x2 = coords2.getX();</span>
-<span class="nc" id="L33">    Double y2 = coords2.getY();</span>
-<span class="nc" id="L34">    Double distanceSq = Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2);</span>
-<span class="nc" id="L35">    Double distance = Math.sqrt(distanceSq);</span>
-<span class="nc" id="L36">    return distance;</span>
+<span class="fc" id="L30">    Double x1 = coords1.getX();</span>
+<span class="fc" id="L31">    Double y1 = coords1.getY();</span>
+<span class="fc" id="L32">    Double x2 = coords2.getX();</span>
+<span class="fc" id="L33">    Double y2 = coords2.getY();</span>
+<span class="fc" id="L34">    Double distanceSq = Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2);</span>
+<span class="fc" id="L35">    Double distance = Math.sqrt(distanceSq);</span>
+<span class="fc" id="L36">    return distance;</span>
   }
 
   public static boolean isDiagonal(Point coords) {

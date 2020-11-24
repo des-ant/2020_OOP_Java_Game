@@ -15,32 +15,32 @@ import processing.core.PApplet;
 public class MapGrid {
   public final static int MAPHEIGHT = 36;
   public final static int MAPWIDTH = 28;
-<span class="nc" id="L18">  public final static Double MAXDIST = </span>
-<span class="nc" id="L19">  Math.sqrt(Math.pow(MAPWIDTH, 2) + Math.pow(MAPHEIGHT, 2));</span>
+<span class="fc" id="L18">  public final static Double MAXDIST = </span>
+<span class="fc" id="L19">  Math.sqrt(Math.pow(MAPWIDTH, 2) + Math.pow(MAPHEIGHT, 2));</span>
 
   // Current game instance
   private Game game;
 
   // Location
   private Point wakaCoord;
-<span class="nc" id="L26">  private List&lt;Point&gt; ghostCoords = new ArrayList&lt;Point&gt;();</span>
-<span class="nc" id="L27">  private List&lt;GhostType&gt; ghostTypes = new ArrayList&lt;GhostType&gt;();</span>
+<span class="fc" id="L26">  private List&lt;Point&gt; ghostCoords = new ArrayList&lt;Point&gt;();</span>
+<span class="fc" id="L27">  private List&lt;GhostType&gt; ghostTypes = new ArrayList&lt;GhostType&gt;();</span>
 
   // Each grid space is 16x16 pixels
   public final static int GRIDSIZE = 16;
-<span class="nc" id="L31">  private int xOffset = GRIDSIZE / 2;</span>
-<span class="nc" id="L32">  private int yOffset = GRIDSIZE / 2;</span>
+<span class="fc" id="L31">  private int xOffset = GRIDSIZE / 2;</span>
+<span class="fc" id="L32">  private int yOffset = GRIDSIZE / 2;</span>
 
-<span class="nc" id="L34">  private List&lt;Tile&gt; tileList = new ArrayList&lt;Tile&gt;();</span>
-<span class="nc" id="L35">  private int numFruit = 0;</span>
+<span class="fc" id="L34">  private List&lt;Tile&gt; tileList = new ArrayList&lt;Tile&gt;();</span>
+<span class="fc" id="L35">  private int numFruit = 0;</span>
 
-<span class="nc" id="L37">  public MapGrid(String mapFilename, PApplet app, Game game) {</span>
-<span class="nc" id="L38">    readMapGrid(mapFilename, app);</span>
-<span class="nc" id="L39">    this.game = game;</span>
-<span class="nc" id="L40">  }</span>
+<span class="fc" id="L37">  public MapGrid(String mapFilename, PApplet app, Game game) {</span>
+<span class="fc" id="L38">    readMapGrid(mapFilename, app);</span>
+<span class="fc" id="L39">    this.game = game;</span>
+<span class="fc" id="L40">  }</span>
 
   public Game getGame() {
-<span class="nc" id="L43">    return game;</span>
+<span class="fc" id="L43">    return game;</span>
   }
 
   public List&lt;Tile&gt; getTileList() {
@@ -49,26 +49,26 @@ public class MapGrid {
 
   // Check if tile allows movement
   public boolean canMove(Point coords) {
-<span class="nc" id="L52">    Tile checkTile = tileAt(coords);</span>
+<span class="fc" id="L52">    Tile checkTile = tileAt(coords);</span>
     // Empty space allows movement
-<span class="nc bnc" id="L54" title="All 2 branches missed.">    if (checkTile == null) {</span>
-<span class="nc" id="L55">      return true;</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">    if (checkTile == null) {</span>
+<span class="fc" id="L55">      return true;</span>
     }
-<span class="nc" id="L57">    return checkTile.isMovable();</span>
+<span class="fc" id="L57">    return checkTile.isMovable();</span>
   }
 
   // Get tile at specific coordinate
   // Returns null if tile does not exist
   public Tile tileAt(Point coords) {
-<span class="nc bnc" id="L63" title="All 2 branches missed.">    if (coords == null) {</span>
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">    if (coords == null) {</span>
 <span class="nc" id="L64">      return null;</span>
     }
-<span class="nc bnc" id="L66" title="All 2 branches missed.">    for (Tile tile : tileList) {</span>
-<span class="nc bnc" id="L67" title="All 2 branches missed.">      if (coords.equals(tile.getCoords())) {</span>
-<span class="nc" id="L68">        return tile;</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">    for (Tile tile : tileList) {</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">      if (coords.equals(tile.getCoords())) {</span>
+<span class="fc" id="L68">        return tile;</span>
       }
-<span class="nc" id="L70">    }</span>
-<span class="nc" id="L71">    return null;</span>
+<span class="fc" id="L70">    }</span>
+<span class="fc" id="L71">    return null;</span>
   }
 
   // Remove tile from list
@@ -87,27 +87,27 @@ public class MapGrid {
   }
 
   public Point getWakaCoord() {
-<span class="nc" id="L90">    return wakaCoord;</span>
+<span class="fc" id="L90">    return wakaCoord;</span>
   }
 
   public List&lt;Point&gt; getGhostCoords() {
-<span class="nc" id="L94">    return ghostCoords;</span>
+<span class="fc" id="L94">    return ghostCoords;</span>
   }
 
   public List&lt;GhostType&gt; getGhostTypes() {
-<span class="nc" id="L98">    return ghostTypes;</span>
+<span class="fc" id="L98">    return ghostTypes;</span>
   }
 
   public int getNumFruit() {
-<span class="nc" id="L102">    return numFruit;</span>
+<span class="fc" id="L102">    return numFruit;</span>
   }
 
   // Helper method for opening file
   public Scanner openFile(String filename) {
     try {
-<span class="nc" id="L108">      File f = new File(filename);</span>
-<span class="nc" id="L109">      Scanner scan = new Scanner(f);</span>
-<span class="nc" id="L110">      return scan;</span>
+<span class="fc" id="L108">      File f = new File(filename);</span>
+<span class="fc" id="L109">      Scanner scan = new Scanner(f);</span>
+<span class="fc" id="L110">      return scan;</span>
 <span class="nc" id="L111">    } catch (FileNotFoundException e) {</span>
 <span class="nc" id="L112">      return null;</span>
     }
@@ -116,91 +116,91 @@ public class MapGrid {
   // Transform the input into a grid.
   public void readMapGrid(String filename, PApplet app) {
     // If the file doesn't exist, return null.
-<span class="nc bnc" id="L119" title="All 2 branches missed.">    if (filename == null) {</span>
+<span class="pc bpc" id="L119" title="1 of 2 branches missed.">    if (filename == null) {</span>
 <span class="nc" id="L120">      return;</span>
     }
-<span class="nc" id="L122">    Scanner scan = openFile(filename);</span>
-<span class="nc bnc" id="L123" title="All 2 branches missed.">    if (scan == null) {</span>
+<span class="fc" id="L122">    Scanner scan = openFile(filename);</span>
+<span class="pc bpc" id="L123" title="1 of 2 branches missed.">    if (scan == null) {</span>
 <span class="nc" id="L124">      return;</span>
     }
 
     // If the file does exist, parse file
-<span class="nc" id="L128">    int x = xOffset;</span>
-<span class="nc" id="L129">    int y = yOffset;</span>
-<span class="nc bnc" id="L130" title="All 2 branches missed.">    while (scan.hasNextLine()) {</span>
-<span class="nc" id="L131">      x = xOffset;</span>
-<span class="nc" id="L132">      String line = scan.nextLine();</span>
-<span class="nc bnc" id="L133" title="All 2 branches missed.">      for (int i = 0; i &lt; line.length(); i++) {</span>
-<span class="nc" id="L134">        char currentChar = line.charAt(i);</span>
-<span class="nc bnc" id="L135" title="All 15 branches missed.">        switch (currentChar) {</span>
+<span class="fc" id="L128">    int x = xOffset;</span>
+<span class="fc" id="L129">    int y = yOffset;</span>
+<span class="fc bfc" id="L130" title="All 2 branches covered.">    while (scan.hasNextLine()) {</span>
+<span class="fc" id="L131">      x = xOffset;</span>
+<span class="fc" id="L132">      String line = scan.nextLine();</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">      for (int i = 0; i &lt; line.length(); i++) {</span>
+<span class="fc" id="L134">        char currentChar = line.charAt(i);</span>
+<span class="pc bpc" id="L135" title="2 of 15 branches missed.">        switch (currentChar) {</span>
           // Empty tile
           case '0':
-<span class="nc" id="L138">            break;</span>
+<span class="fc" id="L138">            break;</span>
           // Horizontal wall
           case '1':
-<span class="nc" id="L141">            tileList.add(new Wall(x, y, app, 1));</span>
-<span class="nc" id="L142">            break;</span>
+<span class="fc" id="L141">            tileList.add(new Wall(x, y, app, 1));</span>
+<span class="fc" id="L142">            break;</span>
           // Vertical wall
           case '2':
-<span class="nc" id="L145">            tileList.add(new Wall(x, y, app, 2));</span>
-<span class="nc" id="L146">            break;</span>
+<span class="fc" id="L145">            tileList.add(new Wall(x, y, app, 2));</span>
+<span class="fc" id="L146">            break;</span>
           // Corner wall (up + left
           case '3':
-<span class="nc" id="L149">            tileList.add(new Wall(x, y, app, 3));</span>
-<span class="nc" id="L150">            break;</span>
+<span class="fc" id="L149">            tileList.add(new Wall(x, y, app, 3));</span>
+<span class="fc" id="L150">            break;</span>
           // Corner wall (up + right)
           case '4':
-<span class="nc" id="L153">            tileList.add(new Wall(x, y, app, 4));</span>
-<span class="nc" id="L154">            break;</span>
+<span class="fc" id="L153">            tileList.add(new Wall(x, y, app, 4));</span>
+<span class="fc" id="L154">            break;</span>
           // Corner wall (down + left)
           case '5':
-<span class="nc" id="L157">            tileList.add(new Wall(x, y, app, 5));</span>
-<span class="nc" id="L158">            break;</span>
+<span class="fc" id="L157">            tileList.add(new Wall(x, y, app, 5));</span>
+<span class="fc" id="L158">            break;</span>
           // Corner wall (down + right)
           case '6':
-<span class="nc" id="L161">            tileList.add(new Wall(x, y, app, 6));</span>
-<span class="nc" id="L162">            break;</span>
+<span class="fc" id="L161">            tileList.add(new Wall(x, y, app, 6));</span>
+<span class="fc" id="L162">            break;</span>
           case '7':
-<span class="nc" id="L164">            tileList.add(new Fruit(x, y, app));</span>
-<span class="nc" id="L165">            numFruit++;</span>
-<span class="nc" id="L166">            break;</span>
+<span class="fc" id="L164">            tileList.add(new Fruit(x, y, app));</span>
+<span class="fc" id="L165">            numFruit++;</span>
+<span class="fc" id="L166">            break;</span>
           case 'a':
-<span class="nc" id="L168">            ghostCoords.add(new Point(x, y));</span>
-<span class="nc" id="L169">            ghostTypes.add(GhostType.AMBUSHER);</span>
-<span class="nc" id="L170">            break;</span>
+<span class="fc" id="L168">            ghostCoords.add(new Point(x, y));</span>
+<span class="fc" id="L169">            ghostTypes.add(GhostType.AMBUSHER);</span>
+<span class="fc" id="L170">            break;</span>
           case 'c':
-<span class="nc" id="L172">            ghostCoords.add(new Point(x, y));</span>
-<span class="nc" id="L173">            ghostTypes.add(GhostType.CHASER);</span>
-<span class="nc" id="L174">            break;</span>
+<span class="fc" id="L172">            ghostCoords.add(new Point(x, y));</span>
+<span class="fc" id="L173">            ghostTypes.add(GhostType.CHASER);</span>
+<span class="fc" id="L174">            break;</span>
           case 'i':
-<span class="nc" id="L176">            ghostCoords.add(new Point(x, y));</span>
-<span class="nc" id="L177">            ghostTypes.add(GhostType.IGNORANT);</span>
-<span class="nc" id="L178">            break;</span>
+<span class="fc" id="L176">            ghostCoords.add(new Point(x, y));</span>
+<span class="fc" id="L177">            ghostTypes.add(GhostType.IGNORANT);</span>
+<span class="fc" id="L178">            break;</span>
           case 'p':
-<span class="nc" id="L180">            wakaCoord = new Point(x, y);</span>
-<span class="nc" id="L181">            break;</span>
+<span class="fc" id="L180">            wakaCoord = new Point(x, y);</span>
+<span class="fc" id="L181">            break;</span>
           case 'g':
 <span class="nc" id="L183">            ghostCoords.add(new Point(x, y));</span>
 <span class="nc" id="L184">            ghostTypes.add(GhostType.CHASER);</span>
 <span class="nc" id="L185">            break;</span>
           case 'w':
-<span class="nc" id="L187">            ghostCoords.add(new Point(x, y));</span>
-<span class="nc" id="L188">            ghostTypes.add(GhostType.WHIM);</span>
-<span class="nc" id="L189">            break;</span>
+<span class="fc" id="L187">            ghostCoords.add(new Point(x, y));</span>
+<span class="fc" id="L188">            ghostTypes.add(GhostType.WHIM);</span>
+<span class="fc" id="L189">            break;</span>
           default:
             break;
         }
-<span class="nc" id="L193">        x += GRIDSIZE;</span>
+<span class="fc" id="L193">        x += GRIDSIZE;</span>
       }
-<span class="nc" id="L195">      y += GRIDSIZE;</span>
-<span class="nc" id="L196">    }</span>
-<span class="nc" id="L197">  }</span>
+<span class="fc" id="L195">      y += GRIDSIZE;</span>
+<span class="fc" id="L196">    }</span>
+<span class="fc" id="L197">  }</span>
 
   public void draw(PApplet app) {
-<span class="nc bnc" id="L200" title="All 2 branches missed.">    for (Tile tile : tileList) {</span>
-<span class="nc" id="L201">      tile.draw(app);</span>
-<span class="nc" id="L202">    }</span>
-<span class="nc" id="L203">  }</span>
+<span class="fc bfc" id="L200" title="All 2 branches covered.">    for (Tile tile : tileList) {</span>
+<span class="fc" id="L201">      tile.draw(app);</span>
+<span class="fc" id="L202">    }</span>
+<span class="fc" id="L203">  }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
