@@ -103,6 +103,7 @@ public abstract class Actor {
 <span class="fc" id="L103">    y = startY;</span>
 <span class="fc" id="L104">  }</span>
 
+<<<<<<< HEAD
   // public void setPixelCoords(Point coords) {
   //   Double doubleX = coords.getX();
   //   Double doubleY = coords.getY();
@@ -118,6 +119,23 @@ public abstract class Actor {
   //   newCoords.translate(nextDirection.getX(), nextDirection.getY());
   //   return newCoords;
   // }
+=======
+  public void setPixelCoords(Point coords) {
+<span class="nc" id="L107">    Double doubleX = coords.getX();</span>
+<span class="nc" id="L108">    Double doubleY = coords.getY();</span>
+<span class="nc" id="L109">    int intX = (int) Math.round(doubleX);</span>
+<span class="nc" id="L110">    int intY = (int) Math.round(doubleY);</span>
+<span class="nc" id="L111">    this.x = intX;</span>
+<span class="nc" id="L112">    this.y = intY;</span>
+<span class="nc" id="L113">  }</span>
+
+  private Point getNextCoords(Point currentCoords) {
+<span class="nc" id="L116">    Direction nextDirection = movement.getNextDirection(currentCoords, x, y);</span>
+<span class="nc" id="L117">    Point newCoords = new Point(currentCoords);</span>
+<span class="nc" id="L118">    newCoords.translate(nextDirection.getX(), nextDirection.getY());</span>
+<span class="nc" id="L119">    return newCoords;</span>
+  }
+>>>>>>> main
 
   public void tick() {
 <span class="fc" id="L123">    Point currentCoords = getCoords();</span>

@@ -129,8 +129,13 @@ public class Game {
   public void draw() {
     // Game will continue to run until no fruits in map
     // and Waka still alive
+<<<<<<< HEAD
 <span class="pc bpc" id="L132" title="1 of 4 branches missed.">    if (mapGrid.getNumFruit() &gt; 0 &amp;&amp; waka.isAlive()) {</span>
 <span class="fc" id="L133">      app.background(0, 0, 0);</span>
+=======
+<span class="pc bpc" id="L112" title="1 of 4 branches missed.">    if (mapGrid.getNumFruit() &gt; 0 &amp;&amp; waka.isAlive()) {</span>
+<span class="fc" id="L113">      app.background(0, 0, 0);</span>
+>>>>>>> main
 
       // Change mode according to config file
 <span class="fc" id="L136">      setCurrentTimestamp();</span>
@@ -154,15 +159,25 @@ public class Game {
 <span class="fc" id="L154">        ghost.draw(app, debug);</span>
 <span class="fc" id="L155">      }</span>
       // Reset mode if Waka killed
+<<<<<<< HEAD
 <span class="fc bfc" id="L157" title="All 2 branches covered.">      if (waka.checkKilled()) {</span>
 <span class="fc" id="L158">        setInitialTimestamp();</span>
 <span class="fc" id="L159">        modeIndex = 0;</span>
+=======
+<span class="fc bfc" id="L137" title="All 2 branches covered.">      if (waka.checkKilled()) {</span>
+<span class="fc" id="L138">        setInitialTimestamp();</span>
+<span class="fc" id="L139">        modeIndex = 0;</span>
+>>>>>>> main
       };
 <span class="fc" id="L161">      waka.eatFruit();</span>
 <span class="fc" id="L162">      waka.tick();</span>
 <span class="fc" id="L163">      waka.draw(app);</span>
     } else {
+<<<<<<< HEAD
 <span class="fc" id="L165">      app.background(150, 150, 150);</span>
+=======
+<span class="fc" id="L145">      app.background(150, 150, 150);</span>
+>>>>>>> main
     }
 <span class="fc" id="L167">  }</span>
 
