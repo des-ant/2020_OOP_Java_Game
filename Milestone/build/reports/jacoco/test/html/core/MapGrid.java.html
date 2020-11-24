@@ -74,16 +74,16 @@ public class MapGrid {
 
   // Remove tile from list
   public boolean removeTile(Tile tileRemove) {
-<span class="nc bnc" id="L77" title="All 2 branches missed.">    if (tileRemove == null) {</span>
+<span class="pc bpc" id="L77" title="1 of 2 branches missed.">    if (tileRemove == null) {</span>
 <span class="nc" id="L78">      return false;</span>
     }
-<span class="nc bnc" id="L80" title="All 2 branches missed.">    for (Tile tile : tileList) {</span>
-<span class="nc bnc" id="L81" title="All 2 branches missed.">      if (tile == tileRemove) {</span>
-<span class="nc" id="L82">        tileList.remove(tile);</span>
-<span class="nc" id="L83">        numFruit--;</span>
-<span class="nc" id="L84">        return true;</span>
+<span class="pc bpc" id="L80" title="1 of 2 branches missed.">    for (Tile tile : tileList) {</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">      if (tile == tileRemove) {</span>
+<span class="fc" id="L82">        tileList.remove(tile);</span>
+<span class="fc" id="L83">        numFruit--;</span>
+<span class="fc" id="L84">        return true;</span>
       }
-<span class="nc" id="L86">    }</span>
+<span class="fc" id="L86">    }</span>
 <span class="nc" id="L87">    return false;</span>
   }
 
