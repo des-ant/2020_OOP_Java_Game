@@ -29,7 +29,7 @@ public class Ghost extends Actor{
     new ChaserTarget(mapGrid), new Scatter(mapGrid, ghostType.getScatterMode()),
     new RandomTarget(mapGrid)));
     this.sprite = app.loadImage(ghostType.getSprite());
-    this.ghostMode = GhostMode.SCATTER;
+    this.ghostMode = GhostMode.CHASE;
   }
   
   /**

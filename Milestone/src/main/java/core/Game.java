@@ -22,6 +22,10 @@ public class Game {
   private long currentTimestamp;
   private int modeIndex;
 
+  public MapGrid getMapGrid() {
+    return mapGrid;
+  }
+
   public Waka getWaka() {
     return waka;
   }
