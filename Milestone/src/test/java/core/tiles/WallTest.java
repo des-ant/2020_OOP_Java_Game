@@ -18,10 +18,9 @@ public class WallTest {
     this.app = new App();
     PApplet.runSketch(new String[] {"App"}, app);
     // Wait for assets to be loaded in
-    app.delay(250);
+    app.delay(100);
     // This stops draw() being called automatically
     app.noLoop();
-    app.keyPressed();
   }
 
   // Test wall constructor

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="core.tiles.FruitTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-11-24T04:15:26" hostname="Anthonys-MacBook-Air.local" time="0.768">
+<testsuite name="core.tiles.FruitTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-11-24T05:59:54" hostname="Anthonys-MacBook-Air.local" time="0.42">
   <properties/>
-  <testcase name="testConstruction()" classname="core.tiles.FruitTest" time="0.351"/>
-  <testcase name="isMovable()" classname="core.tiles.FruitTest" time="0.416"/>
+  <testcase name="testConstruction()" classname="core.tiles.FruitTest" time="0.204"/>
+  <testcase name="isMovable()" classname="core.tiles.FruitTest" time="0.214"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

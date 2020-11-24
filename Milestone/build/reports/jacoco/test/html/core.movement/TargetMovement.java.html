@@ -92,7 +92,7 @@ public class TargetMovement implements Movement {
 <span class="fc" id="L92">    Point currentTile = PointMaths.toPixelCoords(coords);</span>
 <span class="fc" id="L93">    int currentTileX = (int) currentTile.getX();</span>
 <span class="fc" id="L94">    int currentTileY = (int) currentTile.getY();</span>
-<span class="pc bpc" id="L95" title="1 of 4 branches missed.">    if (x == currentTileX &amp;&amp; y == currentTileY) {</span>
+<span class="fc bfc" id="L95" title="All 4 branches covered.">    if (x == currentTileX &amp;&amp; y == currentTileY) {</span>
 <span class="fc" id="L96">      return true;</span>
     }
 <span class="fc" id="L98">    return false;</span>
@@ -159,7 +159,7 @@ public class TargetMovement implements Movement {
         // Get next position
 <span class="fc" id="L160">        nextCoords.translate(direction.getX(), direction.getY());</span>
         // Check next move is possible and does not allow backtracking
-<span class="pc bpc" id="L162" title="1 of 4 branches missed.">        if (mapGrid.canMove(nextCoords) &amp;&amp; !nextCoords.equals(previousCoords)) {</span>
+<span class="fc bfc" id="L162" title="All 4 branches covered.">        if (mapGrid.canMove(nextCoords) &amp;&amp; !nextCoords.equals(previousCoords)) {</span>
 <span class="fc" id="L163">            availableDirections.add(direction);</span>
         }
 <span class="fc" id="L165">    }</span>

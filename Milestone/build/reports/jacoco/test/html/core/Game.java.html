@@ -43,8 +43,8 @@ public class Game {
   }
 
   public void setInitialTimestamp() {
-<span class="nc" id="L46">    this.initialTimestamp = System.currentTimeMillis() / 1000;</span>
-<span class="nc" id="L47">  }</span>
+<span class="fc" id="L46">    this.initialTimestamp = System.currentTimeMillis() / 1000;</span>
+<span class="fc" id="L47">  }</span>
 
   public void setCurrentTimestamp() {
 <span class="fc" id="L50">    this.currentTimestamp = System.currentTimeMillis() / 1000;</span>
@@ -109,7 +109,7 @@ public class Game {
   public void draw() {
     // Game will continue to run until no fruits in map
     // and Waka still alive
-<span class="pc bpc" id="L112" title="2 of 4 branches missed.">    if (mapGrid.getNumFruit() &gt; 0 &amp;&amp; waka.isAlive()) {</span>
+<span class="pc bpc" id="L112" title="1 of 4 branches missed.">    if (mapGrid.getNumFruit() &gt; 0 &amp;&amp; waka.isAlive()) {</span>
 <span class="fc" id="L113">      app.background(0, 0, 0);</span>
 
       // Change mode according to config file
@@ -134,15 +134,15 @@ public class Game {
 <span class="fc" id="L134">        ghost.draw(app, debug);</span>
 <span class="fc" id="L135">      }</span>
       // Reset mode if Waka killed
-<span class="pc bpc" id="L137" title="1 of 2 branches missed.">      if (waka.checkKilled()) {</span>
-<span class="nc" id="L138">        setInitialTimestamp();</span>
-<span class="nc" id="L139">        modeIndex = 0;</span>
+<span class="fc bfc" id="L137" title="All 2 branches covered.">      if (waka.checkKilled()) {</span>
+<span class="fc" id="L138">        setInitialTimestamp();</span>
+<span class="fc" id="L139">        modeIndex = 0;</span>
       };
 <span class="fc" id="L141">      waka.eatFruit();</span>
 <span class="fc" id="L142">      waka.tick();</span>
 <span class="fc" id="L143">      waka.draw(app);</span>
     } else {
-<span class="nc" id="L145">      app.background(150, 150, 150);</span>
+<span class="fc" id="L145">      app.background(150, 150, 150);</span>
     }
 <span class="fc" id="L147">  }</span>
 
