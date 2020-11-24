@@ -10,6 +10,7 @@ import core.Tile;
 public class PlayerMovement implements Movement {
 
   private MapGrid mapGrid;
+  private Direction initialDirection;
   private Direction nextDirection;
   private Direction previousDirection;
   private Direction currentDirection;
@@ -20,12 +21,17 @@ public class PlayerMovement implements Movement {
   * @param  mapGrid           the map containing the player
   * @param  initialDirection  the initial direction that is applied to the player
   */
-<span class="fc" id="L23">  public PlayerMovement(MapGrid mapGrid, Direction initialDirection) {</span>
-<span class="fc" id="L24">    this.mapGrid = mapGrid;</span>
-<span class="fc" id="L25">    this.currentDirection = initialDirection;</span>
-<span class="fc" id="L26">    this.nextDirection = initialDirection;</span>
-<span class="fc" id="L27">    this.previousDirection = initialDirection;</span>
-<span class="fc" id="L28">  }</span>
+<span class="fc" id="L24">  public PlayerMovement(MapGrid mapGrid, Direction initialDirection) {</span>
+<span class="fc" id="L25">    this.mapGrid = mapGrid;</span>
+<span class="fc" id="L26">    this.currentDirection = initialDirection;</span>
+<span class="fc" id="L27">    this.nextDirection = initialDirection;</span>
+<span class="fc" id="L28">    this.previousDirection = initialDirection;</span>
+<span class="fc" id="L29">    this.initialDirection = initialDirection;</span>
+<span class="fc" id="L30">  }</span>
+
+  public void resetDirection() {
+<span class="fc" id="L33">    this.previousDirection = initialDirection;</span>
+<span class="fc" id="L34">  }</span>
 
   /**
   * Set next Direction of player
@@ -33,8 +39,8 @@ public class PlayerMovement implements Movement {
   * @param  nextDirection  the direction to be applied
   */
   public void setNextDirection(Direction nextDirection) {
-<span class="fc" id="L36">    this.nextDirection = nextDirection;</span>
-<span class="fc" id="L37">  }</span>
+<span class="fc" id="L42">    this.nextDirection = nextDirection;</span>
+<span class="fc" id="L43">  }</span>
 
   /**
   * Returns Direction that player is facing
@@ -43,10 +49,10 @@ public class PlayerMovement implements Movement {
   */
   @Override
   public Direction getDirection() {
-<span class="fc bfc" id="L46" title="All 2 branches covered.">    if (isMoving()) {</span>
-<span class="fc" id="L47">      return currentDirection;</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">    if (isMoving()) {</span>
+<span class="fc" id="L53">      return currentDirection;</span>
     }
-<span class="fc" id="L49">    return previousDirection;</span>
+<span class="fc" id="L55">    return previousDirection;</span>
   }
 
   /**
@@ -56,7 +62,7 @@ public class PlayerMovement implements Movement {
   */
   @Override
   public boolean isMoving() {
-<span class="fc bfc" id="L59" title="All 2 branches covered.">    return currentDirection != Direction.NONE;</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">    return currentDirection != Direction.NONE;</span>
   }
 
   /**
@@ -69,21 +75,21 @@ public class PlayerMovement implements Movement {
   */
   public boolean hasReachedTile(Point coords, int x, int y) {
     // Centre of player must reach centre of Tile first
-<span class="fc" id="L72">    Point currentTile = PointMaths.toPixelCoords(coords);</span>
-<span class="fc" id="L73">    int currentTileX = (int) currentTile.getX();</span>
-<span class="fc" id="L74">    int currentTileY = (int) currentTile.getY();</span>
-<span class="fc bfc" id="L75" title="All 4 branches covered.">    if (x == currentTileX &amp;&amp; y == currentTileY) {</span>
-<span class="fc" id="L76">      return true;</span>
+<span class="fc" id="L78">    Point currentTile = PointMaths.toPixelCoords(coords);</span>
+<span class="fc" id="L79">    int currentTileX = (int) currentTile.getX();</span>
+<span class="fc" id="L80">    int currentTileY = (int) currentTile.getY();</span>
+<span class="fc bfc" id="L81" title="All 4 branches covered.">    if (x == currentTileX &amp;&amp; y == currentTileY) {</span>
+<span class="fc" id="L82">      return true;</span>
     }
-<span class="fc" id="L78">    return false;</span>
+<span class="fc" id="L84">    return false;</span>
   }
 
   public boolean eatFruit(Point coords) {
-<span class="fc" id="L82">    Tile tileTouched = mapGrid.tileAt(coords);</span>
-<span class="pc bpc" id="L83" title="1 of 4 branches missed.">    if (tileTouched == null || !tileTouched.isMovable()) {</span>
-<span class="fc" id="L84">      return false;</span>
+<span class="fc" id="L88">    Tile tileTouched = mapGrid.tileAt(coords);</span>
+<span class="pc bpc" id="L89" title="1 of 4 branches missed.">    if (tileTouched == null || !tileTouched.isMovable()) {</span>
+<span class="fc" id="L90">      return false;</span>
     }
-<span class="fc" id="L86">    return (mapGrid.removeTile(tileTouched));</span>
+<span class="fc" id="L92">    return (mapGrid.removeTile(tileTouched));</span>
   }
 
   /**
@@ -98,18 +104,18 @@ public class PlayerMovement implements Movement {
   public Direction getNextDirection(Point coords, int x, int y) {
     // Check if can move in next direction
     // Update current direction if can move
-<span class="fc bfc" id="L101" title="All 2 branches covered.">    if (canMove(coords, nextDirection, x, y)) {</span>
-<span class="fc" id="L102">      currentDirection = nextDirection;</span>
-<span class="fc bfc" id="L103" title="All 2 branches covered.">    } else if (!canMove(coords, currentDirection, x, y)) {</span>
+<span class="fc bfc" id="L107" title="All 2 branches covered.">    if (canMove(coords, nextDirection, x, y)) {</span>
+<span class="fc" id="L108">      currentDirection = nextDirection;</span>
+<span class="fc bfc" id="L109" title="All 2 branches covered.">    } else if (!canMove(coords, currentDirection, x, y)) {</span>
       // Return current direction if player is moving and has not reached
       // centre of current Tile
-<span class="pc bpc" id="L106" title="1 of 4 branches missed.">      if (isMoving() &amp;&amp; !hasReachedTile(coords, x, y)) {</span>
-<span class="fc" id="L107">        return currentDirection;</span>
+<span class="pc bpc" id="L112" title="1 of 4 branches missed.">      if (isMoving() &amp;&amp; !hasReachedTile(coords, x, y)) {</span>
+<span class="fc" id="L113">        return currentDirection;</span>
       }
-<span class="fc" id="L109">      previousDirection = currentDirection;</span>
-<span class="fc" id="L110">      currentDirection = Direction.NONE;</span>
+<span class="fc" id="L115">      previousDirection = currentDirection;</span>
+<span class="fc" id="L116">      currentDirection = Direction.NONE;</span>
     }
-<span class="fc" id="L112">    return currentDirection;</span>
+<span class="fc" id="L118">    return currentDirection;</span>
   }
 
   /*
@@ -122,14 +128,14 @@ public class PlayerMovement implements Movement {
   * @return            true if next move is possible
   */
   private boolean canMove(Point coords, Direction direction, int x, int y) {
-<span class="fc" id="L125">    Point newCoords = new Point(coords);</span>
+<span class="fc" id="L131">    Point newCoords = new Point(coords);</span>
     // Centre of player must reach centre of Tile first
-<span class="fc bfc" id="L127" title="All 2 branches covered.">    if (!hasReachedTile(coords, x, y)) {</span>
-<span class="fc" id="L128">      return false;</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">    if (!hasReachedTile(coords, x, y)) {</span>
+<span class="fc" id="L134">      return false;</span>
     }
     // Calculate new coordinates
-<span class="fc" id="L131">    newCoords.translate(direction.getX(), direction.getY());</span>
-<span class="fc" id="L132">    return mapGrid.canMove(newCoords);</span>
+<span class="fc" id="L137">    newCoords.translate(direction.getX(), direction.getY());</span>
+<span class="fc" id="L138">    return mapGrid.canMove(newCoords);</span>
   }
 
 }

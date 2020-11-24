@@ -51,7 +51,7 @@ public class TargetMovement implements Movement {
       targetMode = targetChase;
     } else if (ghostMode == GhostMode.SCATTER) {
       targetMode = targetScatter;
-    } else {
+    } else if (ghostMode == GhostMode.FRIGHTENED) {
       targetMode = targetFrightened;
     }
   }
@@ -125,8 +125,8 @@ public class TargetMovement implements Movement {
       if (isMoving() && !hasReachedTile(coords, x, y)) {
         return currentDirection;
       }
-      previousDirection = currentDirection;
-      currentDirection = Direction.NONE;
+      // previousDirection = currentDirection;
+      // currentDirection = Direction.NONE;
     }
     return currentDirection;
   }

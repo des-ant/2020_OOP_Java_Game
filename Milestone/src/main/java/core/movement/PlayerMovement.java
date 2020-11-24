@@ -10,6 +10,7 @@ import core.Tile;
 public class PlayerMovement implements Movement {
 
   private MapGrid mapGrid;
+  private Direction initialDirection;
   private Direction nextDirection;
   private Direction previousDirection;
   private Direction currentDirection;
@@ -24,6 +25,13 @@ public class PlayerMovement implements Movement {
     this.mapGrid = mapGrid;
     this.currentDirection = initialDirection;
     this.nextDirection = initialDirection;
+    this.previousDirection = initialDirection;
+    this.initialDirection = initialDirection;
+  }
+
+  public void resetDirection() {
+    this.nextDirection = Direction.NONE;
+    this.currentDirection = Direction.NONE;
     this.previousDirection = initialDirection;
   }
 

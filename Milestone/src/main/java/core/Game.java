@@ -69,6 +69,26 @@ public class Game {
   }
 
   /**
+  * Constructs Game from given Papplet window
+  * Overloaded method for testing
+  *
+  * @param  app     the PApplet window to be drawn to
+  * @param  config  the name of config file
+  */
+  public Game(PApplet app, String config) {
+    // Load Papplet
+    this.app = app;
+    // Load Config file
+    this.config = new Config(config);
+    // Debug mode off
+    this.debug = false;
+    // Set initial time
+    this.initialTimestamp = System.currentTimeMillis() / 1000;
+    this.currentTimestamp = System.currentTimeMillis() / 1000;
+    this.modeIndex = 0;
+  }
+
+  /**
   * Set up game
   */
   public void setup() {
@@ -115,7 +135,7 @@ public class Game {
       // Change mode according to config file
       setCurrentTimestamp();
       if (timer() >= modeLengths.get(modeIndex)) {
-        if (modeIndex < modeLengths.size()) {
+        if (modeIndex < modeLengths.size() - 1) {
           modeIndex++;
         } else {
           modeIndex = 0;

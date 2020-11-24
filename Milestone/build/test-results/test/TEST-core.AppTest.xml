@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="core.AppTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-11-24T05:59:49" hostname="Anthonys-MacBook-Air.local" time="0.116">
+<testsuite name="core.AppTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-11-24T07:35:04" hostname="Anthonys-MacBook-Air.local" time="0.126">
   <properties/>
-  <testcase name="testConstruction()" classname="core.AppTest" time="0.116"/>
+  <testcase name="testConstruction()" classname="core.AppTest" time="0.126"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

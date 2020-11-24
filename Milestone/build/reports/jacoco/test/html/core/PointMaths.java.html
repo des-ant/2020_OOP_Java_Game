@@ -36,53 +36,53 @@ import java.awt.Point;
 <span class="fc" id="L36">    return distance;</span>
   }
 
-  public static boolean isDiagonal(Point coords) {
-<span class="nc bnc" id="L40" title="All 4 branches missed.">    return coords.getX() != 0 &amp;&amp; coords.getY() != 0;</span>
-  }
+  // public static boolean isDiagonal(Point coords) {
+  //   return coords.getX() != 0 &amp;&amp; coords.getY() != 0;
+  // }
 
-  public static int magnitude(Point coords) {
-<span class="nc" id="L44">    return (int) Math.sqrt(coords.getX() * coords.getX() + coords.getY() * coords.getY());</span>
-  }
+  // public static int magnitude(Point coords) {
+  //   return (int) Math.sqrt(coords.getX() * coords.getX() + coords.getY() * coords.getY());
+  // }
 
-  public static Point subtract(Point coords1, Point coords2) {
-<span class="nc" id="L48">    Double doubleX = coords1.getX() - coords2.getX();</span>
-<span class="nc" id="L49">    Double doubleY = coords1.getY() - coords2.getY();</span>
-<span class="nc" id="L50">    int intX = (int) Math.round(doubleX);</span>
-<span class="nc" id="L51">    int intY = (int) Math.round(doubleY);</span>
-<span class="nc" id="L52">    return new Point(intX, intY);</span>
-  }
+  // public static Point subtract(Point coords1, Point coords2) {
+  //   Double doubleX = coords1.getX() - coords2.getX();
+  //   Double doubleY = coords1.getY() - coords2.getY();
+  //   int intX = (int) Math.round(doubleX);
+  //   int intY = (int) Math.round(doubleY);
+  //   return new Point(intX, intY);
+  // }
 
-  public static Point remainder(Point coords) {
-<span class="nc" id="L56">    Double doubleX = (coords.getX() + MapGrid.MAPWIDTH * SIZE) % MapGrid.MAPWIDTH * SIZE;</span>
-<span class="nc" id="L57">    Double doubleY = (coords.getY() + MapGrid.MAPHEIGHT * SIZE) % MapGrid.MAPHEIGHT * SIZE;</span>
-<span class="nc" id="L58">    int intX = (int) Math.round(doubleX);</span>
-<span class="nc" id="L59">    int intY = (int) Math.round(doubleY);</span>
-<span class="nc" id="L60">    return new Point(intX, intY);</span>
-  }
+  // public static Point remainder(Point coords) {
+  //   Double doubleX = (coords.getX() + MapGrid.MAPWIDTH * SIZE) % MapGrid.MAPWIDTH * SIZE;
+  //   Double doubleY = (coords.getY() + MapGrid.MAPHEIGHT * SIZE) % MapGrid.MAPHEIGHT * SIZE;
+  //   int intX = (int) Math.round(doubleX);
+  //   int intY = (int) Math.round(doubleY);
+  //   return new Point(intX, intY);
+  // }
 
-  public static Point unit(Point coords) {
-<span class="nc" id="L64">    return new Point(unit(coords.getX()), unit(coords.getY()));</span>
-  }
+  // public static Point unit(Point coords) {
+  //   return new Point(unit(coords.getX()), unit(coords.getY()));
+  // }
 
-  private static int unit(double value) {
-<span class="nc" id="L68">    return (int) Math.signum(value);</span>
-  }
+  // private static int unit(double value) {
+  //   return (int) Math.signum(value);
+  // }
 
-  public static Point times(Point coords, int scale) {
-<span class="nc" id="L72">    Double doubleX = coords.getX() * scale;</span>
-<span class="nc" id="L73">    Double doubleY = coords.getY() * scale;</span>
-<span class="nc" id="L74">    int intX = (int) Math.round(doubleX);</span>
-<span class="nc" id="L75">    int intY = (int) Math.round(doubleY);</span>
-<span class="nc" id="L76">    return new Point(intX, intY);</span>
-  }
+  // public static Point times(Point coords, int scale) {
+  //   Double doubleX = coords.getX() * scale;
+  //   Double doubleY = coords.getY() * scale;
+  //   int intX = (int) Math.round(doubleX);
+  //   int intY = (int) Math.round(doubleY);
+  //   return new Point(intX, intY);
+  // }
 
-  public static Point add(Point coords1, Point coords2) {
-<span class="nc" id="L80">    Double doubleX = coords1.getX() + coords2.getX();</span>
-<span class="nc" id="L81">    Double doubleY = coords1.getY() + coords2.getY();</span>
-<span class="nc" id="L82">    int intX = (int) Math.round(doubleX);</span>
-<span class="nc" id="L83">    int intY = (int) Math.round(doubleY);</span>
-<span class="nc" id="L84">    return new Point(intX, intY);</span>
-  }
+  // public static Point add(Point coords1, Point coords2) {
+  //   Double doubleX = coords1.getX() + coords2.getX();
+  //   Double doubleY = coords1.getY() + coords2.getY();
+  //   int intX = (int) Math.round(doubleX);
+  //   int intY = (int) Math.round(doubleY);
+  //   return new Point(intX, intY);
+  // }
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

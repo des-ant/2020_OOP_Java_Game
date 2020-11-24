@@ -86,14 +86,14 @@ public abstract class Actor {
     return new Point(getCoordX(), getCoordY());
   }
 
-  /**
-  * Returns Point at pixel coordinate of Actor centre
-  *
-  * @return  Point at pixel coordinate of Actor centre
-  */
-  public Point getPixelCoords() {
-    return new Point(x, y);
-  }
+  // /**
+  // * Returns Point at pixel coordinate of Actor centre
+  // *
+  // * @return  Point at pixel coordinate of Actor centre
+  // */
+  // public Point getPixelCoords() {
+  //   return new Point(x, y);
+  // }
   
   /**
   * Resets Actor to initial position
@@ -103,21 +103,21 @@ public abstract class Actor {
     y = startY;
   }
 
-  public void setPixelCoords(Point coords) {
-    Double doubleX = coords.getX();
-    Double doubleY = coords.getY();
-    int intX = (int) Math.round(doubleX);
-    int intY = (int) Math.round(doubleY);
-    this.x = intX;
-    this.y = intY;
-  }
+  // public void setPixelCoords(Point coords) {
+  //   Double doubleX = coords.getX();
+  //   Double doubleY = coords.getY();
+  //   int intX = (int) Math.round(doubleX);
+  //   int intY = (int) Math.round(doubleY);
+  //   this.x = intX;
+  //   this.y = intY;
+  // }
 
-  private Point getNextCoords(Point currentCoords) {
-    Direction nextDirection = movement.getNextDirection(currentCoords, x, y);
-    Point newCoords = new Point(currentCoords);
-    newCoords.translate(nextDirection.getX(), nextDirection.getY());
-    return newCoords;
-  }
+  // private Point getNextCoords(Point currentCoords) {
+  //   Direction nextDirection = movement.getNextDirection(currentCoords, x, y);
+  //   Point newCoords = new Point(currentCoords);
+  //   newCoords.translate(nextDirection.getX(), nextDirection.getY());
+  //   return newCoords;
+  // }
 
   public void tick() {
     Point currentCoords = getCoords();

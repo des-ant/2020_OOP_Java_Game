@@ -1,11 +1,8 @@
 package core.actors;
 
-import core.Actor;
 import core.App;
 import core.Game;
 import core.Direction;
-import core.GhostMode;
-import jdk.jfr.Timestamp;
 import processing.core.PApplet;
 
 import org.junit.jupiter.api.Test;
@@ -75,6 +72,8 @@ public class WakaTest {
       waka.draw(app);
       game.draw();
     }
+    // Waka should be still be facing right
+    assertEquals(Direction.RIGHT, waka.getDirection());
     // Move down now that there is space
     app.keyCode = app.DOWN;
     app.keyPressed();

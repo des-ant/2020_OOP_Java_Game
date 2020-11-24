@@ -47,12 +47,12 @@ public class TargetMovement implements Movement {
   }
 
   public void setTargetMode(GhostMode ghostMode) {
-<span class="pc bpc" id="L50" title="1 of 2 branches missed.">    if (ghostMode == GhostMode.CHASE) {</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">    if (ghostMode == GhostMode.CHASE) {</span>
 <span class="fc" id="L51">      targetMode = targetChase;</span>
-<span class="nc bnc" id="L52" title="All 2 branches missed.">    } else if (ghostMode == GhostMode.SCATTER) {</span>
-<span class="nc" id="L53">      targetMode = targetScatter;</span>
-    } else {
-<span class="nc" id="L55">      targetMode = targetFrightened;</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">    } else if (ghostMode == GhostMode.SCATTER) {</span>
+<span class="fc" id="L53">      targetMode = targetScatter;</span>
+<span class="pc bpc" id="L54" title="1 of 2 branches missed.">    } else if (ghostMode == GhostMode.FRIGHTENED) {</span>
+<span class="fc" id="L55">      targetMode = targetFrightened;</span>
     }
 <span class="fc" id="L57">  }</span>
 
@@ -63,10 +63,10 @@ public class TargetMovement implements Movement {
   */
   @Override
   public Direction getDirection() {
-<span class="nc bnc" id="L66" title="All 2 branches missed.">    if (isMoving()) {</span>
-<span class="nc" id="L67">      return currentDirection;</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">    if (isMoving()) {</span>
+<span class="fc" id="L67">      return currentDirection;</span>
     }
-<span class="nc" id="L69">    return previousDirection;</span>
+<span class="fc" id="L69">    return previousDirection;</span>
   }
 
   /**
@@ -76,7 +76,7 @@ public class TargetMovement implements Movement {
   */
   @Override
   public boolean isMoving() {
-<span class="pc bpc" id="L79" title="1 of 2 branches missed.">    return currentDirection != Direction.NONE;</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">    return currentDirection != Direction.NONE;</span>
   }
 
   /**
@@ -125,8 +125,8 @@ public class TargetMovement implements Movement {
 <span class="pc bpc" id="L125" title="2 of 4 branches missed.">      if (isMoving() &amp;&amp; !hasReachedTile(coords, x, y)) {</span>
 <span class="fc" id="L126">        return currentDirection;</span>
       }
-<span class="nc" id="L128">      previousDirection = currentDirection;</span>
-<span class="nc" id="L129">      currentDirection = Direction.NONE;</span>
+      // previousDirection = currentDirection;
+      // currentDirection = Direction.NONE;
     }
 <span class="fc" id="L131">    return currentDirection;</span>
   }
@@ -164,17 +164,17 @@ public class TargetMovement implements Movement {
         }
 <span class="fc" id="L165">    }</span>
     // If ghost is trapped, allow move backwards
-<span class="pc bpc" id="L167" title="1 of 2 branches missed.">    if (availableDirections.isEmpty()) {</span>
-<span class="nc bnc" id="L168" title="All 2 branches missed.">      for (Direction direction : Direction.validMovements()) {</span>
+<span class="fc bfc" id="L167" title="All 2 branches covered.">    if (availableDirections.isEmpty()) {</span>
+<span class="fc bfc" id="L168" title="All 2 branches covered.">      for (Direction direction : Direction.validMovements()) {</span>
         // Store current ghost position to prevent change to current position
-<span class="nc" id="L170">        Point nextCoords = new Point(coords);</span>
+<span class="fc" id="L170">        Point nextCoords = new Point(coords);</span>
         // Get next position
-<span class="nc" id="L172">        nextCoords.translate(direction.getX(), direction.getY());</span>
+<span class="fc" id="L172">        nextCoords.translate(direction.getX(), direction.getY());</span>
         // Check next move is possible
-<span class="nc bnc" id="L174" title="All 2 branches missed.">        if (mapGrid.canMove(nextCoords)) {</span>
-<span class="nc" id="L175">            availableDirections.add(direction);</span>
+<span class="fc bfc" id="L174" title="All 2 branches covered.">        if (mapGrid.canMove(nextCoords)) {</span>
+<span class="fc" id="L175">            availableDirections.add(direction);</span>
         }
-<span class="nc" id="L177">      }</span>
+<span class="fc" id="L177">      }</span>
     }
 <span class="fc" id="L179">    return availableDirections;</span>
   }

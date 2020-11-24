@@ -69,39 +69,59 @@ public class Game {
 <span class="fc" id="L69">  }</span>
 
   /**
+  * Constructs Game from given Papplet window
+  * Overloaded method for testing
+  *
+  * @param  app     the PApplet window to be drawn to
+  * @param  config  the name of config file
+  */
+<span class="fc" id="L78">  public Game(PApplet app, String config) {</span>
+    // Load Papplet
+<span class="fc" id="L80">    this.app = app;</span>
+    // Load Config file
+<span class="fc" id="L82">    this.config = new Config(config);</span>
+    // Debug mode off
+<span class="fc" id="L84">    this.debug = false;</span>
+    // Set initial time
+<span class="fc" id="L86">    this.initialTimestamp = System.currentTimeMillis() / 1000;</span>
+<span class="fc" id="L87">    this.currentTimestamp = System.currentTimeMillis() / 1000;</span>
+<span class="fc" id="L88">    this.modeIndex = 0;</span>
+<span class="fc" id="L89">  }</span>
+
+  /**
   * Set up game
   */
   public void setup() {
-<span class="fc" id="L75">    app.frameRate(60);</span>
+<span class="fc" id="L95">    app.frameRate(60);</span>
 
     // Draw images centered at the given x and y position
-<span class="fc" id="L78">    app.imageMode(app.CENTER);</span>
+<span class="fc" id="L98">    app.imageMode(app.CENTER);</span>
 
     // Show black background on window launch
-<span class="fc" id="L81">    app.background(0, 0, 0);</span>
+<span class="fc" id="L101">    app.background(0, 0, 0);</span>
 
-<span class="fc" id="L83">    app.rectMode(app.CENTER);</span>
-<span class="fc" id="L84">    app.stroke(255, 255, 255);</span>
+<span class="fc" id="L103">    app.rectMode(app.CENTER);</span>
+<span class="fc" id="L104">    app.stroke(255, 255, 255);</span>
 
     // MapGrid will load wall and fruit images
-<span class="fc" id="L87">    this.mapGrid = new MapGrid(config.getMapGrid(), app, this);</span>
+<span class="fc" id="L107">    this.mapGrid = new MapGrid(config.getMapGrid(), app, this);</span>
     // Create waka from coordinates
-<span class="fc" id="L89">    this.waka = new Waka((int) mapGrid.getWakaCoord().getX(),</span>
-<span class="fc" id="L90">     (int) mapGrid.getWakaCoord().getY(), app, config.getSpeed(), </span>
-<span class="fc" id="L91">     config.getLives(), mapGrid, this);</span>
+<span class="fc" id="L109">    this.waka = new Waka((int) mapGrid.getWakaCoord().getX(),</span>
+<span class="fc" id="L110">     (int) mapGrid.getWakaCoord().getY(), app, config.getSpeed(), </span>
+<span class="fc" id="L111">     config.getLives(), mapGrid, this);</span>
     // Store mode lengths
-<span class="fc" id="L93">    this.modeLengths = config.getModeLengths();</span>
+<span class="fc" id="L113">    this.modeLengths = config.getModeLengths();</span>
     // Create ghosts from coordinates
-<span class="fc" id="L95">    List&lt;GhostType&gt; ghostTypes = mapGrid.getGhostTypes();</span>
-<span class="fc" id="L96">    int index = 0;</span>
-<span class="fc bfc" id="L97" title="All 2 branches covered.">    for (Point point : mapGrid.getGhostCoords()) {</span>
-<span class="fc" id="L98">      this.ghosts.add(new Ghost((int) point.getX(), (int) point.getY(), </span>
-<span class="fc" id="L99">      app, config.getSpeed(), mapGrid, </span>
-<span class="fc" id="L100">      ghostTypes.get(index)));</span>
-<span class="fc" id="L101">      index++;</span>
-<span class="fc" id="L102">    }</span>
+<span class="fc" id="L115">    List&lt;GhostType&gt; ghostTypes = mapGrid.getGhostTypes();</span>
+<span class="fc" id="L116">    int index = 0;</span>
+<span class="fc bfc" id="L117" title="All 2 branches covered.">    for (Point point : mapGrid.getGhostCoords()) {</span>
+<span class="fc" id="L118">      this.ghosts.add(new Ghost((int) point.getX(), (int) point.getY(), </span>
+<span class="fc" id="L119">      app, config.getSpeed(), mapGrid, </span>
+<span class="fc" id="L120">      ghostTypes.get(index)));</span>
+<span class="fc" id="L121">      index++;</span>
+<span class="fc" id="L122">    }</span>
     
-<span class="fc" id="L104">  }</span>
+<span class="fc" id="L124">  }</span>
   
   /**
   * Draw game to PApplet window
@@ -109,59 +129,59 @@ public class Game {
   public void draw() {
     // Game will continue to run until no fruits in map
     // and Waka still alive
-<span class="pc bpc" id="L112" title="1 of 4 branches missed.">    if (mapGrid.getNumFruit() &gt; 0 &amp;&amp; waka.isAlive()) {</span>
-<span class="fc" id="L113">      app.background(0, 0, 0);</span>
+<span class="pc bpc" id="L132" title="1 of 4 branches missed.">    if (mapGrid.getNumFruit() &gt; 0 &amp;&amp; waka.isAlive()) {</span>
+<span class="fc" id="L133">      app.background(0, 0, 0);</span>
 
       // Change mode according to config file
-<span class="fc" id="L116">      setCurrentTimestamp();</span>
-<span class="pc bpc" id="L117" title="1 of 2 branches missed.">      if (timer() &gt;= modeLengths.get(modeIndex)) {</span>
-<span class="nc bnc" id="L118" title="All 2 branches missed.">        if (modeIndex &lt; modeLengths.size()) {</span>
-<span class="nc" id="L119">          modeIndex++;</span>
+<span class="fc" id="L136">      setCurrentTimestamp();</span>
+<span class="fc bfc" id="L137" title="All 2 branches covered.">      if (timer() &gt;= modeLengths.get(modeIndex)) {</span>
+<span class="pc bpc" id="L138" title="1 of 2 branches missed.">        if (modeIndex &lt; modeLengths.size() - 1) {</span>
+<span class="fc" id="L139">          modeIndex++;</span>
         } else {
-<span class="nc" id="L121">          modeIndex = 0;</span>
+<span class="nc" id="L141">          modeIndex = 0;</span>
         }
-<span class="nc" id="L123">        setInitialTimestamp();</span>
+<span class="fc" id="L143">        setInitialTimestamp();</span>
       }
 
-<span class="fc" id="L126">      mapGrid.draw(app);</span>
-<span class="fc bfc" id="L127" title="All 2 branches covered.">      for (Ghost ghost : ghosts) {</span>
-<span class="pc bpc" id="L128" title="1 of 2 branches missed.">        if (modeIndex % 2 == 0) {</span>
-<span class="fc" id="L129">          ghost.setGhostMode(GhostMode.CHASE);</span>
+<span class="fc" id="L146">      mapGrid.draw(app);</span>
+<span class="fc bfc" id="L147" title="All 2 branches covered.">      for (Ghost ghost : ghosts) {</span>
+<span class="fc bfc" id="L148" title="All 2 branches covered.">        if (modeIndex % 2 == 0) {</span>
+<span class="fc" id="L149">          ghost.setGhostMode(GhostMode.CHASE);</span>
         } else {
-<span class="nc" id="L131">          ghost.setGhostMode(GhostMode.SCATTER);</span>
+<span class="fc" id="L151">          ghost.setGhostMode(GhostMode.SCATTER);</span>
         }
-<span class="fc" id="L133">        ghost.tick();</span>
-<span class="fc" id="L134">        ghost.draw(app, debug);</span>
-<span class="fc" id="L135">      }</span>
+<span class="fc" id="L153">        ghost.tick();</span>
+<span class="fc" id="L154">        ghost.draw(app, debug);</span>
+<span class="fc" id="L155">      }</span>
       // Reset mode if Waka killed
-<span class="fc bfc" id="L137" title="All 2 branches covered.">      if (waka.checkKilled()) {</span>
-<span class="fc" id="L138">        setInitialTimestamp();</span>
-<span class="fc" id="L139">        modeIndex = 0;</span>
+<span class="fc bfc" id="L157" title="All 2 branches covered.">      if (waka.checkKilled()) {</span>
+<span class="fc" id="L158">        setInitialTimestamp();</span>
+<span class="fc" id="L159">        modeIndex = 0;</span>
       };
-<span class="fc" id="L141">      waka.eatFruit();</span>
-<span class="fc" id="L142">      waka.tick();</span>
-<span class="fc" id="L143">      waka.draw(app);</span>
+<span class="fc" id="L161">      waka.eatFruit();</span>
+<span class="fc" id="L162">      waka.tick();</span>
+<span class="fc" id="L163">      waka.draw(app);</span>
     } else {
-<span class="fc" id="L145">      app.background(150, 150, 150);</span>
+<span class="fc" id="L165">      app.background(150, 150, 150);</span>
     }
-<span class="fc" id="L147">  }</span>
+<span class="fc" id="L167">  }</span>
 
   /**
   * Send user input to PApplet window
   */
   public void keyPressed() {
     // Arrow keys input
-<span class="pc bpc" id="L154" title="1 of 2 branches missed.">    if (app.key == app.CODED) {</span>
-<span class="nc" id="L155">      waka.move(app);</span>
+<span class="pc bpc" id="L174" title="1 of 2 branches missed.">    if (app.key == app.CODED) {</span>
+<span class="nc" id="L175">      waka.move(app);</span>
     }
-<span class="fc bfc" id="L157" title="All 2 branches covered.">    if (app.key == ' ') {</span>
-<span class="fc bfc" id="L158" title="All 2 branches covered.">      if (debug) {</span>
-<span class="fc" id="L159">        debug = false;</span>
+<span class="fc bfc" id="L177" title="All 2 branches covered.">    if (app.key == ' ') {</span>
+<span class="fc bfc" id="L178" title="All 2 branches covered.">      if (debug) {</span>
+<span class="fc" id="L179">        debug = false;</span>
       } else {
-<span class="fc" id="L161">        debug = true;</span>
+<span class="fc" id="L181">        debug = true;</span>
       }
     }
-<span class="fc" id="L164">  }</span>
+<span class="fc" id="L184">  }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

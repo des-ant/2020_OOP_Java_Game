@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="core.movement.MovementsTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-11-24T07:35:09" hostname="Anthonys-MacBook-Air.local" time="2.429">
+  <properties/>
+  <testcase name="testTrapped()" classname="core.movement.MovementsTest" time="0.697"/>
+  <testcase name="testMovements()" classname="core.movement.MovementsTest" time="1.731"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[java.lang.NullPointerException
+	at processing.awt.PGraphicsJava2D.imageImpl(PGraphicsJava2D.java:1613)
+	at processing.core.PGraphics.image(PGraphics.java:3780)
+	at processing.core.PApplet.image(PApplet.java:12611)
+	at core.Tile.draw(Tile.java:33)
+	at core.MapGrid.draw(MapGrid.java:202)
+	at core.Game.draw(Game.java:146)
+	at core.App.draw(App.java:30)
+	at processing.core.PApplet.handleDraw(PApplet.java:2426)
+	at processing.awt.PSurfaceAWT$12.callDraw(PSurfaceAWT.java:1557)
+	at processing.core.PSurfaceNone$AnimationThread.run(PSurfaceNone.java:316)
+]]></system-err>
+</testsuite>

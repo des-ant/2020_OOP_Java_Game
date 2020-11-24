@@ -63,4 +63,8 @@ public class Ghost extends Actor{
     return ((TargetMovement) movement).getTargetCoord();
   }
 
+  public Direction getDirection() {
+    return movement.getDirection();
+  }
+
 }

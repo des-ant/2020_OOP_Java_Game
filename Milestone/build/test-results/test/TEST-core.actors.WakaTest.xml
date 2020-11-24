@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="core.actors.WakaTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-11-24T05:59:56" hostname="Anthonys-MacBook-Air.local" time="3.39">
+<testsuite name="core.actors.WakaTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-11-24T07:35:13" hostname="Anthonys-MacBook-Air.local" time="3.36">
   <properties/>
-  <testcase name="touchGhost()" classname="core.actors.WakaTest" time="1.388"/>
-  <testcase name="testConstruction()" classname="core.actors.WakaTest" time="0.752"/>
-  <testcase name="testDirections()" classname="core.actors.WakaTest" time="1.247"/>
+  <testcase name="touchGhost()" classname="core.actors.WakaTest" time="1.235"/>
+  <testcase name="testConstruction()" classname="core.actors.WakaTest" time="0.88"/>
+  <testcase name="testDirections()" classname="core.actors.WakaTest" time="1.237"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

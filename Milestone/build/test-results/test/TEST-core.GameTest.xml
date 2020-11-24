@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="core.GameTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-11-24T05:59:49" hostname="Anthonys-MacBook-Air.local" time="3.909">
+<testsuite name="core.GameTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-11-24T07:35:04" hostname="Anthonys-MacBook-Air.local" time="3.708">
   <properties/>
-  <testcase name="testDebug()" classname="core.GameTest" time="2.268"/>
-  <testcase name="testConstruction()" classname="core.GameTest" time="0.859"/>
-  <testcase name="getGhosts()" classname="core.GameTest" time="0.779"/>
+  <testcase name="testDebug()" classname="core.GameTest" time="2.182"/>
+  <testcase name="testConstruction()" classname="core.GameTest" time="0.773"/>
+  <testcase name="getGhosts()" classname="core.GameTest" time="0.748"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

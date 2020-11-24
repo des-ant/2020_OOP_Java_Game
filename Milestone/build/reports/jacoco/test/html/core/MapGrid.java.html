@@ -133,7 +133,7 @@ public class MapGrid {
 <span class="fc" id="L133">      String line = scan.nextLine();</span>
 <span class="fc bfc" id="L134" title="All 2 branches covered.">      for (int i = 0; i &lt; line.length(); i++) {</span>
 <span class="fc" id="L135">        char currentChar = line.charAt(i);</span>
-<span class="pc bpc" id="L136" title="2 of 15 branches missed.">        switch (currentChar) {</span>
+<span class="pc bpc" id="L136" title="1 of 15 branches missed.">        switch (currentChar) {</span>
           // Empty tile
           case '0':
 <span class="fc" id="L139">            break;</span>
@@ -181,9 +181,9 @@ public class MapGrid {
 <span class="fc" id="L181">            wakaCoord = new Point(x, y);</span>
 <span class="fc" id="L182">            break;</span>
           case 'g':
-<span class="nc" id="L184">            ghostCoords.add(new Point(x, y));</span>
-<span class="nc" id="L185">            ghostTypes.add(GhostType.CHASER);</span>
-<span class="nc" id="L186">            break;</span>
+<span class="fc" id="L184">            ghostCoords.add(new Point(x, y));</span>
+<span class="fc" id="L185">            ghostTypes.add(GhostType.CHASER);</span>
+<span class="fc" id="L186">            break;</span>
           case 'w':
 <span class="fc" id="L188">            ghostCoords.add(new Point(x, y));</span>
 <span class="fc" id="L189">            ghostTypes.add(GhostType.WHIM);</span>

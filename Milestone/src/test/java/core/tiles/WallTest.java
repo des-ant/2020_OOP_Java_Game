@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WallTest {
 
@@ -28,6 +29,11 @@ public class WallTest {
   public void testConstruction() {
     Wall wall = new Wall(16, 16, app, WallType.H);
     assertNotNull(wall);
+    // Test getters
+    assertEquals(16, wall.getX());
+    assertEquals(16, wall.getY());
+    assertEquals(1, wall.getCoordX());
+    assertEquals(1, wall.getCoordY());
   }
 
   // Wall should not be movable

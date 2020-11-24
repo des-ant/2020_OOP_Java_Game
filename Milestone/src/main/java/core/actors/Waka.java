@@ -48,6 +48,10 @@ public class Waka extends Actor {
     ((PlayerMovement) movement).setNextDirection(direction);
   }
 
+  public void resetDirection() {
+    ((PlayerMovement) movement).resetDirection();
+  }
+
   // For animation
   public Direction getDirection() {
     return movement.getDirection();
@@ -133,6 +137,7 @@ public class Waka extends Actor {
     for (Ghost ghost : game.getGhosts()) {
       ghost.resetPixelCoords();
     }
+    resetDirection();
     resetPixelCoords();
     return true;
   }
