@@ -5,7 +5,7 @@ package core;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class AppTest {
 
@@ -13,7 +13,7 @@ public class AppTest {
 
   @BeforeEach
   public void setUp() throws Exception {
-    app = new App();
+    this.app = new App();
   }
 
   // Test app constructor
