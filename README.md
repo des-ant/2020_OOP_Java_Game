@@ -11,6 +11,7 @@ Prototype of Pac-Man game using Java and Object-oriented Programming
 [Gradle](https://gradle.org/install/)
 
 ### Usage
+Navigate inside "Milestone" directory and execute the following:
 ```bash
 gradle run
 ```
